@@ -33,8 +33,8 @@ public class GameCanvas extends BaseCanvas {
     /***    DEĞİŞKENLER    ***/
 
     // Görsellerden çekilecek sprite boyutları.
-    private int platformSourceWidth = 320;
-    private int platformSourceHeight = 200;
+    private int platformSourceWidth = 380;
+    private int platformSourceHeight = 220;
     private int platformDestinationWidth = 120;
     private int platformDestinationHeight = 75;
 
@@ -62,7 +62,7 @@ public class GameCanvas extends BaseCanvas {
     private int platformRightSourceX = 0;
     private int platformRightSourceY = 0;
 
-    private int platformLeftSourceX = 640;
+    private int platformLeftSourceX = 380;
     private int platformLeftSourceY = 0;
 
     private int platformLeftX = 0;
@@ -134,12 +134,16 @@ public class GameCanvas extends BaseCanvas {
     private Sprite middlePlatfrom;
 
     // Alt kısımdaki blok(ürünlerin çıktığı) ile ilgili değişkenler.
-    private Sprite block;
-    private int blockDimension = 300 ;
+    //private Sprite block;
+   // private int blockDimension = 300 ;
 
     // Orta platformun üstündeki top ile ilgili değişkenler tanımlanıyor.
     private Sprite ball;
     private int ballDimention = 200;
+
+
+    // Pipe ile ilgili değişkenler tanımlanıyor.
+    private Sprite pipe;
 
     public GameCanvas(NgApp ngApp) {
         super(ngApp);
@@ -179,9 +183,11 @@ public class GameCanvas extends BaseCanvas {
         middlePlatfrom = new Sprite(root, "middlePlatformWithLightAndShadow.png", 0, 0, 360, 360, 0, 0, 360/3, 360/3);
         middlePlatfrom.setPosition(centerX, middlePlatfrom.getDestinationHeight() / 2);
 
-        block = new Sprite(root, "block.png", 0, 0, 380, 380, 0, getHeight() - 285, blockDimension, blockDimension);
+        //block = new Sprite(root, "block.png", 0, 0, 380, 380, 0, getHeight() - 285, blockDimension, blockDimension);
         ball = new Sprite(root, "ball.png", 0, 0, 380, 380, 0, ballDimention, ballDimention, ballDimention);
         ball.setPosition(centerX, ballDimention);
+
+        pipe = new Sprite(root, "pipeActs.png", 0, 0, 384, 384, 0, getHeight() - 384, 350, 350);
     }
 
     public void setupMediaPlayer(String assetFilePath) {
@@ -204,6 +210,14 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltAnimation(conveyorBelt4);
         conveyorBeltAnimation(conveyorBelt5);
         conveyorBeltAnimation(conveyorBelt6);
+
+        if(pipe.getSourceX() < pipe.getSourceWidth()*9) {
+            pipe.setSourceX(pipe.getSourceWidth() + pipe.getSourceX());
+        } else {
+            pipe.setSourceX(0);
+        }
+
+
     }
 
     private void conveyorBeltAnimation(Sprite conveyorBelt) {
@@ -254,17 +268,24 @@ public class GameCanvas extends BaseCanvas {
         //converoyBeltTop.draw(canvas);
 
         // Orta platform erkarana çiziliyor.
-        for(int i = ballDimention; i < getHeight() - blockDimension; i = i + middlePlatfrom.getDestinationHeight()){
+        for(int i = ballDimention; i < getHeight(); i = i + middlePlatfrom.getDestinationHeight()){
             middlePlatfrom.setDestinationY(i);
             middlePlatfrom.draw(canvas);
         }
 
+        /*
         for(int i = 0; i < blockDimension * 2; i += blockDimension) {
             block.setDestinationX(i);
             block.draw(canvas);
         }
+        */
 
         ball.draw(canvas);
+
+
+        // Pipe sprite'ı ekrana çizdiriliyor.
+        pipe.draw(canvas);
+
 
     }
     /*
