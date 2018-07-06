@@ -1,28 +1,30 @@
 package com.ngdroidapp;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-
 import istanbul.gamelab.ngdroid.base.BaseCanvas;
 import istanbul.gamelab.ngdroid.util.Log;
-import istanbul.gamelab.ngdroid.util.Utils;
 import istanbul.gamelab.ngdroid.core.NgMediaPlayer;
-
 
 /**
  * Created by noyan on 24.06.2016.
  * Nitra Games Ltd.
  */
 
-
 public class GameCanvas extends BaseCanvas {
 
     /***    SABİTLER    ***/
-    final private String platformSpriteSetFilePath = "platformSpriteSet.png";
+
+    // Ekranın orta noktasının koordinatlarını tutan değişkenler.
+    final private int centerX = getWidth() / 2;
+    final private int centerY = getHeight() / 2;
+
+    //
+    final private String platformSpriteSetFilePath = "candyPlatformSpriteSet.png";
 
     // Sprite görsellerinin dosya yollarını tutmak için değişken tanımlaması yapılıyor.
-    final private String playerLeftSpriteSetFilePath = "dilaraSprite.png";
+    final private String playerLeftSpriteSetFilePath = "dilara.png";
     final private String playerRightSpriteSetFilePath = "partyGirl.png";
+    final private String converoyBeltSpriteSetFilePath = "converoyBeltSpriteSetLongVer2.png";
 
     // Yürüyen bantlar arasındaki boşluklar ayarlanıyor.
     final private int converoyBeltSpaces = 300;
@@ -76,6 +78,16 @@ public class GameCanvas extends BaseCanvas {
     private Sprite playerLeft;
     private Sprite playerRight;
 
+    private int playerLeftSourceWidth = 328;
+    private int playerLeftSourceHeight = 296;
+    private int playerLeftDestinationWidth = 164;
+    private int playerLeftDestinationHeight = 148;
+
+    private int playerRightSourceWidth = 85;
+    private int playerRightSourceHeight = 178;
+    private int playerRightDestinationWidth = 85;
+    private int playerRightDestinationHeight = 178;
+
     // Swipe gesture kontrolü için dokunma anının koordinatlarını tutacak değişkenler tanımlanıyor.
     private int touchDownX = 0;
     private int touchDownY = 0;
@@ -84,31 +96,50 @@ public class GameCanvas extends BaseCanvas {
     private  boolean screenSide = false;
 
     // Yürüyen bantlar ile ilgili değişkenler tanımlanıyor.
-    private Sprite converoyBeltBottom;
-    private Sprite converoyBeltMiddle;
-    private Sprite converoyBeltMiddle2;
-    private Sprite converoyBeltMiddle3;
-    private Sprite converoyBeltTop;
+
+    private Sprite conveyorBelt;
+    private Sprite conveyorBelt2;
+    private Sprite conveyorBelt3;
+    private Sprite conveyorBelt4;
+    private Sprite conveyorBelt5;
+    private Sprite conveyorBelt6;
+
+    //private Sprite converoyBeltBottom;
+    //private Sprite converoyBeltMiddle;
+    //private Sprite converoyBeltMiddle2;
+    //private Sprite converoyBeltMiddle3;
+    //private Sprite converoyBeltTop;
 
     // Yürüyen bantların ölçüleri ile ilgili değişkenler.
-    private int converoyBeltWidth = 512;
-    private int converoyBeltHeight = 128;
+    private int conveyorBeltDestinationWidth = 720;
+    private int conveyorBeltDestinationHeight = 90;
+
+    private int conveyorBeltSourceWidth = 1440;
+    private int conveyorBeltSourceHeight = 160;
 
     // Yürüyen bantların konumları ile ilgili değişkenler.
-    private int converoyBeltBottomY = converoyBeltSpaces;
-    private int converoyBeltMiddleY = converoyBeltSpaces*2;
-    private int converoyBeltMiddle2Y = converoyBeltSpaces*3;
-    private int converoyBeltMiddle3Y = converoyBeltSpaces*4;
-    private int converoyBeltTopY = converoyBeltSpaces*5;
+    private int conveyorBeltBottom2Y = converoyBeltSpaces * 6;
+    private int conveyorBeltBottomY = converoyBeltSpaces * 5;
+    private int conveyorBeltMiddleY = converoyBeltSpaces * 4;
+    private int conveyorBeltMiddle2Y = converoyBeltSpaces * 3;
+    private int conveyorBeltMiddle3Y = converoyBeltSpaces * 2;
+    private int conveyorBeltTopY = converoyBeltSpaces;
 
-    private int converoyBeltRightX = (int)((getWidth() - converoyBeltWidth) / 2.2);
-    private int converoyBeltLeftX = (int) ((getWidth() - converoyBeltWidth) / 1.8);
+    private int conveyorBeltRightX = (int)((getWidth() - conveyorBeltDestinationWidth) / 2.2);
+    private int conveyorBeltLeftX = (int) ((getWidth() - conveyorBeltDestinationWidth) / 1.8);
 
     // Merdivenler ile ilgili değişkenler.
 
     // Orta platform ile ilgili değişkenler.
     private Sprite middlePlatfrom;
 
+    // Alt kısımdaki blok(ürünlerin çıktığı) ile ilgili değişkenler.
+    private Sprite block;
+    private int blockDimension = 300 ;
+
+    // Orta platformun üstündeki top ile ilgili değişkenler tanımlanıyor.
+    private Sprite ball;
+    private int ballDimention = 200;
 
     public GameCanvas(NgApp ngApp) {
         super(ngApp);
@@ -127,19 +158,30 @@ public class GameCanvas extends BaseCanvas {
 
         setupMediaPlayer("sounds/bgm_action_5.mp3");
 
-        playerLeft = new Sprite(root, playerLeftSpriteSetFilePath, 0, 0, 128, 128, platformLeftX, platformLeftBottomY - 256, 256, 256);
+        playerLeft = new Sprite(root, playerLeftSpriteSetFilePath, 0, 0, 328, 296, platformLeftX, platformLeftBottomY - 148, 164, 148);
         playerRight = new Sprite(root, playerRightSpriteSetFilePath, 0, 0, 85, 178, platformRightX, platformRightBottomY - 178, 85, 178);
 
+        conveyorBelt = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltTopY, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
+        conveyorBelt2 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltRightX, conveyorBeltMiddleY, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
+        conveyorBelt3 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltMiddle2Y, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
+        conveyorBelt4 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltRightX, conveyorBeltMiddle3Y, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
+        conveyorBelt5 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltBottomY, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
+        conveyorBelt6 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltBottom2Y, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
 
-        converoyBeltBottom = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltBottomY, converoyBeltWidth, converoyBeltHeight);
-        converoyBeltMiddle = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltLeftX, converoyBeltMiddleY, converoyBeltWidth, converoyBeltHeight);
-        converoyBeltMiddle2 = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltMiddle2Y, converoyBeltWidth, converoyBeltHeight);
-        converoyBeltMiddle3 = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltLeftX, converoyBeltMiddle3Y, converoyBeltWidth, converoyBeltHeight);
-        converoyBeltTop = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltTopY, converoyBeltWidth, converoyBeltHeight);
+        //converoyBeltBottom = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltBottomY, converoyBeltWidth, converoyBeltHeight);
+        //converoyBeltMiddle = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltLeftX, converoyBeltMiddleY, converoyBeltWidth, converoyBeltHeight);
+        //converoyBeltMiddle2 = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltMiddle2Y, converoyBeltWidth, converoyBeltHeight);
+        //converoyBeltMiddle3 = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltLeftX, converoyBeltMiddle3Y, converoyBeltWidth, converoyBeltHeight);
+        //converoyBeltTop = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltTopY, converoyBeltWidth, converoyBeltHeight);
 
 
         // Orta platform ile ilgili ilk değer atamaları.
-        middlePlatfrom = new Sprite(root, "middlePlatform.png", 0, 0, 360, 360, 0, 0, 180, 180);
+        middlePlatfrom = new Sprite(root, "middlePlatformWithLightAndShadow.png", 0, 0, 360, 360, 0, 0, 360/3, 360/3);
+        middlePlatfrom.setPosition(centerX, middlePlatfrom.getDestinationHeight() / 2);
+
+        block = new Sprite(root, "block.png", 0, 0, 380, 380, 0, getHeight() - 285, blockDimension, blockDimension);
+        ball = new Sprite(root, "ball.png", 0, 0, 380, 380, 0, ballDimention, ballDimention, ballDimention);
+        ball.setPosition(centerX, ballDimention);
     }
 
     public void setupMediaPlayer(String assetFilePath) {
@@ -151,13 +193,28 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void update() {
-        converoyBeltAnimation(converoyBeltBottom);
-        converoyBeltAnimation(converoyBeltMiddle);
-        converoyBeltAnimation(converoyBeltMiddle2);
-        converoyBeltAnimation(converoyBeltMiddle3);
-        converoyBeltAnimation(converoyBeltTop);
+        //converoyBeltAnimation(converoyBeltBottom);
+        //converoyBeltAnimation(converoyBeltMiddle);
+        //converoyBeltAnimation(converoyBeltMiddle2);
+        //converoyBeltAnimation(converoyBeltMiddle3);
+        //converoyBeltAnimation(converoyBeltTop);
+        conveyorBeltAnimation(conveyorBelt);
+        conveyorBeltAnimation(conveyorBelt2);
+        conveyorBeltAnimation(conveyorBelt3);
+        conveyorBeltAnimation(conveyorBelt4);
+        conveyorBeltAnimation(conveyorBelt5);
+        conveyorBeltAnimation(conveyorBelt6);
     }
 
+    private void conveyorBeltAnimation(Sprite conveyorBelt) {
+        if(conveyorBelt.getSourceY() == 0) {
+            conveyorBelt.setSourceY(conveyorBelt.getSourceHeight());
+        } else {
+            conveyorBelt.setSourceY(0);
+        }
+    }
+
+    /*
     private void converoyBeltAnimation(Sprite converoyBelt) {
         if(converoyBelt.getSourceY() == 0) {
             converoyBelt.setSourceY(converoyBelt.getSourceHeight());
@@ -165,6 +222,7 @@ public class GameCanvas extends BaseCanvas {
             converoyBelt.setSourceY(0);
         }
     }
+    */
 
     public void draw(Canvas canvas) {
         background.draw(canvas);
@@ -180,14 +238,58 @@ public class GameCanvas extends BaseCanvas {
         playerLeft.draw(canvas);
         playerRight.draw(canvas);
 
-        converoyBeltBottom.draw(canvas);
-        converoyBeltMiddle.draw(canvas);
-        converoyBeltMiddle2.draw(canvas);
-        converoyBeltMiddle3.draw(canvas);
-        converoyBeltTop.draw(canvas);
+        conveyorBelt.draw(canvas);
+        conveyorBelt2.draw(canvas);
+        conveyorBelt3.draw(canvas);
+        conveyorBelt4.draw(canvas);
+        conveyorBelt5.draw(canvas);
+        conveyorBelt6.draw(canvas);
+
+        //drawConveroyBelt(canvas, 5, centerX, centerY);
+
+        //converoyBeltBottom.draw(canvas);
+        //converoyBeltMiddle.draw(canvas);
+        //converoyBeltMiddle2.draw(canvas);
+        //converoyBeltMiddle3.draw(canvas);
+        //converoyBeltTop.draw(canvas);
 
         // Orta platform erkarana çiziliyor.
-        middlePlatfrom.draw(canvas);
+        for(int i = ballDimention; i < getHeight() - blockDimension; i = i + middlePlatfrom.getDestinationHeight()){
+            middlePlatfrom.setDestinationY(i);
+            middlePlatfrom.draw(canvas);
+        }
+
+        for(int i = 0; i < blockDimension * 2; i += blockDimension) {
+            block.setDestinationX(i);
+            block.draw(canvas);
+        }
+
+        ball.draw(canvas);
+
+    }
+    /*
+    public void drawConveroyBelt(Canvas canvas, int width, int x, int y) {
+        int converoyBeltTotalWidth = converoyBelt.getDestinationWidth() * width;
+
+        converoyBelt.setDestinationX(x);
+        converoyBelt.setDestinationY(y);
+        converoyBelt.setSourceX(0);
+        converoyBelt.draw(canvas);
+
+        for(int i = converoyBelt.getDestinationWidth(); i < converoyBeltTotalWidth; i += converoyBelt.getDestinationWidth()) {
+                converoyBelt.setSourceX(converoyBelt.getSourceWidth());
+                converoyBelt.setDestinationX(i);
+                converoyBelt.draw(canvas);
+        }
+        converoyBelt.setDestinationX(converoyBelt.getDestinationX()+converoyBelt.getDestinationWidth());
+        converoyBelt.setSourceX(converoyBelt.getSourceWidth() * 3);
+        converoyBelt.draw(canvas);
+
+
+    }
+    */
+    private void animateConveroyBelt(Canvas canvas) {
+
     }
 
     public void keyPressed(int key) {
@@ -248,7 +350,7 @@ public class GameCanvas extends BaseCanvas {
                         if(!(playerRight.getDestinationY() == (platformRightTopY - playerRight.getDestinationHeight()))) {
                             playerRight.setDestinationY(playerRight.getDestinationY() + (platformRightMiddleY - platformRightBottomY));
                         }
-                    } else {
+                    } else if(diffrentY > 0) {
                         if(!(playerRight.getDestinationY() == (platformRightBottomY - playerRight.getDestinationHeight()))) {
                             playerRight.setDestinationY(playerRight.getDestinationY() - (platformRightMiddleY - platformRightBottomY));
                         }
@@ -256,6 +358,10 @@ public class GameCanvas extends BaseCanvas {
                 }
             }
         } else {
+
+            Log.i(TAG, "playerLeft.getDestinationY:" + playerLeft.getDestinationY());
+            Log.i(TAG, "platformTopY - playerLeft.getDestinationHeight:" + playerLeft.getDestinationY());
+
             if(!(playerLeft.getDestinationY() < (platformLeftTopY - playerLeft.getDestinationHeight()) || playerLeft.getDestinationY() > (platformLeftBottomY - playerLeft.getDestinationHeight()))) {
                 // Ekranın sol tarafındaki player konum değiştirecek.
                 if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
@@ -267,7 +373,7 @@ public class GameCanvas extends BaseCanvas {
                         if(!(playerLeft.getDestinationY() == (platformLeftTopY - playerLeft.getDestinationHeight()))) {
                             playerLeft.setDestinationY(playerLeft.getDestinationY() + (platformLeftMiddleY - platformLeftBottomY));
                         }
-                    } else {
+                    } else if(diffrentY > 0) {
                         if(!(playerLeft.getDestinationY() == (platformLeftBottomY - playerLeft.getDestinationHeight()))) {
                             playerLeft.setDestinationY(playerLeft.getDestinationY() - (platformLeftMiddleY - platformLeftBottomY));
                         }

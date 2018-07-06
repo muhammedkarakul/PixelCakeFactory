@@ -117,8 +117,8 @@ public class Sprite {
         velocityX = 0;
         velocityY = 0;
 
-        source = new Rect(this.sourceX, this.sourceY, (this.getSourceX() + this.sourceWidth), (this.getSourceY() + this.sourceHeight));
-        destination = new Rect(this.destinationX, this.destinationY, (this.getDestinationX() + this.destinationWidth), (this.getDestinationY() + this.destinationHeight));
+        source = new Rect(this.sourceX, this.sourceY, (this.sourceX + this.sourceWidth), (this.sourceY + this.sourceHeight));
+        destination = new Rect(this.destinationX, this.destinationY, (this.destinationX + this.destinationWidth), (this.destinationY + this.destinationHeight));
     }
 
     public void setImage(NgApp root, String imageFilePath) {
