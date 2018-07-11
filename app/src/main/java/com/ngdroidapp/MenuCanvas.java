@@ -1,6 +1,7 @@
 package com.ngdroidapp;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 import istanbul.gamelab.ngdroid.base.BaseCanvas;
 import istanbul.gamelab.ngdroid.core.NgMediaPlayer;
@@ -18,6 +19,11 @@ public class MenuCanvas extends BaseCanvas {
     // Görsellerden çekilecek sprite boyutları.
     final private int spriteSourceWidth = 384;
     final private int spriteSourceHeight = 384;
+    final private String backgroundImagePath = "background.png";
+    final private String playButtonImagePath = "buttonPlaySpriteSet.png";
+    final private String soundButtonImagePath = "buttonSoundSpriteSet.png";
+    final private String musicButtonImagePath = "buttonMusicSpriteSet.png";
+    final private String infoButtonImagePath = "buttonInfoSpriteSet.png";
 
     /* DEĞİŞKENLER */
 
@@ -28,30 +34,40 @@ public class MenuCanvas extends BaseCanvas {
     private boolean musicState = true;
 
     // Background ile ilgili değişkenler.
-    private Sprite background;
-    private String backgroundImagePath = "background.png";
+    private Sprite backgroundSprite;
+    private Rect backgroundSourceRect;
+    private Rect backgroundDestinationRect;
+
 
     // Play button ile ilgili değişkenler.
-    private Sprite playButton;
-    private String playButtonImagePath = "buttonPlaySpriteSet.png";
+    private Sprite playButtonSprite;
+    private Rect playButtonSourceRect;
+    private Rect playButtonDestinationRect;
+
     private int playButtonWidth = 384;
     private int playButtonHeight= 384;
 
     // Sound button ile ilgili değişkenler.
-    private Sprite soundButton;
-    private String soundButtonImagePath = "buttonSoundSpriteSet.png";
+    private Sprite soundButtonSprite;
+    private Rect soundButtonSourceRect;
+    private Rect soundButtonDestinationRect;
+
     private int soundButtonWidth = 256;
     private int soundButtonHeight = 256;
 
     // Music button ile ilgili değişkenler.
-    private Sprite musicButton;
-    private String musicButtonImagePath = "buttonMusicSpriteSet.png";
+    private Sprite musicButtonSprite;
+    private Rect musicButtonSourceRect;
+    private Rect musicButtonDestinationRect;
+
     private int musicButtonWidth = 256;
     private int musicButtonHeight = 256;
 
     // Info button ile ilgili değişkenler.
-    private Sprite infoButton;
-    private String infoButtonImagePath = "buttonInfoSpriteSet.png";
+    private Sprite infoButtonSprite;
+    private Rect infoButtonSourceRect;
+    private Rect infoButtonDestinationRect;
+
     private int infoButtonWidth = 256;
     private int infoButtonHeight = 256;
 
@@ -66,11 +82,27 @@ public class MenuCanvas extends BaseCanvas {
     }
 
     public void setup() {
-        background = new Sprite(root, backgroundImagePath, 0, 0, 500, 500, 0, 0, getWidth(), getHeight());
-        playButton = new Sprite(root, playButtonImagePath, 0, 0, spriteSourceWidth, spriteSourceHeight, ((getWidth() - spriteSourceWidth) / 2), ((getHeight() - spriteSourceHeight) / 2), playButtonWidth, playButtonHeight);
-        soundButton = new Sprite(root, soundButtonImagePath, 0, 0, spriteSourceWidth, spriteSourceHeight, 0, 0, soundButtonWidth, soundButtonHeight);
-        musicButton = new Sprite(root, musicButtonImagePath, 0, 0, spriteSourceWidth, spriteSourceHeight, soundButtonWidth, 0, musicButtonWidth, musicButtonHeight);
-        infoButton = new Sprite(root, infoButtonImagePath, 0, 0, spriteSourceWidth, spriteSourceHeight, (getWidth() - infoButtonWidth), (getHeight() - infoButtonHeight), infoButtonWidth, infoButtonHeight);
+
+        backgroundSourceRect = new Rect(0, 20, 1020, 2040);
+        backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
+        backgroundSprite = new Sprite(root, backgroundImagePath, backgroundSourceRect, backgroundDestinationRect);
+
+        playButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        playButtonDestinationRect = new Rect(((getWidth() - playButtonWidth) / 2), ((getHeight() - playButtonHeight) / 2), ((getWidth() - playButtonWidth) / 2) + playButtonWidth, ((getHeight() - playButtonHeight) / 2) + playButtonHeight);
+        playButtonSprite = new Sprite(root, playButtonImagePath, playButtonSourceRect, playButtonDestinationRect);
+
+        soundButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        soundButtonDestinationRect = new Rect(0, 0, soundButtonWidth, soundButtonHeight);
+        soundButtonSprite = new Sprite(root, soundButtonImagePath, soundButtonSourceRect, soundButtonDestinationRect);
+
+        musicButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        musicButtonDestinationRect = new Rect(soundButtonWidth, 0, soundButtonWidth + musicButtonWidth, musicButtonHeight);
+        musicButtonSprite = new Sprite(root, musicButtonImagePath, musicButtonSourceRect, musicButtonDestinationRect);
+
+        infoButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        infoButtonDestinationRect = new Rect((getWidth() - infoButtonWidth), (getHeight() - infoButtonHeight), (getWidth() - infoButtonWidth) + infoButtonWidth, (getHeight() - infoButtonHeight) + infoButtonHeight);
+        infoButtonSprite = new Sprite(root, infoButtonImagePath, infoButtonSourceRect, infoButtonDestinationRect);
+
         setupSound();
         setupClickSound();
     }
@@ -91,20 +123,21 @@ public class MenuCanvas extends BaseCanvas {
     }
 
     public void update() {
+        /*
         if(soundState) {
             // Play sound
         } else {
             // Stop sound
         }
-
+        */
     }
 
     public void draw(Canvas canvas) {
-        background.draw(canvas);
-        playButton.draw(canvas);
-        soundButton.draw(canvas);
-        musicButton.draw(canvas);
-        infoButton.draw(canvas);
+        backgroundSprite.draw(canvas);
+        playButtonSprite.draw(canvas);
+        soundButtonSprite.draw(canvas);
+        musicButtonSprite.draw(canvas);
+        infoButtonSprite.draw(canvas);
     }
 
     public void keyPressed(int key) {
@@ -120,37 +153,37 @@ public class MenuCanvas extends BaseCanvas {
 
     public void touchDown(int x, int y, int id) {
 
-        if(soundState) {
-            clickSound.start();
+        if(playButtonSprite.isTouchedUp(x, y)) {
+            Log.i(TAG, "Play Butonuna Basıldı.");
+            playClickSound();
+            playButtonSprite.setSourceX(420);
         }
 
-        if(playButton.isTouchedUp(x, y)) {
-            //Log.i(TAG, "Play Butonuna Basıldı.");
-            playButton.setSourceX(420);
+        if(infoButtonSprite.isTouchedUp(x, y)) {
+            playClickSound();
+            infoButtonSprite.setSourceX(384);
         }
 
-        if(infoButton.isTouchedUp(x, y)) {
-            infoButton.setSourceX(384);
-        }
-
-        if(soundButton.isTouchedUp(x, y)) {
-            //Log.i(TAG, "Sound Butonuna Basıldı.");
+        if(soundButtonSprite.isTouchedUp(x, y)) {
+            Log.i(TAG, "Sound Butonuna Basıldı.");
+            playClickSound();
             if(soundState) {
-                soundButton.setSourceX(384);
+                soundButtonSprite.setSourceX(384);
             } else {
-                soundButton.setSourceX(1152);
+                soundButtonSprite.setSourceX(1152);
             }
 
         }
 
-        if(musicButton.isTouchedUp(x, y)) {
+        if(musicButtonSprite.isTouchedUp(x, y)) {
+            Log.i(TAG, "Music Butonuna Basıldı.");
+            playClickSound();
             if(musicState) {
-                musicButton.setSourceX(384);
+                musicButtonSprite.setSourceX(384);
             } else {
-                musicButton.setSourceX(1152);
+                musicButtonSprite.setSourceX(1152);
             }
         }
-
 
     }
 
@@ -158,31 +191,31 @@ public class MenuCanvas extends BaseCanvas {
     }
 
     public void touchUp(int x, int y, int id) {
-        if(playButton.isTouchedUp(x, y)) {
-            playButton.setSource(0, 0, 384, 384);
+        if(playButtonSprite.isTouchedUp(x, y)) {
+            playButtonSprite.setSource(0, 0, 384, 384);
             playGame();
         }
 
-        if(infoButton.isTouchedUp(x, y)) {
-            infoButton.setSourceX(0);
+        if(infoButtonSprite.isTouchedUp(x, y)) {
+            infoButtonSprite.setSourceX(0);
         }
 
-        if(soundButton.isTouchedUp(x, y)) {
+        if(soundButtonSprite.isTouchedUp(x, y)) {
             // soundButton nesnesinden parmak kaldırıldığında olacak işlemleri burada yapıyoruz.
             if(soundState) {
-                soundButton.setSourceX(768);
+                soundButtonSprite.setSourceX(768);
             } else {
-                soundButton.setSourceX(0);
+                soundButtonSprite.setSourceX(0);
             }
             soundState = !soundState;
 
         }
 
-        if(musicButton.isTouchedUp(x, y)) {
+        if(musicButtonSprite.isTouchedUp(x, y)) {
             if(musicState) {
-                musicButton.setSourceX(768);
+                musicButtonSprite.setSourceX(768);
             } else {
-                musicButton.setSourceX(0);
+                musicButtonSprite.setSourceX(0);
             }
 
             musicState = !musicState;
@@ -227,6 +260,12 @@ public class MenuCanvas extends BaseCanvas {
 
         GameCanvas mc = new GameCanvas(root);
         root.canvasManager.setCurrentCanvas(mc);
+    }
+
+    private void playClickSound() {
+        if(soundState) {
+            clickSound.start();
+        }
     }
 
 }

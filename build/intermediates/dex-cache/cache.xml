@@ -3,21 +3,21 @@
 
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_0a93e69608de5258ccffeb0a6fdf44879df58d88.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
         <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_91ff6a63107fba0d2dbbc0d28361257f64d23bcb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
+        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_0a93e69608de5258ccffeb0a6fdf44879df58d88.jar" />
     </item>
     <item
         is-multidex="false"

@@ -1,6 +1,10 @@
 package com.ngdroidapp;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
+
+import java.util.List;
+
 import istanbul.gamelab.ngdroid.base.BaseCanvas;
 import istanbul.gamelab.ngdroid.util.Log;
 import istanbul.gamelab.ngdroid.core.NgMediaPlayer;
@@ -18,21 +22,25 @@ public class GameCanvas extends BaseCanvas {
     final private int centerX = getWidth() / 2;
     final private int centerY = getHeight() / 2;
 
-    //
+    // Oyuncuların üstünde durduğu platform görsellerinin çekildiği dosya yolu.
     final private String platformSpriteSetFilePath = "candyPlatformSpriteSet.png";
 
     // Sprite görsellerinin dosya yollarını tutmak için değişken tanımlaması yapılıyor.
     final private String playerLeftSpriteSetFilePath = "dilara.png";
-    final private String playerRightSpriteSetFilePath = "partyGirl.png";
+    final private String playerRightSpriteSetFilePath = "dilara.png";
     final private String converoyBeltSpriteSetFilePath = "converoyBeltSpriteSetLongVer2.png";
 
     // Yürüyen bantlar arasındaki boşluklar ayarlanıyor.
     final private int converoyBeltSpaces = 300;
 
-
     /***    DEĞİŞKENLER    ***/
 
-    // Görsellerden çekilecek sprite boyutları.
+    // Arkaplan görseli ile ilgili nesneler tanımlanıyor.
+    private Sprite backgroundSprite;
+    private Rect backgroundSourceRect;
+    private Rect backgroundDestinationRect;
+
+    // Görsellerden çekilecek sprite boyutları ile ilgili değişkenler tanımlanıyor.
     private int platformSourceWidth = 380;
     private int platformSourceHeight = 220;
     private int platformDestinationWidth = 120;
@@ -40,23 +48,47 @@ public class GameCanvas extends BaseCanvas {
 
     // Platformlar ile ilgili değişkenler.
 
-    // Soldaki platformlar için sprite nesnesi tanımlamaları yapılıyor.
-    private Sprite platformLeftBottom;
-    private Sprite platformLeftMiddle;
-    private Sprite platformLeftTop;
+    // Soldaki platformlar ile ilgili değişken tanımlamaları yapılıyor.
+
+    // Sol alt platform ile ilgili nesneler tanımlanıyor.
+    private Sprite platformLeftBottomSprite;
+    private Rect platformLeftBottomSourceRect;
+    private Rect platformLeftBottomDestinationRect;
+
+    // Sol orta platform ile ilgili nesneler tanımlanıyor.
+    private Sprite platformLeftMiddleSprite;
+    private Rect platformLeftMiddleSourceRect;
+    private Rect platformLeftMiddleDestinationRect;
+
+    // Sol üst platform ile ilgili nesneler tanımlanıyor.
+    private Sprite platformLeftTopSprite;
+    private Rect platformLeftTopSourceRect;
+    private Rect platformLeftTopDestinationRect;
 
     // Sağdaki platformlar için sprite nesnesi tanımlamaları yapılıyor.
-    private Sprite platformRightBottom;
-    private Sprite platformRightMiddle;
-    private Sprite platformRightTop;
+
+    // Sağ alt platform ile ilgili nesneler tanımlanıyor.
+    private Sprite platformRightBottomSprite;
+    private Rect platformRightBottomSourceRect;
+    private Rect platformRightBottomDestinationRect;
+
+    // Sağ orta platform ile ilgili nesneler tanımlanıyor.
+    private Sprite platformRightMiddleSprite;
+    private Rect platformRightMiddleSourceRect;
+    private Rect platformRightMiddleDestinationRect;
+
+    // Sağ üst platform ile ilgili nesneler tanımlanıyor.
+    private Sprite platformRightTopSprite;
+    private Rect platformRightTopSourceRect;
+    private Rect platformRightTopDestinationRect;
 
     // Platformların ekrandaki pozisyonları ile ilgili değişkenlerin tanımlama işlemleri yapılıyor.
-    private int platformLeftTopY = (getHeight() - platformDestinationHeight * 11 * 2);
-    private int platformLeftMiddleY = (getHeight() - platformDestinationHeight * 7 * 2);
-    private int platformLeftBottomY = (getHeight() - platformDestinationHeight * 3 * 2);
+    private int platformLeftTopY = (getHeight() - platformDestinationHeight * 22);
+    private int platformLeftMiddleY = (getHeight() - platformDestinationHeight * 14);
+    private int platformLeftBottomY = (getHeight() - platformDestinationHeight * 6);
 
-    private int platformRightTopY = (getHeight() - platformDestinationHeight * 9 * 2);
-    private int platformRightMiddleY = (getHeight() - platformDestinationHeight * 5 * 2);
+    private int platformRightTopY = (getHeight() - platformDestinationHeight * 18);
+    private int platformRightMiddleY = (getHeight() - platformDestinationHeight * 10);
     private int platformRightBottomY = (getHeight() - platformDestinationHeight * 2);
 
     private int platformRightSourceX = 0;
@@ -68,25 +100,22 @@ public class GameCanvas extends BaseCanvas {
     private int platformLeftX = 0;
     private int platformRightX = (getWidth() - platformDestinationWidth);
 
-    // Arkaplan görseli ile ilgili değişken.
-    private Sprite background;
+
 
     // Müzik ile ilgili değişken.
     private NgMediaPlayer player;
 
-    // Playerlar ile ilgili sprite nesnesi tanımlamaları yapılıyor.
-    private Sprite playerLeft;
-    private Sprite playerRight;
+    // Playerlar ile ilgili nesne tanımlamaları yapılıyor.
 
-    private int playerLeftSourceWidth = 328;
-    private int playerLeftSourceHeight = 296;
-    private int playerLeftDestinationWidth = 164;
-    private int playerLeftDestinationHeight = 148;
+    // Soldaki oyuncu ile ilgili nesne tanımlamaları yapılıyor.
+    private Sprite playerLeftSprite;
+    private Rect playerLeftSourceRect;
+    private Rect playerLeftDestinationRect;
 
-    private int playerRightSourceWidth = 85;
-    private int playerRightSourceHeight = 178;
-    private int playerRightDestinationWidth = 85;
-    private int playerRightDestinationHeight = 178;
+    // Sağdaki oyuncu ile ilgili nesne tanımlamaları yapılıyor.
+    private Sprite playerRightSprite;
+    private Rect playerRightSourceRect;
+    private Rect playerRightDestinationRect;
 
     // Swipe gesture kontrolü için dokunma anının koordinatlarını tutacak değişkenler tanımlanıyor.
     private int touchDownX = 0;
@@ -95,20 +124,32 @@ public class GameCanvas extends BaseCanvas {
     // Ekranın hangi tarafına dokunulduğunu tutacak değişken tanımlanıyor(false: sol, true: sağ).
     private  boolean screenSide = false;
 
-    // Yürüyen bantlar ile ilgili değişkenler tanımlanıyor.
+    // Yürüyen bantlar ile ilgili nesneler tanımlanıyor.
 
-    private Sprite conveyorBelt;
-    private Sprite conveyorBelt2;
-    private Sprite conveyorBelt3;
-    private Sprite conveyorBelt4;
-    private Sprite conveyorBelt5;
-    private Sprite conveyorBelt6;
+    // Üstteki yürüyen bantla ilgili nesne tanımlamaları yapılıyor.
+    private Sprite conveyorBeltTopSprite;
+    private Rect conveyorBeltTopSourceRect;
+    private Rect conveyorBeltTopDestinationRect;
 
-    //private Sprite converoyBeltBottom;
-    //private Sprite converoyBeltMiddle;
-    //private Sprite converoyBeltMiddle2;
-    //private Sprite converoyBeltMiddle3;
-    //private Sprite converoyBeltTop;
+    private Sprite conveyorBeltMiddle1Sprite;
+    private Rect conveyorBeltMiddle1SourceRect;
+    private Rect conveyorBeltMiddle1DestinationRect;
+
+    private Sprite conveyorBeltMiddle2Sprite;
+    private Rect conveyorBeltMiddle2SourceRect;
+    private Rect conveyorBeltMiddle2DestinationRect;
+
+    private Sprite conveyorBeltMiddle3Sprite;
+    private Rect conveyorBeltMiddle3SourceRect;
+    private Rect conveyorBeltMiddle3DestinationRect;
+
+    private Sprite conveyorBeltMiddle4Sprite;
+    private Rect conveyorBeltMiddle4SourceRect;
+    private Rect conveyorBeltMiddle4DestinationRect;
+
+    private Sprite conveyorBeltBottomSprite;
+    private Rect conveyorBeltBottomSourceRect;
+    private Rect conveyorBeltBottomDestinationRect;
 
     // Yürüyen bantların ölçüleri ile ilgili değişkenler.
     private int conveyorBeltDestinationWidth = 720;
@@ -125,69 +166,157 @@ public class GameCanvas extends BaseCanvas {
     private int conveyorBeltMiddle3Y = converoyBeltSpaces * 2;
     private int conveyorBeltTopY = converoyBeltSpaces;
 
-    private int conveyorBeltRightX = (int)((getWidth() - conveyorBeltDestinationWidth) / 2.2);
-    private int conveyorBeltLeftX = (int) ((getWidth() - conveyorBeltDestinationWidth) / 1.8);
+    private int conveyorBeltRightX = (int)((getWidth() - conveyorBeltDestinationWidth) / 1.8);
+    private int conveyorBeltLeftX = (int) ((getWidth() - conveyorBeltDestinationWidth) / 2.2);
 
     // Merdivenler ile ilgili değişkenler.
 
     // Orta platform ile ilgili değişkenler.
-    private Sprite middlePlatfrom;
+    private Sprite middlePlatfromSprite;
+    private Rect middlePlatformSourceRect;
+    private Rect middlePlatformDestinationRect;
 
     // Alt kısımdaki blok(ürünlerin çıktığı) ile ilgili değişkenler.
     //private Sprite block;
    // private int blockDimension = 300 ;
 
     // Orta platformun üstündeki top ile ilgili değişkenler tanımlanıyor.
-    private Sprite ball;
+    private Sprite ballSprite;
+    private Rect ballSourceRect;
+    private Rect ballDestinationRect;
     private int ballDimention = 200;
 
 
     // Pipe ile ilgili değişkenler tanımlanıyor.
-    private Sprite pipe;
+    private Sprite pipeSprite;
+    private Rect pipeSourceRect;
+    private Rect pipeDestinationRect;
+
+    // ImageSet denemesi
+    //private ImageSet imageSet;
+
+    //private Rect imageSetDestination;
+
+    private long startAnim, finishAnim;
+
+    private Sprite testSprite;
+
+    //private Sprite testSprite;
 
     public GameCanvas(NgApp ngApp) {
         super(ngApp);
     }
 
     public void setup() {
-        background = new Sprite(root, "background.png", 0, 0, 500, 500, 0, 0, getWidth(), getHeight());
 
-        platformRightBottom = new Sprite(root, platformSpriteSetFilePath, platformRightSourceX, platformRightSourceY, platformSourceWidth, platformSourceHeight, platformRightX, platformRightBottomY, platformDestinationWidth, platformDestinationHeight);
-        platformRightMiddle = new Sprite(root, platformSpriteSetFilePath, platformRightSourceX, platformRightSourceY, platformSourceWidth, platformSourceHeight, platformRightX, platformRightMiddleY, platformDestinationWidth, platformDestinationHeight);
-        platformRightTop = new Sprite(root, platformSpriteSetFilePath, platformRightSourceX, platformRightSourceY, platformSourceWidth, platformSourceHeight, platformRightX, platformRightTopY, platformDestinationWidth, platformDestinationHeight);
+        // Arkaplan ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        backgroundSourceRect = new Rect(0, 20, 1020, 2040);
+        backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
+        backgroundSprite = new Sprite(root, "background.png", backgroundSourceRect, backgroundDestinationRect);
 
-        platformLeftBottom = new Sprite(root, platformSpriteSetFilePath, platformLeftSourceX, platformLeftSourceY, platformSourceWidth, platformSourceHeight, platformLeftX, platformLeftBottomY, platformDestinationWidth, platformDestinationHeight);
-        platformLeftMiddle = new Sprite(root, platformSpriteSetFilePath, platformLeftSourceX, platformLeftSourceY, platformSourceWidth, platformSourceHeight, platformLeftX, platformLeftMiddleY, platformDestinationWidth, platformDestinationHeight);
-        platformLeftTop = new Sprite(root, platformSpriteSetFilePath, platformLeftSourceX, platformLeftSourceY, platformSourceWidth, platformSourceHeight, platformLeftX, platformLeftTopY, platformDestinationWidth, platformDestinationHeight);
+        // Sağ alt platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        platformRightBottomSourceRect = new Rect(platformRightSourceX, platformRightSourceY, platformSourceWidth, platformSourceHeight);
+        platformRightBottomDestinationRect = new Rect(platformRightX, platformRightBottomY, platformRightX + platformDestinationWidth, platformRightBottomY + platformDestinationHeight);
+        platformRightBottomSprite = new Sprite(root, platformSpriteSetFilePath, platformRightBottomSourceRect, platformRightBottomDestinationRect);
 
+        // Sağ orta platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        platformRightMiddleSourceRect = new Rect(platformRightSourceX, platformRightSourceY, platformSourceWidth, platformSourceHeight);
+        platformRightMiddleDestinationRect = new Rect(platformRightX, platformRightMiddleY, platformRightX + platformDestinationWidth, platformRightMiddleY + platformDestinationHeight);
+        platformRightMiddleSprite = new Sprite(root, platformSpriteSetFilePath, platformRightMiddleSourceRect, platformRightMiddleDestinationRect);
+
+        // Sağ üst platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        platformRightTopSourceRect = new Rect(platformRightSourceX, platformRightSourceY, platformSourceWidth, platformSourceHeight);
+        platformRightTopDestinationRect = new Rect(platformRightX, platformRightTopY, platformRightX + platformDestinationWidth, platformRightTopY + platformDestinationHeight);
+        platformRightTopSprite = new Sprite(root, platformSpriteSetFilePath, platformRightTopSourceRect, platformRightTopDestinationRect);
+
+        // Sol alt platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        platformLeftBottomSourceRect = new Rect(platformLeftSourceX, platformLeftSourceY, platformLeftSourceX + platformSourceWidth, platformLeftSourceY + platformSourceHeight);
+        platformLeftBottomDestinationRect = new Rect(platformLeftX, platformLeftBottomY, platformLeftX + platformDestinationWidth, platformLeftBottomY + platformDestinationHeight);
+        platformLeftBottomSprite = new Sprite(root, platformSpriteSetFilePath, platformLeftBottomSourceRect, platformLeftBottomDestinationRect);
+
+        // Sol orta platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        platformLeftMiddleSourceRect = new Rect(platformLeftSourceX, platformLeftSourceY, platformLeftSourceX + platformSourceWidth, platformLeftSourceY + platformSourceHeight);
+        platformLeftMiddleDestinationRect = new Rect(platformLeftX, platformLeftMiddleY, platformLeftX + platformDestinationWidth, platformLeftMiddleY + platformDestinationHeight);
+        platformLeftMiddleSprite = new Sprite(root, platformSpriteSetFilePath, platformLeftMiddleSourceRect, platformLeftMiddleDestinationRect);
+
+        // Sol üst platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        platformLeftTopSourceRect = new Rect(platformLeftSourceX, platformLeftSourceY, platformLeftSourceX + platformSourceWidth, platformLeftSourceY + platformSourceHeight);
+        platformLeftTopDestinationRect = new Rect(platformLeftX, platformLeftTopY, platformLeftX + platformDestinationWidth, platformLeftTopY + platformDestinationHeight);
+        platformLeftTopSprite = new Sprite(root, platformSpriteSetFilePath, platformLeftTopSourceRect, platformLeftTopDestinationRect);
+
+        // Arkaplanda çalacak olan ses dosyası oynatıcısının ilk değer atamaları yapılıyor.
         setupMediaPlayer("sounds/bgm_action_5.mp3");
 
-        playerLeft = new Sprite(root, playerLeftSpriteSetFilePath, 0, 0, 328, 296, platformLeftX, platformLeftBottomY - 148, 164, 148);
-        playerRight = new Sprite(root, playerRightSpriteSetFilePath, 0, 0, 85, 178, platformRightX, platformRightBottomY - 178, 85, 178);
+        // Oyuncular ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
-        conveyorBelt = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltTopY, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
-        conveyorBelt2 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltRightX, conveyorBeltMiddleY, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
-        conveyorBelt3 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltMiddle2Y, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
-        conveyorBelt4 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltRightX, conveyorBeltMiddle3Y, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
-        conveyorBelt5 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltBottomY, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
-        conveyorBelt6 = new Sprite(root, converoyBeltSpriteSetFilePath, 0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight, conveyorBeltLeftX, conveyorBeltBottom2Y, conveyorBeltDestinationWidth, conveyorBeltDestinationHeight);
+        // Soldaki oyuncu ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        playerLeftSourceRect = new Rect(0, 0, 328, 296);
+        playerLeftDestinationRect = new Rect(platformLeftX, platformLeftBottomY - 148, platformLeftX + 164, platformLeftBottomY);
+        playerLeftSprite = new Sprite(root, playerLeftSpriteSetFilePath, playerLeftSourceRect, playerLeftDestinationRect);
 
-        //converoyBeltBottom = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltBottomY, converoyBeltWidth, converoyBeltHeight);
-        //converoyBeltMiddle = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltLeftX, converoyBeltMiddleY, converoyBeltWidth, converoyBeltHeight);
-        //converoyBeltMiddle2 = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltMiddle2Y, converoyBeltWidth, converoyBeltHeight);
-        //converoyBeltMiddle3 = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltLeftX, converoyBeltMiddle3Y, converoyBeltWidth, converoyBeltHeight);
-        //converoyBeltTop = new Sprite(root, "converoybeltSpriteSet.png", 0, 0, 512, 128, converoyBeltRightX, converoyBeltTopY, converoyBeltWidth, converoyBeltHeight);
+        // Sağdaki oyuncu ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        playerRightSourceRect = new Rect(0, 0, 328, 296);
+        playerRightDestinationRect = new Rect(getWidth() - 164, platformRightBottomY - 148,getWidth(), platformRightBottomY);
+        playerRightSprite = new Sprite(root, playerRightSpriteSetFilePath, playerRightSourceRect, playerRightDestinationRect);
 
 
-        // Orta platform ile ilgili ilk değer atamaları.
-        middlePlatfrom = new Sprite(root, "middlePlatformWithLightAndShadow.png", 0, 0, 360, 360, 0, 0, 360/3, 360/3);
-        middlePlatfrom.setPosition(centerX, middlePlatfrom.getDestinationHeight() / 2);
+        // Yürüyen bantlar ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
-        //block = new Sprite(root, "block.png", 0, 0, 380, 380, 0, getHeight() - 285, blockDimension, blockDimension);
-        ball = new Sprite(root, "ball.png", 0, 0, 380, 380, 0, ballDimention, ballDimention, ballDimention);
-        ball.setPosition(centerX, ballDimention);
+        // Üstteki yürüyen bantla ilgili değişkenlere ilk değer atamaları yapılıyor.
+        conveyorBeltTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltTopDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltTopY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltTopY + conveyorBeltDestinationHeight);
+        conveyorBeltTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltTopSourceRect, conveyorBeltTopDestinationRect);
 
-        pipe = new Sprite(root, "pipeActs.png", 0, 0, 384, 384, 0, getHeight() - 384, 350, 350);
+        conveyorBeltMiddle1SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltMiddle1DestinationRect = new Rect(conveyorBeltRightX, conveyorBeltMiddleY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltMiddleY + conveyorBeltDestinationHeight);
+        conveyorBeltMiddle1Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle1SourceRect, conveyorBeltMiddle1DestinationRect);
+
+        conveyorBeltMiddle2SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltMiddle2DestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltMiddle2Y, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltMiddle2Y + conveyorBeltDestinationHeight);
+        conveyorBeltMiddle2Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle2SourceRect, conveyorBeltMiddle2DestinationRect);
+
+        conveyorBeltMiddle3SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltMiddle3DestinationRect = new Rect(conveyorBeltRightX, conveyorBeltMiddle3Y, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltMiddle3Y + conveyorBeltDestinationHeight);
+        conveyorBeltMiddle3Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle3SourceRect, conveyorBeltMiddle3DestinationRect);
+
+        conveyorBeltMiddle4SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltMiddle4DestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltBottomY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltBottomY + conveyorBeltDestinationHeight);
+        conveyorBeltMiddle4Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle4SourceRect, conveyorBeltMiddle4DestinationRect);
+
+        conveyorBeltBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltBottomDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltBottom2Y, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltBottom2Y + conveyorBeltDestinationHeight);
+        conveyorBeltBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltBottomSourceRect, conveyorBeltBottomDestinationRect);
+
+        // Orta platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        middlePlatformSourceRect = new Rect( 0, 0, 360, 360);
+        middlePlatformDestinationRect = new Rect(0, 0, 120, 120);
+        middlePlatfromSprite = new Sprite(root, "middlePlatformWithLightAndShadow.png", middlePlatformSourceRect, middlePlatformDestinationRect);
+        middlePlatfromSprite.setPosition(centerX, middlePlatfromSprite.getDestinationHeight() / 2);
+
+        // Orta platform üstünde bulunan top nesnesi ile ilgili değişkenlere ilk değer atamaları yapılıyor.
+        ballSourceRect = new Rect(0, 0, 380, 380);
+        ballDestinationRect = new Rect(0, ballDimention, ballDimention, ballDimention + ballDimention);
+        ballSprite = new Sprite(root, "ball.png", ballSourceRect, ballDestinationRect);
+        ballSprite.setPosition(centerX, ballDimention);
+
+
+        pipeSourceRect = new Rect(0, 0, 384, 384);
+        pipeDestinationRect = new Rect(0, getHeight() - 400, 350, getHeight() - 50);
+        pipeSprite = new Sprite(root, "pipeActs.png", pipeSourceRect, pipeDestinationRect);
+        /*
+        imageSet = new ImageSet(root, "pipeActs.png");
+        List<Rect> imageSetRect = imageSet.divideBy(384, 384);
+        int i = 0;
+        for(Rect r : imageSetRect) {
+            Log.i(TAG,"Rect " + i + " x: " + r.left + "," + " y: " + r.top);
+            i++;
+        }
+        */
+        startAnim = System.currentTimeMillis();
+
+
+        testSprite = new Sprite(root, "pipeActs.png");
+
     }
 
     public void setupMediaPlayer(String assetFilePath) {
@@ -199,33 +328,40 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void update() {
-        //converoyBeltAnimation(converoyBeltBottom);
-        //converoyBeltAnimation(converoyBeltMiddle);
-        //converoyBeltAnimation(converoyBeltMiddle2);
-        //converoyBeltAnimation(converoyBeltMiddle3);
-        //converoyBeltAnimation(converoyBeltTop);
-        conveyorBeltAnimation(conveyorBelt);
-        conveyorBeltAnimation(conveyorBelt2);
-        conveyorBeltAnimation(conveyorBelt3);
-        conveyorBeltAnimation(conveyorBelt4);
-        conveyorBeltAnimation(conveyorBelt5);
-        conveyorBeltAnimation(conveyorBelt6);
 
-        if(pipe.getSourceX() < pipe.getSourceWidth()*9) {
-            pipe.setSourceX(pipe.getSourceWidth() + pipe.getSourceX());
+
+        finishAnim =  System.currentTimeMillis();
+        conveyorBeltAnimation(conveyorBeltTopSprite);
+        conveyorBeltAnimation(conveyorBeltMiddle1Sprite);
+        conveyorBeltAnimation(conveyorBeltMiddle2Sprite);
+        conveyorBeltAnimation(conveyorBeltMiddle3Sprite);
+        conveyorBeltAnimation(conveyorBeltMiddle4Sprite);
+        conveyorBeltAnimation(conveyorBeltBottomSprite);
+
+        if(finishAnim - startAnim > 70)
+            startAnim = System.currentTimeMillis();
+
+
+        if(pipeSprite.getSourceX() < pipeSprite.getSourceWidth()*9) {
+            pipeSprite.setSourceX(pipeSprite.getSourceWidth() + pipeSprite.getSourceX());
         } else {
-            pipe.setSourceX(0);
+            pipeSprite.setSourceX(0);
         }
-
 
     }
 
     private void conveyorBeltAnimation(Sprite conveyorBelt) {
+
+        if(finishAnim - startAnim < 70) {
+            return;
+        }
+
         if(conveyorBelt.getSourceY() == 0) {
             conveyorBelt.setSourceY(conveyorBelt.getSourceHeight());
         } else {
             conveyorBelt.setSourceY(0);
         }
+
     }
 
     /*
@@ -239,25 +375,25 @@ public class GameCanvas extends BaseCanvas {
     */
 
     public void draw(Canvas canvas) {
-        background.draw(canvas);
+        backgroundSprite.draw(canvas);
 
-        platformRightBottom.draw(canvas);
-        platformRightMiddle.draw(canvas);
-        platformRightTop.draw(canvas);
+        platformRightBottomSprite.draw(canvas);
+        platformRightMiddleSprite.draw(canvas);
+        platformRightTopSprite.draw(canvas);
 
-        platformLeftBottom.draw(canvas);
-        platformLeftMiddle.draw(canvas);
-        platformLeftTop.draw(canvas);
+        platformLeftBottomSprite.draw(canvas);
+        platformLeftMiddleSprite.draw(canvas);
+        platformLeftTopSprite.draw(canvas);
 
-        playerLeft.draw(canvas);
-        playerRight.draw(canvas);
+        playerLeftSprite.draw(canvas);
+        playerRightSprite.draw(canvas);
 
-        conveyorBelt.draw(canvas);
-        conveyorBelt2.draw(canvas);
-        conveyorBelt3.draw(canvas);
-        conveyorBelt4.draw(canvas);
-        conveyorBelt5.draw(canvas);
-        conveyorBelt6.draw(canvas);
+        conveyorBeltTopSprite.draw(canvas);
+        conveyorBeltMiddle1Sprite.draw(canvas);
+        conveyorBeltMiddle2Sprite.draw(canvas);
+        conveyorBeltMiddle3Sprite.draw(canvas);
+        conveyorBeltMiddle4Sprite.draw(canvas);
+        conveyorBeltBottomSprite.draw(canvas);
 
         //drawConveroyBelt(canvas, 5, centerX, centerY);
 
@@ -268,9 +404,9 @@ public class GameCanvas extends BaseCanvas {
         //converoyBeltTop.draw(canvas);
 
         // Orta platform erkarana çiziliyor.
-        for(int i = ballDimention; i < getHeight(); i = i + middlePlatfrom.getDestinationHeight()){
-            middlePlatfrom.setDestinationY(i);
-            middlePlatfrom.draw(canvas);
+        for(int i = ballDimention; i < getHeight(); i = i + middlePlatfromSprite.getDestinationHeight()){
+            middlePlatfromSprite.setDestinationY(i);
+            middlePlatfromSprite.draw(canvas);
         }
 
         /*
@@ -278,14 +414,20 @@ public class GameCanvas extends BaseCanvas {
             block.setDestinationX(i);
             block.draw(canvas);
         }
-        */
 
-        ball.draw(canvas);
+
+        for(int i = 0; i < imageSet.getImageRectCount(); i++) {
+
+        }
+        */
+        ballSprite.draw(canvas);
 
 
         // Pipe sprite'ı ekrana çizdiriliyor.
-        pipe.draw(canvas);
+        pipeSprite.draw(canvas);
 
+
+        //testSprite.startAnimation();
 
     }
     /*
@@ -358,32 +500,32 @@ public class GameCanvas extends BaseCanvas {
         int diffrentY = y - touchDownY;
 
         if(screenSide) {
-            Log.i(TAG, "playerRight.getDestinationY:" + playerRight.getDestinationY());
-            Log.i(TAG, "platformTopY - playerRight.getDestinationHeight:" + playerRight.getDestinationY());
+            Log.i(TAG, "playerRight.getDestinationY:" + playerRightSprite.getDestinationY());
+            Log.i(TAG, "platformTopY - playerRight.getDestinationHeight:" + playerRightSprite.getDestinationY());
 
-            if(!(playerRight.getDestinationY() < (platformRightTopY - playerRight.getDestinationHeight()) || playerRight.getDestinationY() > (platformRightBottomY - playerRight.getDestinationHeight()))) {
+            if(!(playerRightSprite.getDestinationY() < (platformRightTopY - playerRightSprite.getDestinationHeight()) || playerRightSprite.getDestinationY() > (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
                 // Ekranın sağ tarafındaki player konum değiştirecek.
                 if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
                     // X düzlemindeki parmak hareketi Y düzlemindekinden fazla ise burası çalışır.
                 } else {
                     // Y düzlemindeki parmak hareketi X düzlemindekinden fazla ise burası çalışır.
                     if (diffrentY < 0) {
-                        if(!(playerRight.getDestinationY() == (platformRightTopY - playerRight.getDestinationHeight()))) {
-                            playerRight.setDestinationY(playerRight.getDestinationY() + (platformRightMiddleY - platformRightBottomY));
+                        if(!(playerRightSprite.getDestinationY() == (platformRightTopY - playerRightSprite.getDestinationHeight()))) {
+                            playerRightSprite.setDestinationY(playerRightSprite.getDestinationY() + (platformRightMiddleY - platformRightBottomY));
                         }
                     } else if(diffrentY > 0) {
-                        if(!(playerRight.getDestinationY() == (platformRightBottomY - playerRight.getDestinationHeight()))) {
-                            playerRight.setDestinationY(playerRight.getDestinationY() - (platformRightMiddleY - platformRightBottomY));
+                        if(!(playerRightSprite.getDestinationY() == (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
+                            playerRightSprite.setDestinationY(playerRightSprite.getDestinationY() - (platformRightMiddleY - platformRightBottomY));
                         }
                     }
                 }
             }
         } else {
 
-            Log.i(TAG, "playerLeft.getDestinationY:" + playerLeft.getDestinationY());
-            Log.i(TAG, "platformTopY - playerLeft.getDestinationHeight:" + playerLeft.getDestinationY());
+            Log.i(TAG, "playerLeft.getDestinationY:" + playerLeftSprite.getDestinationY());
+            Log.i(TAG, "platformTopY - playerLeft.getDestinationHeight:" + playerLeftSprite.getDestinationY());
 
-            if(!(playerLeft.getDestinationY() < (platformLeftTopY - playerLeft.getDestinationHeight()) || playerLeft.getDestinationY() > (platformLeftBottomY - playerLeft.getDestinationHeight()))) {
+            if(!(playerLeftSprite.getDestinationY() < (platformLeftTopY - playerLeftSprite.getDestinationHeight()) || playerLeftSprite.getDestinationY() > (platformLeftBottomY - playerLeftSprite.getDestinationHeight()))) {
                 // Ekranın sol tarafındaki player konum değiştirecek.
                 if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
                     // X düzlemindeki parmak hareketi Y düzlemindekinden fazla ise burası çalışır.
@@ -391,12 +533,12 @@ public class GameCanvas extends BaseCanvas {
 
                     // Y düzlemindeki parmak hareketi X düzlemindekinden fazla ise burası çalışır.
                     if (diffrentY < 0) {
-                        if(!(playerLeft.getDestinationY() == (platformLeftTopY - playerLeft.getDestinationHeight()))) {
-                            playerLeft.setDestinationY(playerLeft.getDestinationY() + (platformLeftMiddleY - platformLeftBottomY));
+                        if(!(playerLeftSprite.getDestinationY() == (platformLeftTopY - playerLeftSprite.getDestinationHeight()))) {
+                            playerLeftSprite.setDestinationY(playerLeftSprite.getDestinationY() + (platformLeftMiddleY - platformLeftBottomY));
                         }
                     } else if(diffrentY > 0) {
-                        if(!(playerLeft.getDestinationY() == (platformLeftBottomY - playerLeft.getDestinationHeight()))) {
-                            playerLeft.setDestinationY(playerLeft.getDestinationY() - (platformLeftMiddleY - platformLeftBottomY));
+                        if(!(playerLeftSprite.getDestinationY() == (platformLeftBottomY - playerLeftSprite.getDestinationHeight()))) {
+                            playerLeftSprite.setDestinationY(playerLeftSprite.getDestinationY() - (platformLeftMiddleY - platformLeftBottomY));
                         }
                     }
 

@@ -1,9 +1,15 @@
 package com.ngdroidapp;
 
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Canvas;
+import android.view.animation.Animation;
+
+import istanbul.gamelab.ngdroid.util.Log;
 import istanbul.gamelab.ngdroid.util.Utils;
+
+import static android.content.ContentValues.TAG;
 
 public class Sprite {
     /* PROPERTIES */
@@ -11,48 +17,38 @@ public class Sprite {
     private Bitmap image;
     private Rect source;
     private Rect destination;
-    private int sourceX;
-    private int sourceY;
-    private int sourceWidth;
-    private int sourceHeight;
-    private int destinationX;
-    private int destinationY;
-    private int destinationWidth;
-    private int destinationHeight;
+    private NgApp root;
     private int anchorX;
     private int anchorY;
 
     private int indicatorX;
     private int indicatorY;
-    private int velocityX;
-    private int velocityY;
+    private float velocityX;
+    private float velocityY;
+
+    private Point currentPoint;
+
+    private NgAnimation animation;
 
     /* INITIALIZE METHODS */
 
     /**
      * Initializes sprite with no parameter.
      */
-    Sprite() {
-        imageFilePath = "";
-        image = null;
-        sourceX = 0;
-        sourceY = 0;
-        sourceWidth = 0;
-        sourceHeight = 0;
-        destinationX = 0;
-        destinationY = 0;
-        destinationWidth = 0;
-        destinationHeight = 0;
+    Sprite(NgApp root) {
+        this.root = root;
+        imageFilePath = "gamelab-istanbul_logo.png";
+        image = Utils.loadImage(root, imageFilePath);
         anchorX = 0;
         anchorY = 0;
-
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
         velocityY = 0;
+        source = new Rect(0, 0, image.getWidth(), image.getHeight());
+        destination = new Rect(0, 0, image.getWidth(), image.getHeight());
 
-        source = new Rect(sourceX, sourceY, (sourceX + sourceWidth), (sourceY + sourceHeight));
-        destination = new Rect(destinationX, destinationY, (destinationX + destinationWidth), (destinationY + destinationHeight));
+        animation = new NgAnimation();
     }
 
     /**
@@ -61,67 +57,62 @@ public class Sprite {
      * @param imageFilePath
      */
     Sprite(NgApp root, String imageFilePath) {
+        this.root = root;
         this.imageFilePath = imageFilePath;
-        image = Utils.loadImage(root, this.imageFilePath);
-        sourceX = 0;
-        sourceY = 0;
-        sourceWidth = image.getWidth();
-        sourceHeight = image.getHeight();
-        destinationX = 0;
-        destinationY = 0;
-        destinationWidth = image.getWidth();
-        destinationHeight = image.getHeight();
-        anchorX = getDestinationWidth() / 2;
-        anchorY = getDestinationHeight() / 2;
-
+        image = Utils.loadImage(root, imageFilePath);
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
         velocityY = 0;
-
-        source = new Rect(sourceX, sourceY, (sourceX + sourceWidth), (sourceY + sourceHeight));
-        destination = new Rect(destinationX, destinationY, (destinationX + destinationWidth), (destinationY + destinationHeight));
-        //updateSource();
-        //updateDestination();
+        source = new Rect(0,0, image.getWidth(),image.getHeight());
+        destination = new Rect(0, 0, image.getWidth(), image.getHeight());
+        animation = new NgAnimation();
+        anchorX = getDestinationWidth() / 2;
+        anchorY = getDestinationHeight() / 2;
     }
 
     /**
      * Intialize sprite with image, position and size.
      * @param root
      * @param imageFilePath
-     * @param sourceX Sprite source file selected area's left up side x position.
-     * @param sourceY Sprite source file selected area's left up side y position.
-     * @param sourceWidth Sprite source file selecte area's width.
-     * @param sourceHeight Sprite source file selecte area's height.
-     * @param destinationX X coordinate of the upper left corner of the area where the sprite is to be drawn on the screen.
-     * @param destinationY Y coordinate of the upper left corner of the area where the sprite is to be drawn on the screen
-     * @param destinationWidth The width of the sprite that will be drawn on the screen.
-     * @param destinationHeight The height of the sprite that will be drawn on the screen.
      */
-    Sprite(NgApp root, String imageFilePath, int sourceX, int sourceY, int sourceWidth, int sourceHeight, int destinationX, int destinationY, int destinationWidth, int destinationHeight) {
+    Sprite(NgApp root, String imageFilePath, Rect source, Rect destination) {
+        this.root = root;
         this.imageFilePath = imageFilePath;
-        image = Utils.loadImage(root, this.imageFilePath);
-        this.sourceX = sourceX;
-        this.sourceY = sourceY;
-        this.sourceWidth = sourceWidth;
-        this.sourceHeight = sourceHeight;
-        this.destinationX = destinationX;
-        this.destinationY = destinationY;
-        this.destinationWidth = destinationWidth;
-        this.destinationHeight = destinationHeight;
-        anchorX = getDestinationWidth() / 2;
-        anchorY = getDestinationHeight() / 2;
-
+        image = Utils.loadImage(root, imageFilePath);
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
         velocityY = 0;
-
-        source = new Rect(this.sourceX, this.sourceY, (this.sourceX + this.sourceWidth), (this.sourceY + this.sourceHeight));
-        destination = new Rect(this.destinationX, this.destinationY, (this.destinationX + this.destinationWidth), (this.destinationY + this.destinationHeight));
+        this.source = source;
+        this.destination = destination;
+        animation = new NgAnimation();
+        anchorX = getDestinationWidth() / 2;
+        anchorY = getDestinationHeight() / 2;
     }
 
-    public void setImage(NgApp root, String imageFilePath) {
+    /**
+     * Intialize sprite with image, position and size.
+     * @param root
+     * @param imageFilePath
+     */
+    Sprite(NgApp root, String imageFilePath, Rect source, Rect destination, NgAnimation animation) {
+        this.root = root;
+        this.imageFilePath = imageFilePath;
+        image = Utils.loadImage(root, imageFilePath);
+        indicatorX = 0;
+        indicatorY = 0;
+        velocityX = 0;
+        velocityY = 0;
+        this.source = source;
+        this.destination = destination;
+        this.animation = animation;
+        anchorX = getDestinationWidth() / 2;
+        anchorY = getDestinationHeight() / 2;
+    }
+
+
+    public void setImage(String imageFilePath) {
         image = Utils.loadImage(root, imageFilePath);
     }
 
@@ -132,62 +123,30 @@ public class Sprite {
     /* SETTER METHODS */
 
     public void setPosition(int x, int y) {
-        destinationX = x - getAnchorX();
-        destinationY = y - getAnchorY();
-        updateDestination();
+        destination.offsetTo(x - getAnchorX(), y - getAnchorY());
     }
 
     public void setSource(int x, int y, int width, int height) {
-        sourceX = x;
-        sourceY = y;
-        sourceWidth = width;
-        sourceHeight = height;
-        updateSource();
+        source.set(x, y, width, height);
     }
 
     public void setDestination(int x, int y, int width, int height) {
-        destinationX = x;
-        destinationY = y;
-        destinationWidth = width;
-        destinationHeight = height;
-        updateDestination();
+        destination.set(x, y, width, height);
     }
 
     public void setSourceX(int x) {
-        sourceX = x;
-        updateSource();
+        source.offsetTo(x, source.top);
     }
 
     public void setSourceY(int y) {
-        sourceY = y;
-        updateSource();
-    }
-
-    public void setSourceWidth(int width) {
-        sourceWidth = width;
-        updateSource();
-    }
-
-    public void setSourceHeight(int height) {
-        sourceHeight = height;
-        updateSource();
+        source.offsetTo(source.left, y);
     }
 
     public void setDestinationX(int x) {
-        destinationX = x;
-        updateDestination();
+        destination.offsetTo(x, destination.top);
     }
     public void setDestinationY(int y) {
-        destinationY = y;
-        updateDestination();
-    }
-    public void setDestinationWidth(int width) {
-        destinationWidth = width;
-        updateDestination();
-    }
-    public void setDestinationHeight(int height) {
-        destinationHeight = height;
-        updateDestination();
+        destination.offsetTo(destination.left, y);
     }
 
     public void setAnchorX(int x) { anchorX = x; }
@@ -195,16 +154,8 @@ public class Sprite {
 
     public void setIndicatorX(int indicatorX) { this.indicatorX = indicatorX; }
     public void setIndicatorY(int indicatorY) { this.indicatorY = indicatorY; }
-    public void setVelocityX(int velocityX) { this.velocityX = velocityX; }
-    public void setVelocityY(int velocityY) {this.velocityY = velocityY; }
-
-    public void updateSource() {
-        source.set(sourceX, sourceY, sourceX + sourceWidth, sourceY + sourceHeight);
-    }
-
-    public void updateDestination() {
-        destination.set(destinationX, destinationY, destinationX + destinationWidth, destinationY + destinationHeight);
-    }
+    public void setVelocityX(float velocityX) { this.velocityX = velocityX; }
+    public void setVelocityY(float velocityY) {this.velocityY = velocityY; }
 
 
     /* GETTER METHODS */
@@ -213,23 +164,23 @@ public class Sprite {
 
     public Rect getDestination() { return destination; }
 
-    public int getSourceX() { return sourceX; }
-    public int getSourceY() { return sourceY; }
-    public int getSourceWidth() { return sourceWidth; }
-    public int getSourceHeight() { return sourceHeight; }
+    public int getSourceX() { return source.left; }
+    public int getSourceY() { return source.top; }
+    public int getSourceWidth() { return (source.right - source.left); }
+    public int getSourceHeight() { return (source.bottom - source.top); }
 
-    public int getDestinationX() { return destinationX; }
-    public int getDestinationY() { return destinationY; }
-    public int getDestinationWidth() { return destinationWidth; }
-    public int getDestinationHeight() { return destinationHeight; }
+    public int getDestinationX() { return destination.left; }
+    public int getDestinationY() { return destination.top; }
+    public int getDestinationWidth() { return (destination.right - destination.left); }
+    public int getDestinationHeight() { return (destination.bottom - destination.top); }
 
     public int getAnchorX() { return anchorX; }
     public int getAnchorY() { return anchorY; }
 
     public int getIndicatorX() { return  indicatorX; }
     public int getIndicatorY() { return  indicatorY; }
-    public int getVelocityX() { return  velocityX; }
-    public int getVelocityY() { return  velocityY; }
+    public float getVelocityX() { return  velocityX; }
+    public float getVelocityY() { return  velocityY; }
 
     /* UTILITIES METHODS */
 
@@ -243,7 +194,7 @@ public class Sprite {
 
     public boolean isCollidedWithPosition(int x, int y, int width, int height) {
 
-        if(destinationX >= x && destinationY >= y && destinationX < (x + width) && destinationY < (y + height)) {
+        if(destination.left >= x && destination.top >= y && destination.left < (x + width) && destination.top < (y + height)) {
             return true;
         } else {
             return  false;
@@ -252,7 +203,7 @@ public class Sprite {
     }
 
     public boolean isTouchedUp(int touchX, int touchY) {
-        if(touchX > destinationX && touchY > destinationY && touchX < (destinationX + destinationWidth) && touchY < (destinationY + destinationHeight)) {
+        if(touchX > destination.left && touchY > destination.top && touchX < destination.right && touchY < destination.bottom) {
             return true;
         } else {
             return false;
@@ -260,7 +211,4 @@ public class Sprite {
 
     }
 
-    public void moveTo(int x, int y) {
-
-    }
 }
