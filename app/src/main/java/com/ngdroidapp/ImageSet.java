@@ -25,18 +25,16 @@ public class ImageSet {
         imageRects = new ArrayList<Rect>();
     }
 
-    public List<Rect> divideBy(int width, int height) {
-        //List<Rect> imageSetRectList = new ArrayList<Rect>();
+    public void divideBy(int width, int height) {
 
         for(int x = 0; x < image.getWidth(); x += width) {
             for(int y = 0; y < image.getHeight(); y += height){
-                Rect tempRect = new Rect(x, y, width, height);
+                Rect tempRect = new Rect(x, y, x + width, y + height);
                 //imageSetRectList.add(tempRect);
                 imageRects.add(tempRect);
             }
         }
-        //return imageSetRectList;
-        return imageRects;
+
     }
 
     public int getImageRectCount() {

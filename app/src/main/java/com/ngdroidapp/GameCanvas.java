@@ -200,6 +200,10 @@ public class GameCanvas extends BaseCanvas {
     private long startAnim, finishAnim;
 
     private Sprite testSprite;
+    private Rect testSourceRect;
+    private Rect testDestinationRect;
+    private ImageSet testImageSet;
+    private NgAnimation testAnimation;
 
     //private Sprite testSprite;
 
@@ -314,8 +318,13 @@ public class GameCanvas extends BaseCanvas {
         */
         startAnim = System.currentTimeMillis();
 
+        testSourceRect = new Rect(0, 0, 384, 384);
+        testDestinationRect = new Rect(0, 0, 384, 384);
+        testImageSet = new ImageSet(root, "pipeActs.png");
+        testImageSet.divideBy(384, 384);
+        testAnimation = new NgAnimation(root, "testAnimation", testImageSet, 0, 9);
+        testSprite = new Sprite(root, "pipeActs.png", testSourceRect, testDestinationRect, testAnimation);
 
-        testSprite = new Sprite(root, "pipeActs.png");
 
     }
 
@@ -347,6 +356,8 @@ public class GameCanvas extends BaseCanvas {
         } else {
             pipeSprite.setSourceX(0);
         }
+        Log.i(TAG, "testSprite source rect: x: " + testSprite.getSourceX() + ", y:" + testSprite.getSourceY());
+        testSprite.playAnimationWithName("testAnimation");
 
     }
 
@@ -427,7 +438,7 @@ public class GameCanvas extends BaseCanvas {
         pipeSprite.draw(canvas);
 
 
-        //testSprite.startAnimation();
+        testSprite.draw(canvas);
 
     }
     /*

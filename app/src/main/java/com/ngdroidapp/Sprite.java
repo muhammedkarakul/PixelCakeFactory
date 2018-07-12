@@ -4,7 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.view.animation.Animation;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import istanbul.gamelab.ngdroid.util.Log;
 import istanbul.gamelab.ngdroid.util.Utils;
@@ -28,7 +34,7 @@ public class Sprite {
 
     private Point currentPoint;
 
-    private NgAnimation animation;
+    private Map<String, NgAnimation> animations;
 
     /* INITIALIZE METHODS */
 
@@ -48,7 +54,7 @@ public class Sprite {
         source = new Rect(0, 0, image.getWidth(), image.getHeight());
         destination = new Rect(0, 0, image.getWidth(), image.getHeight());
 
-        animation = new NgAnimation();
+        animations = new HashMap<>();
     }
 
     /**
@@ -66,7 +72,7 @@ public class Sprite {
         velocityY = 0;
         source = new Rect(0,0, image.getWidth(),image.getHeight());
         destination = new Rect(0, 0, image.getWidth(), image.getHeight());
-        animation = new NgAnimation();
+        animations = new HashMap<>();
         anchorX = getDestinationWidth() / 2;
         anchorY = getDestinationHeight() / 2;
     }
@@ -86,7 +92,7 @@ public class Sprite {
         velocityY = 0;
         this.source = source;
         this.destination = destination;
-        animation = new NgAnimation();
+        animations = new HashMap<>();
         anchorX = getDestinationWidth() / 2;
         anchorY = getDestinationHeight() / 2;
     }
@@ -106,10 +112,12 @@ public class Sprite {
         velocityY = 0;
         this.source = source;
         this.destination = destination;
-        this.animation = animation;
+        animations = new HashMap<>();
+        animations.put(animation.getName(), animation);
         anchorX = getDestinationWidth() / 2;
         anchorY = getDestinationHeight() / 2;
     }
+
 
 
     public void setImage(String imageFilePath) {
@@ -121,6 +129,10 @@ public class Sprite {
     }
 
     /* SETTER METHODS */
+
+    public void addAnimation(NgAnimation animation) {
+        animations.put(animation.getName(), animation);
+    }
 
     public void setPosition(int x, int y) {
         destination.offsetTo(x - getAnchorX(), y - getAnchorY());
@@ -209,6 +221,11 @@ public class Sprite {
             return false;
         }
 
+    }
+
+    public void playAnimationWithName(String animationName){
+        NgAnimation animation = animations.get(animationName);
+        source = animation.getAnimationCurrentFrame();
     }
 
 }
