@@ -29,6 +29,7 @@ public class GameCanvas extends BaseCanvas {
     final private String playerLeftSpriteSetFilePath = "dilara.png";
     final private String playerRightSpriteSetFilePath = "dilara.png";
     final private String converoyBeltSpriteSetFilePath = "converoyBeltSpriteSetLongVer2.png";
+    final private String popUpBackgroundImagePath = "popUpBigBackground.png";
 
     // Yürüyen bantlar arasındaki boşluklar ayarlanıyor.
     final private int converoyBeltSpaces = 300;
@@ -130,26 +131,38 @@ public class GameCanvas extends BaseCanvas {
     private Sprite conveyorBeltTopSprite;
     private Rect conveyorBeltTopSourceRect;
     private Rect conveyorBeltTopDestinationRect;
+    private ImageSet conveyorBeltTopImageSet;
+    private NgAnimation conveyorBeltTopAnimation;
 
     private Sprite conveyorBeltMiddle1Sprite;
     private Rect conveyorBeltMiddle1SourceRect;
     private Rect conveyorBeltMiddle1DestinationRect;
+    private ImageSet conveyorBeltMiddle1ImageSet;
+    private NgAnimation conveyorBeltMiddle1Animation;
 
     private Sprite conveyorBeltMiddle2Sprite;
     private Rect conveyorBeltMiddle2SourceRect;
     private Rect conveyorBeltMiddle2DestinationRect;
+    private ImageSet conveyorBeltMiddle2ImageSet;
+    private NgAnimation conveyorBeltMiddle2Animation;
 
     private Sprite conveyorBeltMiddle3Sprite;
     private Rect conveyorBeltMiddle3SourceRect;
     private Rect conveyorBeltMiddle3DestinationRect;
+    private ImageSet conveyorBeltMiddle3ImageSet;
+    private NgAnimation conveyorBeltMiddle3Animation;
 
     private Sprite conveyorBeltMiddle4Sprite;
     private Rect conveyorBeltMiddle4SourceRect;
     private Rect conveyorBeltMiddle4DestinationRect;
+    private ImageSet conveyorBeltMiddle4ImageSet;
+    private NgAnimation conveyorBeltMiddle4Animation;
 
     private Sprite conveyorBeltBottomSprite;
     private Rect conveyorBeltBottomSourceRect;
     private Rect conveyorBeltBottomDestinationRect;
+    private ImageSet conveyorBeltBottomImageSet;
+    private NgAnimation conveyorBeltBottomAnimation;
 
     // Yürüyen bantların ölçüleri ile ilgili değişkenler.
     private int conveyorBeltDestinationWidth = 720;
@@ -191,24 +204,76 @@ public class GameCanvas extends BaseCanvas {
     private Sprite pipeSprite;
     private Rect pipeSourceRect;
     private Rect pipeDestinationRect;
-
-    // ImageSet denemesi
-    //private ImageSet imageSet;
-
-    //private Rect imageSetDestination;
+    private ImageSet pipeImageSet;
+    private NgAnimation pipeAnimation;
+    private boolean pipeAnimationState;
 
     private long startAnim, finishAnim;
+    private int gameSpeed;
 
-    private Sprite testSprite;
-    private Rect testSourceRect;
-    private Rect testDestinationRect;
-    private ImageSet testImageSet;
-    private NgAnimation testAnimation;
+    private boolean musicState;
+    private boolean soundState;
 
-    //private Sprite testSprite;
+    private Sprite pauseButtonSprite;
+    private Rect pauseButtonSourceRect;
+    private Rect pauseButtonDestinationRect;
+    private ImageSet pauseButtonImageSet;
+    private NgAnimation pauseButtonAnimation;
+    private boolean isGamePaused;
+    //private boolean pauseState;
 
-    public GameCanvas(NgApp ngApp) {
+    // Pop Up ile ilgili nesneler tanımlanıyor.
+
+    // Pause butonuna basınca ekranda gözükecek pop up ile ilgili nesneler ve değişkenler tanımlanıyor.
+    private Sprite popUpMenuSprite;
+    private Rect popUpMenuSourceRect;
+    private Rect popUpMenuDestinationRect;
+    private int popUpX;
+    private int popUpY;
+    private int popUpWidth;
+    private int popUpHeight;
+    //private boolean popUpState = false;
+
+    // Pop up üstünde bulunacak play butonu ile ilgili nesneler tanımlanıyor.
+    private Sprite popUpPlayButtonSprite;
+    private Rect popUpPlayButtonSourceRect;
+    private Rect popUpPlayButtonDestinationRect;
+    private ImageSet popUpPlayButtonImageSet;
+    private NgAnimation popUpPlayButtonAnimation;
+    private int popUpPlayButtonX;
+    private int popUpPlayButtonY;
+    private int popUpPlayButtonWidth;
+    private int popUpPlayButtonHeight;
+    private String popUpPlayButtonImagePath;
+
+    // Pop up üstünde bulunacak menu butonu ile ilgili nesneler tanımlanıyor.
+    private Sprite popUpMenuButtonSprite;
+    private Rect popUpMenuButtonSourceRect;
+    private Rect popUpMenuButtonDestinationRect;
+    private ImageSet popUpMenuButtonImageSet;
+    private NgAnimation popUpMenuButtonAnimation;
+    private int popUpMenuButtonX;
+    private int popUpMenuButtonY;
+    private int popUpMenuButtonWidth;
+    private int popUpMenuButtonHeight;
+    private String popUpMenuButtonImagePath;
+
+    // Pop up üstünde bulunacak retry butonu ile ilgili nesneler tanımlanıyor.
+    private Sprite popUpRetryButtonSprite;
+    private Rect popUpRetryButtonSourceRect;
+    private Rect popUpRetryButtonDestinationRect;
+    private ImageSet popUpRetryButtonImageSet;
+    private NgAnimation popUpRetryButtonAnimation;
+    private int popUpRetryButtonX;
+    private int popUpRetryButtonY;
+    private int popUpRetryButtonWidth;
+    private int popUpRetryButtonHeight;
+    private String popUpRetryButtonImagePath;
+
+    public GameCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
         super(ngApp);
+        this.musicState = musicState;
+        this.soundState = soundState;
     }
 
     public void setup() {
@@ -249,7 +314,10 @@ public class GameCanvas extends BaseCanvas {
         platformLeftTopSprite = new Sprite(root, platformSpriteSetFilePath, platformLeftTopSourceRect, platformLeftTopDestinationRect);
 
         // Arkaplanda çalacak olan ses dosyası oynatıcısının ilk değer atamaları yapılıyor.
-        setupMediaPlayer("sounds/bgm_action_5.mp3");
+        if(musicState) {
+            setupMediaPlayer("sounds/bgm_action_5.mp3");
+        }
+
 
         // Oyuncular ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
@@ -266,30 +334,41 @@ public class GameCanvas extends BaseCanvas {
 
         // Yürüyen bantlar ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
-        // Üstteki yürüyen bantla ilgili değişkenlere ilk değer atamaları yapılıyor.
+        // Üstteki yürüyen bantla ilgili nesnelere ilk değer atamaları yapılıyor.
+        conveyorBeltTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltTopImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltTopAnimation = new NgAnimation(root, "work", conveyorBeltTopImageSet, 0, 1);
         conveyorBeltTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
         conveyorBeltTopDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltTopY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltTopY + conveyorBeltDestinationHeight);
-        conveyorBeltTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltTopSourceRect, conveyorBeltTopDestinationRect);
+        conveyorBeltTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltTopSourceRect, conveyorBeltTopDestinationRect, conveyorBeltTopAnimation);
 
+        // Ortadaki yürüyen bantlardan 1. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
+        conveyorBeltMiddle1ImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltMiddle1ImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltMiddle1Animation = new NgAnimation(root, "work", conveyorBeltMiddle1ImageSet, 0, 1);
         conveyorBeltMiddle1SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
         conveyorBeltMiddle1DestinationRect = new Rect(conveyorBeltRightX, conveyorBeltMiddleY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltMiddleY + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle1Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle1SourceRect, conveyorBeltMiddle1DestinationRect);
+        conveyorBeltMiddle1Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle1SourceRect, conveyorBeltMiddle1DestinationRect, conveyorBeltMiddle1Animation);
 
+        // Ortadaki yürüyen bantlardan 2. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
         conveyorBeltMiddle2SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
         conveyorBeltMiddle2DestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltMiddle2Y, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltMiddle2Y + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle2Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle2SourceRect, conveyorBeltMiddle2DestinationRect);
+        conveyorBeltMiddle2Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle2SourceRect, conveyorBeltMiddle2DestinationRect, conveyorBeltTopAnimation);
 
+        // Ortadaki yürüyen bantlardan 3. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
         conveyorBeltMiddle3SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
         conveyorBeltMiddle3DestinationRect = new Rect(conveyorBeltRightX, conveyorBeltMiddle3Y, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltMiddle3Y + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle3Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle3SourceRect, conveyorBeltMiddle3DestinationRect);
+        conveyorBeltMiddle3Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle3SourceRect, conveyorBeltMiddle3DestinationRect, conveyorBeltTopAnimation);
 
+        // Ortadaki yürüyen bantlardan 4. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
         conveyorBeltMiddle4SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
         conveyorBeltMiddle4DestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltBottomY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltBottomY + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle4Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle4SourceRect, conveyorBeltMiddle4DestinationRect);
+        conveyorBeltMiddle4Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle4SourceRect, conveyorBeltMiddle4DestinationRect, conveyorBeltTopAnimation);
 
+        // Alttaki yürüyen bantla ilgili nesnelere ilk değer atamaları yapılıyor.
         conveyorBeltBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
         conveyorBeltBottomDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltBottom2Y, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltBottom2Y + conveyorBeltDestinationHeight);
-        conveyorBeltBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltBottomSourceRect, conveyorBeltBottomDestinationRect);
+        conveyorBeltBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltBottomSourceRect, conveyorBeltBottomDestinationRect, conveyorBeltTopAnimation);
 
         // Orta platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
         middlePlatformSourceRect = new Rect( 0, 0, 360, 360);
@@ -306,26 +385,66 @@ public class GameCanvas extends BaseCanvas {
 
         pipeSourceRect = new Rect(0, 0, 384, 384);
         pipeDestinationRect = new Rect(0, getHeight() - 400, 350, getHeight() - 50);
-        pipeSprite = new Sprite(root, "pipeActs.png", pipeSourceRect, pipeDestinationRect);
-        /*
-        imageSet = new ImageSet(root, "pipeActs.png");
-        List<Rect> imageSetRect = imageSet.divideBy(384, 384);
-        int i = 0;
-        for(Rect r : imageSetRect) {
-            Log.i(TAG,"Rect " + i + " x: " + r.left + "," + " y: " + r.top);
-            i++;
-        }
-        */
+        pipeImageSet = new ImageSet(root, "pipeActs.png");
+        pipeImageSet.divideBy(384, 384);
+        pipeAnimation = new NgAnimation(root, "dropOut", pipeImageSet, 0, 9, true);
+        pipeSprite = new Sprite(root, "pipeActs.png", pipeSourceRect, pipeDestinationRect, pipeAnimation);
+        pipeAnimationState = true;
+
         startAnim = System.currentTimeMillis();
+        gameSpeed = 100;
 
-        testSourceRect = new Rect(0, 0, 384, 384);
-        testDestinationRect = new Rect(0, 0, 384, 384);
-        testImageSet = new ImageSet(root, "pipeActs.png");
-        testImageSet.divideBy(384, 384);
-        testAnimation = new NgAnimation(root, "testAnimation", testImageSet, 0, 9);
-        testSprite = new Sprite(root, "pipeActs.png", testSourceRect, testDestinationRect, testAnimation);
+        isGamePaused = false;
+        pauseButtonSourceRect = new Rect(0,0,360,360);
+        pauseButtonDestinationRect = new Rect(getWidth() - 150, 50, getWidth() - 50, 150);
+        pauseButtonImageSet = new ImageSet(root, "stopButtonImageSet.png");
+        pauseButtonImageSet.divideBy(360, 360);
+        pauseButtonAnimation = new NgAnimation(root, "touchUpInside", pauseButtonImageSet, 0, 1);
+        pauseButtonSprite = new Sprite(root, "stopButtonImageSet.png", pauseButtonSourceRect, pauseButtonDestinationRect, pauseButtonAnimation);
 
+        popUpWidth = (int)(1069 / 1.5);
+        popUpHeight = (int)(1069 / 1.5);
+        popUpX = (getWidth() - popUpWidth) / 2;
+        popUpY = (getHeight() - popUpHeight) / 2;
+        popUpMenuSourceRect = new Rect(0, 0, 1088, 1069);
+        popUpMenuDestinationRect = new Rect(popUpX, popUpY, popUpWidth + popUpX, popUpHeight + popUpY);
+        popUpMenuSprite = new Sprite(root, popUpBackgroundImagePath, popUpMenuSourceRect, popUpMenuDestinationRect);
 
+        popUpPlayButtonImagePath = "playButtonSet.png";
+        popUpPlayButtonWidth = 200;
+        popUpPlayButtonHeight = 200;
+        popUpPlayButtonX = (getWidth() - popUpPlayButtonWidth) / 2;
+        popUpPlayButtonY = (getHeight() - popUpPlayButtonHeight) / 2;
+        popUpPlayButtonSourceRect = new Rect(0, 0, 360, 360);
+        popUpPlayButtonDestinationRect = new Rect(popUpPlayButtonX, popUpPlayButtonY, popUpPlayButtonX + popUpPlayButtonWidth, popUpPlayButtonY + popUpPlayButtonHeight);
+        popUpPlayButtonImageSet = new ImageSet(root, popUpPlayButtonImagePath);
+        popUpPlayButtonImageSet.divideBy(360, 360);
+        popUpPlayButtonAnimation = new NgAnimation(root, "click", popUpPlayButtonImageSet, 0, 1);
+        popUpPlayButtonSprite = new Sprite(root, popUpPlayButtonImagePath, popUpPlayButtonSourceRect, popUpPlayButtonDestinationRect, popUpPlayButtonAnimation);
+
+        popUpMenuButtonImagePath = "menuButtonImageSet.png";
+        popUpMenuButtonWidth = 200;
+        popUpMenuButtonHeight = 200;
+        popUpMenuButtonX = (getWidth() - popUpMenuButtonWidth) / 2 - popUpPlayButtonWidth - 25;
+        popUpMenuButtonY = (getHeight() - popUpMenuButtonHeight) / 2;
+        popUpMenuButtonSourceRect = new Rect(0, 0, 360, 360);
+        popUpMenuButtonDestinationRect = new Rect(popUpMenuButtonX, popUpMenuButtonY, popUpMenuButtonX + popUpMenuButtonWidth, popUpMenuButtonY + popUpMenuButtonHeight);
+        popUpMenuButtonImageSet = new ImageSet(root, popUpMenuButtonImagePath);
+        popUpMenuButtonImageSet.divideBy(360, 360);
+        popUpMenuButtonAnimation = new NgAnimation(root, "click", popUpMenuButtonImageSet, 0, 1);
+        popUpMenuButtonSprite = new Sprite(root, popUpMenuButtonImagePath, popUpMenuButtonSourceRect, popUpMenuButtonDestinationRect, popUpMenuButtonAnimation);
+
+        popUpRetryButtonImagePath = "retryButtonImageSet.png";
+        popUpRetryButtonWidth = 200;
+        popUpRetryButtonHeight = 200;
+        popUpRetryButtonX = (getWidth() - popUpRetryButtonWidth) / 2 + popUpPlayButtonWidth + 25;
+        popUpRetryButtonY = (getHeight() - popUpRetryButtonHeight) / 2;
+        popUpRetryButtonSourceRect = new Rect(0, 0, 360, 360);
+        popUpRetryButtonDestinationRect = new Rect(popUpRetryButtonX, popUpRetryButtonY, popUpRetryButtonX + popUpRetryButtonWidth, popUpRetryButtonY + popUpRetryButtonHeight);
+        popUpRetryButtonImageSet = new ImageSet(root, popUpRetryButtonImagePath);
+        popUpRetryButtonImageSet.divideBy(360, 360);
+        popUpRetryButtonAnimation = new NgAnimation(root, "click", popUpRetryButtonImageSet, 0, 1);
+        popUpRetryButtonSprite = new Sprite(root, popUpRetryButtonImagePath, popUpRetryButtonSourceRect, popUpRetryButtonDestinationRect, popUpRetryButtonAnimation);
     }
 
     public void setupMediaPlayer(String assetFilePath) {
@@ -337,45 +456,44 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void update() {
+        if(!isGamePaused) {
 
+            finishAnim =  System.currentTimeMillis();
 
-        finishAnim =  System.currentTimeMillis();
-        conveyorBeltAnimation(conveyorBeltTopSprite);
-        conveyorBeltAnimation(conveyorBeltMiddle1Sprite);
-        conveyorBeltAnimation(conveyorBeltMiddle2Sprite);
-        conveyorBeltAnimation(conveyorBeltMiddle3Sprite);
-        conveyorBeltAnimation(conveyorBeltMiddle4Sprite);
-        conveyorBeltAnimation(conveyorBeltBottomSprite);
+            timeBoundAnimation();
 
-        if(finishAnim - startAnim > 70)
-            startAnim = System.currentTimeMillis();
+            if(finishAnim - startAnim > gameSpeed)
+                startAnim = System.currentTimeMillis();
 
-
-        if(pipeSprite.getSourceX() < pipeSprite.getSourceWidth()*9) {
-            pipeSprite.setSourceX(pipeSprite.getSourceWidth() + pipeSprite.getSourceX());
-        } else {
-            pipeSprite.setSourceX(0);
         }
-        Log.i(TAG, "testSprite source rect: x: " + testSprite.getSourceX() + ", y:" + testSprite.getSourceY());
-        testSprite.playAnimationWithName("testAnimation");
 
     }
 
-    private void conveyorBeltAnimation(Sprite conveyorBelt) {
+    private void timeBoundAnimation() {
 
-        if(finishAnim - startAnim < 70) {
+        if(finishAnim - startAnim < gameSpeed) {
             return;
         }
 
-        if(conveyorBelt.getSourceY() == 0) {
-            conveyorBelt.setSourceY(conveyorBelt.getSourceHeight());
-        } else {
-            conveyorBelt.setSourceY(0);
+        conveyorBeltTopSprite.playAnimationWithName("work");
+        conveyorBeltMiddle1Sprite.playAnimationWithName("work");
+        conveyorBeltMiddle2Sprite.playAnimationWithName("work");
+        conveyorBeltMiddle3Sprite.playAnimationWithName("work");
+        conveyorBeltMiddle4Sprite.playAnimationWithName("work");
+        conveyorBeltBottomSprite.playAnimationWithName("work");
+
+        if (pipeAnimationState) {
+            if (pipeSprite.getAnimationWithName("dropOut").animationState()) {
+                pipeSprite.playAnimationWithName("dropOut");
+            } else {
+                pipeAnimationState = !pipeAnimationState;
+            }
         }
+
 
     }
 
-    /*
+/*
     private void converoyBeltAnimation(Sprite converoyBelt) {
         if(converoyBelt.getSourceY() == 0) {
             converoyBelt.setSourceY(converoyBelt.getSourceHeight());
@@ -386,6 +504,7 @@ public class GameCanvas extends BaseCanvas {
     */
 
     public void draw(Canvas canvas) {
+
         backgroundSprite.draw(canvas);
 
         platformRightBottomSprite.draw(canvas);
@@ -406,65 +525,32 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltMiddle4Sprite.draw(canvas);
         conveyorBeltBottomSprite.draw(canvas);
 
-        //drawConveroyBelt(canvas, 5, centerX, centerY);
-
-        //converoyBeltBottom.draw(canvas);
-        //converoyBeltMiddle.draw(canvas);
-        //converoyBeltMiddle2.draw(canvas);
-        //converoyBeltMiddle3.draw(canvas);
-        //converoyBeltTop.draw(canvas);
-
         // Orta platform erkarana çiziliyor.
         for(int i = ballDimention; i < getHeight(); i = i + middlePlatfromSprite.getDestinationHeight()){
             middlePlatfromSprite.setDestinationY(i);
             middlePlatfromSprite.draw(canvas);
         }
 
-        /*
-        for(int i = 0; i < blockDimension * 2; i += blockDimension) {
-            block.setDestinationX(i);
-            block.draw(canvas);
-        }
-
-
-        for(int i = 0; i < imageSet.getImageRectCount(); i++) {
-
-        }
-        */
         ballSprite.draw(canvas);
-
 
         // Pipe sprite'ı ekrana çizdiriliyor.
         pipeSprite.draw(canvas);
 
+        pauseButtonSprite.draw(canvas);
 
-        testSprite.draw(canvas);
-
-    }
-    /*
-    public void drawConveroyBelt(Canvas canvas, int width, int x, int y) {
-        int converoyBeltTotalWidth = converoyBelt.getDestinationWidth() * width;
-
-        converoyBelt.setDestinationX(x);
-        converoyBelt.setDestinationY(y);
-        converoyBelt.setSourceX(0);
-        converoyBelt.draw(canvas);
-
-        for(int i = converoyBelt.getDestinationWidth(); i < converoyBeltTotalWidth; i += converoyBelt.getDestinationWidth()) {
-                converoyBelt.setSourceX(converoyBelt.getSourceWidth());
-                converoyBelt.setDestinationX(i);
-                converoyBelt.draw(canvas);
+        //} else {
+        if(isGamePaused) {
+            popUpMenuSprite.draw(canvas);
+            popUpPlayButtonSprite.draw(canvas);
+            popUpMenuButtonSprite.draw(canvas);
+            popUpRetryButtonSprite.draw(canvas);
         }
-        converoyBelt.setDestinationX(converoyBelt.getDestinationX()+converoyBelt.getDestinationWidth());
-        converoyBelt.setSourceX(converoyBelt.getSourceWidth() * 3);
-        converoyBelt.draw(canvas);
+        //}
 
 
-    }
-    */
-    private void animateConveroyBelt(Canvas canvas) {
 
     }
+
 
     public void keyPressed(int key) {
 
@@ -501,6 +587,23 @@ public class GameCanvas extends BaseCanvas {
             // Ekranın sol tarafına dokunuluyorsa burası çalışır.
             screenSide = false;
         }
+
+        if(pauseButtonSprite.isTouchedUp(x, y)) {
+            pauseButtonSprite.playAnimationWithName("touchUpInside");
+        }
+
+        if(popUpPlayButtonSprite.isTouchedUp(x, y)) {
+            popUpPlayButtonSprite.playAnimationWithName("click");
+        }
+
+        if(popUpMenuButtonSprite.isTouchedUp(x, y)) {
+            popUpMenuButtonSprite.playAnimationWithName("click");
+        }
+
+        if(popUpRetryButtonSprite.isTouchedUp(x, y)) {
+            popUpRetryButtonSprite.playAnimationWithName("click");
+        }
+
     }
 
     public void touchMove(int x, int y, int id) {
@@ -510,51 +613,75 @@ public class GameCanvas extends BaseCanvas {
         int diffrentX = x - touchDownX;
         int diffrentY = y - touchDownY;
 
-        if(screenSide) {
-            Log.i(TAG, "playerRight.getDestinationY:" + playerRightSprite.getDestinationY());
-            Log.i(TAG, "platformTopY - playerRight.getDestinationHeight:" + playerRightSprite.getDestinationY());
+        if(!isGamePaused) {
 
-            if(!(playerRightSprite.getDestinationY() < (platformRightTopY - playerRightSprite.getDestinationHeight()) || playerRightSprite.getDestinationY() > (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
-                // Ekranın sağ tarafındaki player konum değiştirecek.
-                if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
-                    // X düzlemindeki parmak hareketi Y düzlemindekinden fazla ise burası çalışır.
-                } else {
-                    // Y düzlemindeki parmak hareketi X düzlemindekinden fazla ise burası çalışır.
-                    if (diffrentY < 0) {
-                        if(!(playerRightSprite.getDestinationY() == (platformRightTopY - playerRightSprite.getDestinationHeight()))) {
-                            playerRightSprite.setDestinationY(playerRightSprite.getDestinationY() + (platformRightMiddleY - platformRightBottomY));
-                        }
-                    } else if(diffrentY > 0) {
-                        if(!(playerRightSprite.getDestinationY() == (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
-                            playerRightSprite.setDestinationY(playerRightSprite.getDestinationY() - (platformRightMiddleY - platformRightBottomY));
+            if (screenSide) {
+                Log.i(TAG, "playerRight.getDestinationY:" + playerRightSprite.getDestinationY());
+                Log.i(TAG, "platformTopY - playerRight.getDestinationHeight:" + playerRightSprite.getDestinationY());
+
+                if (!(playerRightSprite.getDestinationY() < (platformRightTopY - playerRightSprite.getDestinationHeight()) || playerRightSprite.getDestinationY() > (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
+                    // Ekranın sağ tarafındaki player konum değiştirecek.
+                    if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
+                        // X düzlemindeki parmak hareketi Y düzlemindekinden fazla ise burası çalışır.
+                    } else {
+                        // Y düzlemindeki parmak hareketi X düzlemindekinden fazla ise burası çalışır.
+                        if (diffrentY < 0) {
+                            if (!(playerRightSprite.getDestinationY() == (platformRightTopY - playerRightSprite.getDestinationHeight()))) {
+                                playerRightSprite.setDestinationY(playerRightSprite.getDestinationY() + (platformRightMiddleY - platformRightBottomY));
+                            }
+                        } else if (diffrentY > 0) {
+                            if (!(playerRightSprite.getDestinationY() == (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
+                                playerRightSprite.setDestinationY(playerRightSprite.getDestinationY() - (platformRightMiddleY - platformRightBottomY));
+                            }
                         }
                     }
                 }
-            }
-        } else {
+            } else {
 
-            Log.i(TAG, "playerLeft.getDestinationY:" + playerLeftSprite.getDestinationY());
-            Log.i(TAG, "platformTopY - playerLeft.getDestinationHeight:" + playerLeftSprite.getDestinationY());
+                Log.i(TAG, "playerLeft.getDestinationY:" + playerLeftSprite.getDestinationY());
+                Log.i(TAG, "platformTopY - playerLeft.getDestinationHeight:" + playerLeftSprite.getDestinationY());
 
-            if(!(playerLeftSprite.getDestinationY() < (platformLeftTopY - playerLeftSprite.getDestinationHeight()) || playerLeftSprite.getDestinationY() > (platformLeftBottomY - playerLeftSprite.getDestinationHeight()))) {
-                // Ekranın sol tarafındaki player konum değiştirecek.
-                if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
-                    // X düzlemindeki parmak hareketi Y düzlemindekinden fazla ise burası çalışır.
-                } else {
+                if (!(playerLeftSprite.getDestinationY() < (platformLeftTopY - playerLeftSprite.getDestinationHeight()) || playerLeftSprite.getDestinationY() > (platformLeftBottomY - playerLeftSprite.getDestinationHeight()))) {
+                    // Ekranın sol tarafındaki player konum değiştirecek.
+                    if (Math.abs(diffrentX) > Math.abs(diffrentY)) {
+                        // X düzlemindeki parmak hareketi Y düzlemindekinden fazla ise burası çalışır.
+                    } else {
 
-                    // Y düzlemindeki parmak hareketi X düzlemindekinden fazla ise burası çalışır.
-                    if (diffrentY < 0) {
-                        if(!(playerLeftSprite.getDestinationY() == (platformLeftTopY - playerLeftSprite.getDestinationHeight()))) {
-                            playerLeftSprite.setDestinationY(playerLeftSprite.getDestinationY() + (platformLeftMiddleY - platformLeftBottomY));
+                        // Y düzlemindeki parmak hareketi X düzlemindekinden fazla ise burası çalışır.
+                        if (diffrentY < 0) {
+                            if (!(playerLeftSprite.getDestinationY() == (platformLeftTopY - playerLeftSprite.getDestinationHeight()))) {
+                                playerLeftSprite.setDestinationY(playerLeftSprite.getDestinationY() + (platformLeftMiddleY - platformLeftBottomY));
+                            }
+                        } else if (diffrentY > 0) {
+                            if (!(playerLeftSprite.getDestinationY() == (platformLeftBottomY - playerLeftSprite.getDestinationHeight()))) {
+                                playerLeftSprite.setDestinationY(playerLeftSprite.getDestinationY() - (platformLeftMiddleY - platformLeftBottomY));
+                            }
                         }
-                    } else if(diffrentY > 0) {
-                        if(!(playerLeftSprite.getDestinationY() == (platformLeftBottomY - playerLeftSprite.getDestinationHeight()))) {
-                            playerLeftSprite.setDestinationY(playerLeftSprite.getDestinationY() - (platformLeftMiddleY - platformLeftBottomY));
-                        }
+
                     }
-
                 }
             }
+        }
+
+        if(pauseButtonSprite.isTouchedUp(x, y)) {
+            pauseButtonSprite.playAnimationWithName("touchUpInside");
+            isGamePaused = !isGamePaused;
+        }
+
+        if(popUpPlayButtonSprite.isTouchedUp(x, y)) {
+            popUpPlayButtonSprite.playAnimationWithName("click");
+            isGamePaused = !isGamePaused;
+        }
+
+        if(popUpMenuButtonSprite.isTouchedUp(x, y)) {
+            popUpMenuButtonSprite.playAnimationWithName("click");
+            goToMainCanvas();
+
+        }
+
+        if(popUpRetryButtonSprite.isTouchedUp(x, y)) {
+            popUpRetryButtonSprite.playAnimationWithName("click");
+            root.canvasManager.setCurrentCanvas(new GameCanvas(root,musicState,soundState));
         }
 
     }
@@ -579,6 +706,14 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void hideNotify() {
+    }
+
+    public void goToMainCanvas() {
+
+        player.stop();
+
+        MenuCanvas menuCanvas = new MenuCanvas(root);
+        root.canvasManager.setCurrentCanvas(menuCanvas);
     }
 
 }

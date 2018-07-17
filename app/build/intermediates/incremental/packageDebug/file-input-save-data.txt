@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jul 12 13:40:49 EET 2018
+#Fri Jul 13 16:15:26 EET 2018
 210.set=ANDROID_RESOURCE
 14.set=ANDROID_RESOURCE
 180.file=/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/assets/debug/images/ball.png

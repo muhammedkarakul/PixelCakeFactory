@@ -6,7 +6,10 @@ import android.graphics.Rect;
 import java.util.ArrayList;
 import java.util.List;
 
+import istanbul.gamelab.ngdroid.util.Log;
 import istanbul.gamelab.ngdroid.util.Utils;
+
+import static android.content.ContentValues.TAG;
 
 public class ImageSet {
 
@@ -30,7 +33,6 @@ public class ImageSet {
         for(int x = 0; x < image.getWidth(); x += width) {
             for(int y = 0; y < image.getHeight(); y += height){
                 Rect tempRect = new Rect(x, y, x + width, y + height);
-                //imageSetRectList.add(tempRect);
                 imageRects.add(tempRect);
             }
         }
@@ -44,4 +46,11 @@ public class ImageSet {
     public List<Rect> getImageRects() { return imageRects; }
 
     public Rect getImageRectWithIndex(int index) { return imageRects.get(index); }
+
+    public void printRectsData() {
+        for(int i = 0; i < imageRects.size(); i++) {
+            Log.i(TAG, "Rect " + i + "= x: " + imageRects.get(i).left + ", y: " + imageRects.get(i).top + ", width: " + imageRects.get(i).width() + ", height: " + imageRects.get(i).height());
+        }
+
+    }
 }

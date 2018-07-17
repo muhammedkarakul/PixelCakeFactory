@@ -3,15 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_91ff6a63107fba0d2dbbc0d28361257f64d23bcb.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar"
         jumboMode="false"
         optimize="true"
@@ -27,24 +18,6 @@
         revision="27.0.3"
         sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
         <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_7012c24a981717f07e54f6e6d67642177a1504bd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_453823b1a6743b004ad00c100bcb2dd0c9ad77d6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="ec657bb192b20229696216bf233779b16bf75a54">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_16b38c29bc440eef1604031edb5743cac6c84dfb.jar" />
     </item>
     <item
         is-multidex="false"
@@ -66,30 +39,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_0b211e7ae512b40e3bcdd2ae6bea07d170327ed4.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
         <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_94c3608f00aa0285030b806582b30d8033120064.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="2feadd535770271ca57b7b431f42151aa4af324a">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_f5131b4749cc6cabe54078a50f82ec52057c7567.jar" />
     </item>
     <item
         is-multidex="false"
@@ -108,6 +63,51 @@
         revision="27.0.3"
         sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
         <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_aaff371c97c5832477f44219ff270dde779c285e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
+        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_91ff6a63107fba0d2dbbc0d28361257f64d23bcb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
+        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_453823b1a6743b004ad00c100bcb2dd0c9ad77d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ec657bb192b20229696216bf233779b16bf75a54">
+        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_16b38c29bc440eef1604031edb5743cac6c84dfb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
+        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_0b211e7ae512b40e3bcdd2ae6bea07d170327ed4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2feadd535770271ca57b7b431f42151aa4af324a">
+        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_f5131b4749cc6cabe54078a50f82ec52057c7567.jar" />
     </item>
     <item
         is-multidex="false"

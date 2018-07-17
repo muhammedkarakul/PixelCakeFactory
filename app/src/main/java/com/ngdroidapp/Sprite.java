@@ -26,7 +26,6 @@ public class Sprite {
     private NgApp root;
     private int anchorX;
     private int anchorY;
-
     private int indicatorX;
     private int indicatorY;
     private float velocityX;
@@ -37,6 +36,8 @@ public class Sprite {
     private Map<String, NgAnimation> animations;
 
     /* INITIALIZE METHODS */
+
+    Sprite() {}
 
     /**
      * Initializes sprite with no parameter.
@@ -118,6 +119,27 @@ public class Sprite {
         anchorY = getDestinationHeight() / 2;
     }
 
+    /**
+     * Intialize sprite with image, position and size.
+     * @param root
+     * @param imageFilePath
+     */
+    Sprite(NgApp root, String imageFilePath, Rect source, Rect destination, Map<String, NgAnimation> animations) {
+        this.root = root;
+        this.imageFilePath = imageFilePath;
+        image = Utils.loadImage(root, imageFilePath);
+        indicatorX = 0;
+        indicatorY = 0;
+        velocityX = 0;
+        velocityY = 0;
+        this.source = source;
+        this.destination = destination;
+        this.animations = new HashMap<>();
+        this.animations = animations;
+        anchorX = getDestinationWidth() / 2;
+        anchorY = getDestinationHeight() / 2;
+    }
+
 
 
     public void setImage(String imageFilePath) {
@@ -193,6 +215,8 @@ public class Sprite {
     public int getIndicatorY() { return  indicatorY; }
     public float getVelocityX() { return  velocityX; }
     public float getVelocityY() { return  velocityY; }
+
+    public NgAnimation getAnimationWithName(String animationName) { return animations.get(animationName); }
 
     /* UTILITIES METHODS */
 

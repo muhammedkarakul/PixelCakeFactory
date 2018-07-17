@@ -8,16 +8,14 @@ import istanbul.gamelab.ngdroid.util.Log;
 
 import static android.content.ContentValues.TAG;
 
-public class Button {
+public class Button extends Sprite {
     private boolean state;
     private String clickedButtonImagePath;
     private Bitmap clickedButtonImage;
     private Rect clickedSource;
-    private int clickedSourceX;
-    private int clickedSourceY;
-    private int clickedSourceWidth;
-    private int clickedSourceHeight;
 
+    Button() {
 
+    }
 
 }

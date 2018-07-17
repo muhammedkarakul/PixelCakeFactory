@@ -15,17 +15,39 @@
       <change beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
+      <change beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/drawable-xhdpi-v4.json" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/GameCanvas.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/GameCanvas.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/ImageSet.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/ImageSet.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/NgAnimation.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/NgAnimation.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/Sprite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/ngdroidapp/Sprite.class" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_453823b1a6743b004ad00c100bcb2dd0c9ad77d6.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_453823b1a6743b004ad00c100bcb2dd0c9ad77d6.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_93c4b79137dd0db5e7af3f463db89ce2ecc44084.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_93c4b79137dd0db5e7af3f463db89ce2ecc44084.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_94c3608f00aa0285030b806582b30d8033120064.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_94c3608f00aa0285030b806582b30d8033120064.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_7012c24a981717f07e54f6e6d67642177a1504bd.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_7012c24a981717f07e54f6e6d67642177a1504bd.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_f5131b4749cc6cabe54078a50f82ec52057c7567.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_f5131b4749cc6cabe54078a50f82ec52057c7567.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.1_4f19d439fecc76aac4dd4270f05ab71c29971070.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.1_4f19d439fecc76aac4dd4270f05ab71c29971070.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_aaff371c97c5832477f44219ff270dde779c285e.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_aaff371c97c5832477f44219ff270dde779c285e.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_0b211e7ae512b40e3bcdd2ae6bea07d170327ed4.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_0b211e7ae512b40e3bcdd2ae6bea07d170327ed4.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_16b38c29bc440eef1604031edb5743cac6c84dfb.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_16b38c29bc440eef1604031edb5743cac6c84dfb.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_91ff6a63107fba0d2dbbc0d28361257f64d23bcb.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_91ff6a63107fba0d2dbbc0d28361257f64d23bcb.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.1_70170a0b925a7a52ef627d11b6135076dc33b5dc.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.1_70170a0b925a7a52ef627d11b6135076dc33b5dc.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/common-1.1.0_bd64465c3b2ebcec35eab5c31a418f180f7c6710.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/common-1.1.0_bd64465c3b2ebcec35eab5c31a418f180f7c6710.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/common-1.1.0_e1dea8adadb4a58344a11b388c9f48c6c542b7b6.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/common-1.1.0_e1dea8adadb4a58344a11b388c9f48c6c542b7b6.jar" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_9e0ad3ee96a1bc5ad81de213afa9fe405c4fa03c.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_9e0ad3ee96a1bc5ad81de213afa9fe405c4fa03c.jar" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_0a93e69608de5258ccffeb0a6fdf44879df58d88.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_0a93e69608de5258ccffeb0a6fdf44879df58d88.jar" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/GameCanvas.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/GameCanvas.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/ImageSet.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/ImageSet.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/NgAnimation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/NgAnimation.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Sprite.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Sprite.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,37 +73,99 @@
       <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/GameCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="189" column="94" lean-forward="false" selection-start-line="189" selection-start-column="94" selection-end-line="189" selection-end-column="94" />
+            <state relative-caret-position="159">
+              <caret line="325" column="106" lean-forward="false" selection-start-line="325" selection-start-column="106" selection-end-line="325" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5456#5457#0" expanded="true" />
-                <element signature="e#5484#5485#0" expanded="true" />
-                <element signature="e#14279#14280#0" expanded="true" />
-                <element signature="e#14306#14307#0" expanded="true" />
+                <element signature="e#7728#7729#0" expanded="true" />
+                <element signature="e#7756#7757#0" expanded="true" />
+                <element signature="e#21646#21647#0" expanded="true" />
+                <element signature="e#21673#21674#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="candyPlatformSpriteSet.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/candyPlatformSpriteSet.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="MenuCanvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/MenuCanvas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="162" column="29" lean-forward="false" selection-start-line="162" selection-start-column="29" selection-end-line="162" selection-end-column="29" />
+              <folding>
+                <element signature="e#5259#5260#0" expanded="true" />
+                <element signature="e#5287#5288#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Sprite.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Sprite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-815">
-              <caret line="120" column="132" lean-forward="false" selection-start-line="120" selection-start-column="132" selection-end-line="120" selection-end-column="132" />
-              <folding />
+            <state relative-caret-position="974">
+              <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+              <folding>
+                <element signature="e#3491#3492#0" expanded="true" />
+                <element signature="e#3551#3552#0" expanded="true" />
+                <element signature="e#3589#3590#0" expanded="true" />
+                <element signature="e#3656#3657#0" expanded="true" />
+                <element signature="e#3982#3983#0" expanded="true" />
+                <element signature="e#4029#4030#0" expanded="true" />
+                <element signature="e#4189#4190#0" expanded="true" />
+                <element signature="e#4235#4236#0" expanded="true" />
+                <element signature="e#4272#4273#0" expanded="true" />
+                <element signature="e#4319#4320#0" expanded="true" />
+                <element signature="e#4361#4362#0" expanded="true" />
+                <element signature="e#4417#4418#0" expanded="true" />
+                <element signature="e#4458#4459#0" expanded="true" />
+                <element signature="e#4515#4516#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageSet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/ImageSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="70" lean-forward="false" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#976#977#0" expanded="true" />
+                <element signature="e#1016#1017#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NgAnimation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/NgAnimation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="50" column="56" lean-forward="false" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>testSprite</find>
+      <find>ImageSet</find>
+      <find>imageSet</find>
+      <find>screenwidth</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -1912,10 +1996,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Button.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Button.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Animation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/MenuCanvas.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/NgAnimation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Sprite.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/ImageSet.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/GameCanvas.java" />
       </list>
     </option>
@@ -1924,7 +2011,9 @@
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="AndroidView" proportions="" version="1">
       <flattenPackages />
@@ -1940,9 +2029,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -1984,6 +2070,9 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2194,7 +2283,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2203,7 +2292,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2211,9 +2300,9 @@
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17786069" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2229,25 +2318,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/GameCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/candyPlatformSpriteSet.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2258,7 +2336,20 @@
         <state relative-caret-position="1755">
           <caret line="120" column="132" lean-forward="false" selection-start-line="120" selection-start-column="132" selection-end-line="120" selection-end-column="132" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2274,10 +2365,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2292,7 +2383,20 @@
         <state relative-caret-position="1755">
           <caret line="120" column="132" lean-forward="false" selection-start-line="120" selection-start-column="132" selection-end-line="120" selection-end-column="132" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2308,10 +2412,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2320,7 +2424,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1095">
           <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="e#5259#5260#0" expanded="true" />
+            <element signature="e#5287#5288#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2329,7 +2436,20 @@
         <state relative-caret-position="1545">
           <caret line="106" column="28" lean-forward="false" selection-start-line="106" selection-start-column="28" selection-end-line="106" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2340,10 +2460,10 @@
           <caret line="174" column="117" lean-forward="true" selection-start-line="174" selection-start-column="117" selection-end-line="174" selection-end-column="117" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2352,7 +2472,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
           <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="e#5259#5260#0" expanded="true" />
+            <element signature="e#5287#5288#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2362,10 +2485,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2374,7 +2497,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="19" selection-end-column="47" />
-          <folding />
+          <folding>
+            <element signature="e#5259#5260#0" expanded="true" />
+            <element signature="e#5287#5288#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2383,7 +2509,20 @@
         <state relative-caret-position="3870">
           <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2394,10 +2533,10 @@
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2407,7 +2546,20 @@
         <state relative-caret-position="3135">
           <caret line="215" column="30" lean-forward="false" selection-start-line="215" selection-start-column="30" selection-end-line="215" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2416,7 +2568,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
           <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#5259#5260#0" expanded="true" />
+            <element signature="e#5287#5288#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2426,10 +2581,10 @@
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2439,7 +2594,20 @@
         <state relative-caret-position="2805">
           <caret line="193" column="9" lean-forward="true" selection-start-line="193" selection-start-column="9" selection-end-line="193" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2448,14 +2616,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="24" column="31" lean-forward="false" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Button.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="70" column="21" lean-forward="false" selection-start-line="67" selection-start-column="7" selection-end-line="70" selection-end-column="21" />
+          <folding>
+            <element signature="e#5259#5260#0" expanded="true" />
+            <element signature="e#5287#5288#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2464,25 +2628,15 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/buttonSoundSpriteSet.png">
-      <provider selected="true" editor-type-id="images">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/background.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/istanbul/gamelab/ngdroid/core/NgMediaPlayer.java">
@@ -2544,11 +2698,15 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/MenuCanvas.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/candyPlatformSpriteSet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Button.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1115">
-          <caret line="126" column="28" lean-forward="false" selection-start-line="126" selection-start-column="22" selection-end-line="126" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="60">
+          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -2557,29 +2715,138 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/candyPlatformSpriteSet.png">
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/background.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/buttonSoundSpriteSet.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/istanbul/gamelab/ngdroid/base/BaseCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="45" />
+          <folding>
+            <element signature="e#1403#1404#0" expanded="false" />
+            <element signature="e#1458#1459#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/istanbul/gamelab/ngdroid/core/AppManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="34" column="34" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="34" />
+          <folding>
+            <element signature="e#4885#4886#0" expanded="false" />
+            <element signature="e#4919#4920#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-27/android/graphics/Rect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/pipeActs.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/istanbul/gamelab/ngdroid/core/CanvasManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/istanbul/gamelab/ngdroid/core/MainThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/MenuCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="162" column="29" lean-forward="false" selection-start-line="162" selection-start-column="29" selection-end-line="162" selection-end-column="29" />
+          <folding>
+            <element signature="e#5259#5260#0" expanded="true" />
+            <element signature="e#5287#5288#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/assets/images/converoyBeltSpriteSetLongVer2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/NgAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="50" column="56" lean-forward="false" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/ImageSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="70" lean-forward="false" selection-start-line="31" selection-start-column="70" selection-end-line="31" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#976#977#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/Sprite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-815">
-          <caret line="120" column="132" lean-forward="false" selection-start-line="120" selection-start-column="132" selection-end-line="120" selection-end-column="132" />
-          <folding />
+        <state relative-caret-position="974">
+          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+          <folding>
+            <element signature="e#3491#3492#0" expanded="true" />
+            <element signature="e#3551#3552#0" expanded="true" />
+            <element signature="e#3589#3590#0" expanded="true" />
+            <element signature="e#3656#3657#0" expanded="true" />
+            <element signature="e#3982#3983#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+            <element signature="e#4319#4320#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4458#4459#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ngdroidapp/GameCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="189" column="94" lean-forward="false" selection-start-line="189" selection-start-column="94" selection-end-line="189" selection-end-column="94" />
+        <state relative-caret-position="159">
+          <caret line="325" column="106" lean-forward="false" selection-start-line="325" selection-start-column="106" selection-end-line="325" selection-end-column="106" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5456#5457#0" expanded="true" />
-            <element signature="e#5484#5485#0" expanded="true" />
-            <element signature="e#14279#14280#0" expanded="true" />
-            <element signature="e#14306#14307#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#7756#7757#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21673#21674#0" expanded="true" />
           </folding>
         </state>
       </provider>
