@@ -135,7 +135,7 @@ public class InfoCanvas extends BaseCanvas {
     }
 
     public void goToMainCanvas() {
-        MenuCanvas menuCanvas = new MenuCanvas(root);
+        MenuCanvas menuCanvas = new MenuCanvas(root, musicState, soundState);
         root.canvasManager.setCurrentCanvas(menuCanvas);
     }
 }

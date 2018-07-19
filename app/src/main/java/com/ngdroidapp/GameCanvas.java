@@ -103,8 +103,11 @@ public class GameCanvas extends BaseCanvas {
 
 
 
-    // Müzik ile ilgili değişken.
-    private NgMediaPlayer player;
+    // Müzik ile ilgili nesne tanımlanıyor.
+    private NgMediaPlayer musicMediaPlayer;
+
+    // Ses ile ilgili nesne tanımlanıyor.
+    private NgMediaPlayer soundMediaPlayer;
 
     // Playerlar ile ilgili nesne tanımlamaları yapılıyor.
 
@@ -314,10 +317,14 @@ public class GameCanvas extends BaseCanvas {
         platformLeftTopSprite = new Sprite(root, platformSpriteSetFilePath, platformLeftTopSourceRect, platformLeftTopDestinationRect);
 
         // Arkaplanda çalacak olan ses dosyası oynatıcısının ilk değer atamaları yapılıyor.
+
         if(musicState) {
-            setupMediaPlayer("sounds/bgm_action_5.mp3");
+            musicMediaPlayer = setupMediaPlayer(musicMediaPlayer, "sounds/bgm_action_5.mp3", true, true);
         }
 
+        if(soundState) {
+            soundMediaPlayer = setupMediaPlayer(soundMediaPlayer, "sounds/click3.wav", false, false);
+        }
 
         // Oyuncular ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
@@ -447,12 +454,18 @@ public class GameCanvas extends BaseCanvas {
         popUpRetryButtonSprite = new Sprite(root, popUpRetryButtonImagePath, popUpRetryButtonSourceRect, popUpRetryButtonDestinationRect, popUpRetryButtonAnimation);
     }
 
-    public void setupMediaPlayer(String assetFilePath) {
-        player = new NgMediaPlayer(root);
-        player.load(assetFilePath);
-        player.prepare();
-        player.setLooping(true);
-        player.start();
+    private NgMediaPlayer setupMediaPlayer(NgMediaPlayer mediaPlayer, String mediaFilePath, boolean loopState, boolean mediaPlayerState) {
+
+        mediaPlayer = new NgMediaPlayer(root);
+        mediaPlayer.load(mediaFilePath);
+        mediaPlayer.prepare();
+        mediaPlayer.setLooping(loopState);
+
+        if(mediaPlayerState) {
+            mediaPlayer.start();
+        }
+
+        return mediaPlayer;
     }
 
     public void update() {
@@ -493,16 +506,6 @@ public class GameCanvas extends BaseCanvas {
 
     }
 
-/*
-    private void converoyBeltAnimation(Sprite converoyBelt) {
-        if(converoyBelt.getSourceY() == 0) {
-            converoyBelt.setSourceY(converoyBelt.getSourceHeight());
-        } else {
-            converoyBelt.setSourceY(0);
-        }
-    }
-    */
-
     public void draw(Canvas canvas) {
 
         backgroundSprite.draw(canvas);
@@ -538,17 +541,12 @@ public class GameCanvas extends BaseCanvas {
 
         pauseButtonSprite.draw(canvas);
 
-        //} else {
         if(isGamePaused) {
             popUpMenuSprite.draw(canvas);
             popUpPlayButtonSprite.draw(canvas);
             popUpMenuButtonSprite.draw(canvas);
             popUpRetryButtonSprite.draw(canvas);
         }
-        //}
-
-
-
     }
 
 
@@ -592,16 +590,19 @@ public class GameCanvas extends BaseCanvas {
             pauseButtonSprite.playAnimationWithName("touchUpInside");
         }
 
-        if(popUpPlayButtonSprite.isTouchedUp(x, y)) {
-            popUpPlayButtonSprite.playAnimationWithName("click");
-        }
+        if(isGamePaused) {
 
-        if(popUpMenuButtonSprite.isTouchedUp(x, y)) {
-            popUpMenuButtonSprite.playAnimationWithName("click");
-        }
+            if (popUpPlayButtonSprite.isTouchedUp(x, y)) {
+                popUpPlayButtonSprite.playAnimationWithName("click");
+            }
 
-        if(popUpRetryButtonSprite.isTouchedUp(x, y)) {
-            popUpRetryButtonSprite.playAnimationWithName("click");
+            if (popUpMenuButtonSprite.isTouchedUp(x, y)) {
+                popUpMenuButtonSprite.playAnimationWithName("click");
+            }
+
+            if (popUpRetryButtonSprite.isTouchedUp(x, y)) {
+                popUpRetryButtonSprite.playAnimationWithName("click");
+            }
         }
 
     }
@@ -668,20 +669,24 @@ public class GameCanvas extends BaseCanvas {
             isGamePaused = !isGamePaused;
         }
 
-        if(popUpPlayButtonSprite.isTouchedUp(x, y)) {
-            popUpPlayButtonSprite.playAnimationWithName("click");
-            isGamePaused = !isGamePaused;
-        }
+        if(isGamePaused) {
 
-        if(popUpMenuButtonSprite.isTouchedUp(x, y)) {
-            popUpMenuButtonSprite.playAnimationWithName("click");
-            goToMainCanvas();
+            if (popUpPlayButtonSprite.isTouchedUp(x, y)) {
+                popUpPlayButtonSprite.playAnimationWithName("click");
+                isGamePaused = !isGamePaused;
+            }
 
-        }
+            if (popUpMenuButtonSprite.isTouchedUp(x, y)) {
+                popUpMenuButtonSprite.playAnimationWithName("click");
+                goToMainCanvas();
 
-        if(popUpRetryButtonSprite.isTouchedUp(x, y)) {
-            popUpRetryButtonSprite.playAnimationWithName("click");
-            root.canvasManager.setCurrentCanvas(new GameCanvas(root,musicState,soundState));
+            }
+
+            if (popUpRetryButtonSprite.isTouchedUp(x, y)) {
+                popUpRetryButtonSprite.playAnimationWithName("click");
+                root.canvasManager.setCurrentCanvas(new GameCanvas(root, musicState, soundState));
+            }
+
         }
 
     }
@@ -710,9 +715,15 @@ public class GameCanvas extends BaseCanvas {
 
     public void goToMainCanvas() {
 
-        player.stop();
+        if(musicState) {
+            musicMediaPlayer.stop();
+        }
 
-        MenuCanvas menuCanvas = new MenuCanvas(root);
+        if(soundState) {
+            soundMediaPlayer.stop();
+        }
+
+        MenuCanvas menuCanvas = new MenuCanvas(root, musicState, soundState);
         root.canvasManager.setCurrentCanvas(menuCanvas);
     }
 

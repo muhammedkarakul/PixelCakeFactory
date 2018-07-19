@@ -90,8 +90,10 @@ public class MenuCanvas extends BaseCanvas {
     // Buton tıklama sesi ile ilgili değişken.
     private NgMediaPlayer clickSound;
 
-    public MenuCanvas(NgApp ngApp) {
+    public MenuCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
         super(ngApp);
+        this.musicState = musicState;
+        this.soundState = soundState;
     }
 
     public void setup() {
@@ -136,8 +138,15 @@ public class MenuCanvas extends BaseCanvas {
         infoButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", infoButtonImageSet, 0, 1);
         infoButtonSprite = new Sprite(root, infoButtonImagePath, infoButtonSourceRect, infoButtonDestinationRect, infoButtonTouchUpAnimation);
 
-        setupSound();
-        setupClickSound();
+        if(musicState) {
+            backgroundMusic = setupMediaPlayer(backgroundMusic, "sounds/bgm_menu.mp3", true, true);
+        }
+
+        if(soundState) {
+            clickSound = setupMediaPlayer(clickSound, "sounds/click3.wav", false, false);
+        }
+
+
     }
 
     public void update() {
@@ -220,23 +229,28 @@ public class MenuCanvas extends BaseCanvas {
             } else {
                 soundButtonSprite.playAnimationWithName("pressedTouchUpInside");
             }
+
             soundState = !soundState;
+
+            if(soundState) {
+                clickSound = setupMediaPlayer(clickSound, "sounds/click3.wav", false, false);
+            } else {
+                clickSound.stop();
+            }
 
         }
 
         if(musicButtonSprite.isTouchedUp(x, y)) {
             if(!musicState) {
-                //musicButtonSprite.setSourceX(768);
                 musicButtonSprite.playAnimationWithName("touchUpInside");
             } else {
-                //musicButtonSprite.setSourceX(0);
                 musicButtonSprite.playAnimationWithName("pressedTouchUpInside");
             }
 
             musicState = !musicState;
 
             if(musicState) {
-                setupSound();
+                backgroundMusic = setupMediaPlayer(backgroundMusic, "sounds/bgm_menu.mp3", true, true);
             } else {
                 backgroundMusic.stop();
             }
@@ -286,19 +300,18 @@ public class MenuCanvas extends BaseCanvas {
         }
     }
 
-    public void setupSound() {
-        backgroundMusic = new NgMediaPlayer(root);
-        backgroundMusic.load("sounds/bgm_menu.mp3");
-        backgroundMusic.prepare();
-        backgroundMusic.setLooping(true);
-        backgroundMusic.start();
-    }
+    private NgMediaPlayer setupMediaPlayer(NgMediaPlayer mediaPlayer, String mediaFilePath, boolean loopState, boolean mediaPlayerState) {
 
-    private void setupClickSound() {
-        clickSound = new NgMediaPlayer(root);
-        clickSound.load("sounds/click3.wav");
-        clickSound.prepare();
-        clickSound.setLooping(false);
+        mediaPlayer = new NgMediaPlayer(root);
+        mediaPlayer.load(mediaFilePath);
+        mediaPlayer.prepare();
+        mediaPlayer.setLooping(loopState);
+
+        if(mediaPlayerState) {
+            mediaPlayer.start();
+        }
+
+        return mediaPlayer;
     }
 
     private void canvasDidDisappear() {
