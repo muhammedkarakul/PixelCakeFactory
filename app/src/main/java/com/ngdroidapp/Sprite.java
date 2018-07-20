@@ -252,4 +252,16 @@ public class Sprite {
         source = animation.getAnimationCurrentFrame();
     }
 
+    public void moveToX(float velocityX, int indicatorX) {
+        destination.offsetTo( destination.left + (int)(velocityX * indicatorX), 0);
+    }
+
+    public void moveToY(float velocityY, int indicatoyY) {
+        destination.offsetTo(0, destination.top + (int)(velocityY * indicatorY));
+    }
+
+    public void moveTo(float velocityX, float velocityY, int indicatorX, int indicatorY) {
+        destination.offsetTo((int)(velocityX * indicatorX), (int)(velocityY * indicatorY));
+    }
+
 }

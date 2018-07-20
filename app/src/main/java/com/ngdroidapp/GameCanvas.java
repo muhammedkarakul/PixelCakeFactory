@@ -22,6 +22,9 @@ public class GameCanvas extends BaseCanvas {
     final private int centerX = getWidth() / 2;
     final private int centerY = getHeight() / 2;
 
+    // Yer çekimi sabiti
+    final private float gravity = 9.5f;
+
     // Oyuncuların üstünde durduğu platform görsellerinin çekildiği dosya yolu.
     final private String platformSpriteSetFilePath = "candyPlatformSpriteSet.png";
 
@@ -273,6 +276,12 @@ public class GameCanvas extends BaseCanvas {
     private int popUpRetryButtonHeight;
     private String popUpRetryButtonImagePath;
 
+    // Banda düşecek oyuncak nesnesi ile ilgili tanımlamalar yapılıyor.
+    private Sprite toySprite;
+    private Rect toySourceRect;
+    private Rect toyDestinationRect;
+    private boolean toyState;
+
     public GameCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
         super(ngApp);
         this.musicState = musicState;
@@ -280,6 +289,12 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void setup() {
+
+        // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        toySourceRect = new Rect(0, 0, 1331, 394);
+        toyDestinationRect = new Rect(0, getHeight() - 275, 200, getHeight() -275 + 94);
+        toySprite = new Sprite(root, "trainImageSet.png", toySourceRect, toyDestinationRect);
+        toyState = false;
 
         // Arkaplan ile ilgili nesnelere ilk değer atamaları yapılıyor.
         backgroundSourceRect = new Rect(0, 20, 1020, 2040);
@@ -394,7 +409,7 @@ public class GameCanvas extends BaseCanvas {
         pipeDestinationRect = new Rect(0, getHeight() - 400, 350, getHeight() - 50);
         pipeImageSet = new ImageSet(root, "pipeActs.png");
         pipeImageSet.divideBy(384, 384);
-        pipeAnimation = new NgAnimation(root, "dropOut", pipeImageSet, 0, 9, true);
+        pipeAnimation = new NgAnimation(root, "dropOut", pipeImageSet, 0, 9, false);
         pipeSprite = new Sprite(root, "pipeActs.png", pipeSourceRect, pipeDestinationRect, pipeAnimation);
         pipeAnimationState = true;
 
@@ -471,15 +486,25 @@ public class GameCanvas extends BaseCanvas {
     public void update() {
         if(!isGamePaused) {
 
-            finishAnim =  System.currentTimeMillis();
+            finishAnim = System.currentTimeMillis();
 
             timeBoundAnimation();
 
-            if(finishAnim - startAnim > gameSpeed)
+            if (finishAnim - startAnim > gameSpeed) {
                 startAnim = System.currentTimeMillis();
+            }
+
+            if(toyState) {
+                toySprite.setIndicatorY(1);
+                toySprite.setVelocityY(toySprite.getVelocityY() + gravity);
+                toySprite.moveToY(toySprite.getVelocityY(), toySprite.getIndicatorY());
+            } else {
+                toySprite.setIndicatorX(1);
+                toySprite.setVelocityX(toySprite.getVelocityY() + 10);
+                toySprite.moveToX(toySprite.getVelocityX(), toySprite.getIndicatorX());
+            }
 
         }
-
     }
 
     private void timeBoundAnimation() {
@@ -500,6 +525,7 @@ public class GameCanvas extends BaseCanvas {
                 pipeSprite.playAnimationWithName("dropOut");
             } else {
                 pipeAnimationState = !pipeAnimationState;
+                toyState = true;
             }
         }
 
@@ -536,6 +562,11 @@ public class GameCanvas extends BaseCanvas {
 
         ballSprite.draw(canvas);
 
+        if(toyState) {
+            toySprite.draw(canvas);
+        }
+
+
         // Pipe sprite'ı ekrana çizdiriliyor.
         pipeSprite.draw(canvas);
 
@@ -547,6 +578,7 @@ public class GameCanvas extends BaseCanvas {
             popUpMenuButtonSprite.draw(canvas);
             popUpRetryButtonSprite.draw(canvas);
         }
+
     }
 
 
@@ -684,6 +716,8 @@ public class GameCanvas extends BaseCanvas {
 
             if (popUpRetryButtonSprite.isTouchedUp(x, y)) {
                 popUpRetryButtonSprite.playAnimationWithName("click");
+                soundMediaPlayer.stop();
+                musicMediaPlayer.stop();
                 root.canvasManager.setCurrentCanvas(new GameCanvas(root, musicState, soundState));
             }
 
