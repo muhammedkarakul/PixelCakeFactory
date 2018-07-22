@@ -23,7 +23,7 @@ public class GameCanvas extends BaseCanvas {
     final private int centerY = getHeight() / 2;
 
     // Yer çekimi sabiti
-    final private float gravity = 9.5f;
+    final private float gravity = 5.5f;
 
     // Oyuncuların üstünde durduğu platform görsellerinin çekildiği dosya yolu.
     final private String platformSpriteSetFilePath = "candyPlatformSpriteSet.png";
@@ -292,7 +292,7 @@ public class GameCanvas extends BaseCanvas {
 
         // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
         toySourceRect = new Rect(0, 0, 1331, 394);
-        toyDestinationRect = new Rect(0, getHeight() - 275, 200, getHeight() -275 + 94);
+        toyDestinationRect = new Rect(0, getHeight() - 275, 200, getHeight() - 275 + 94);
         toySprite = new Sprite(root, "trainImageSet.png", toySourceRect, toyDestinationRect);
         toyState = false;
 
@@ -500,7 +500,14 @@ public class GameCanvas extends BaseCanvas {
                 toySprite.moveToY(toySprite.getVelocityY(), toySprite.getIndicatorY());
             } else {
                 toySprite.setIndicatorX(1);
-                toySprite.setVelocityX(toySprite.getVelocityY() + 10);
+                toySprite.setVelocityX(toySprite.getVelocityY() + 15);
+                toySprite.moveToX(toySprite.getVelocityX(), toySprite.getIndicatorX());
+            }
+
+            if(toySprite.destination.bottom >= conveyorBeltBottomSprite.destination.top) {
+                toySprite.setDestinationY(conveyorBeltBottomSprite.getDestinationY() - toySprite.getDestinationHeight());
+                toySprite.setIndicatorX(1);
+                toySprite.setVelocityX(15);
                 toySprite.moveToX(toySprite.getVelocityX(), toySprite.getIndicatorX());
             }
 
@@ -554,6 +561,10 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltMiddle4Sprite.draw(canvas);
         conveyorBeltBottomSprite.draw(canvas);
 
+        if(toyState) {
+            toySprite.draw(canvas);
+        }
+
         // Orta platform erkarana çiziliyor.
         for(int i = ballDimention; i < getHeight(); i = i + middlePlatfromSprite.getDestinationHeight()){
             middlePlatfromSprite.setDestinationY(i);
@@ -561,11 +572,6 @@ public class GameCanvas extends BaseCanvas {
         }
 
         ballSprite.draw(canvas);
-
-        if(toyState) {
-            toySprite.draw(canvas);
-        }
-
 
         // Pipe sprite'ı ekrana çizdiriliyor.
         pipeSprite.draw(canvas);

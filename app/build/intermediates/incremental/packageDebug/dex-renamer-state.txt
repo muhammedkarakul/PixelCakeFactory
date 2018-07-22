@@ -1,4 +1,4 @@
-#Fri Jul 20 15:53:41 EET 2018
+#Fri Jul 20 16:51:54 EET 2018
 base.0=/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

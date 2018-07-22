@@ -19,17 +19,17 @@ import static android.content.ContentValues.TAG;
 
 public class Sprite {
     /* PROPERTIES */
-    private String imageFilePath;
-    private Bitmap image;
-    private Rect source;
-    private Rect destination;
-    private NgApp root;
-    private int anchorX;
-    private int anchorY;
-    private int indicatorX;
-    private int indicatorY;
-    private float velocityX;
-    private float velocityY;
+    protected String imageFilePath;
+    protected Bitmap image;
+    protected Rect source;
+    protected Rect destination;
+    protected NgApp root;
+    protected int anchorX;
+    protected int anchorY;
+    protected int indicatorX;
+    protected int indicatorY;
+    protected float velocityX;
+    protected float velocityY;
 
     private Point currentPoint;
 
@@ -54,7 +54,6 @@ public class Sprite {
         velocityY = 0;
         source = new Rect(0, 0, image.getWidth(), image.getHeight());
         destination = new Rect(0, 0, image.getWidth(), image.getHeight());
-
         animations = new HashMap<>();
     }
 
@@ -253,11 +252,11 @@ public class Sprite {
     }
 
     public void moveToX(float velocityX, int indicatorX) {
-        destination.offsetTo( destination.left + (int)(velocityX * indicatorX), 0);
+        destination.offsetTo( destination.left + (int)(velocityX * indicatorX), destination.top);
     }
 
     public void moveToY(float velocityY, int indicatoyY) {
-        destination.offsetTo(0, destination.top + (int)(velocityY * indicatorY));
+        destination.offsetTo(destination.left, destination.top + (int)(velocityY * indicatorY));
     }
 
     public void moveTo(float velocityX, float velocityY, int indicatorX, int indicatorY) {
