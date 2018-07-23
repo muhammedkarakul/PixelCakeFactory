@@ -251,7 +251,7 @@ public class Sprite {
         source = animation.getAnimationCurrentFrame();
     }
 
-    public void moveToX(float velocityX, int indicatorX) {
+    public void moveToX() {
         destination.offsetTo( destination.left + (int)(velocityX * indicatorX), destination.top);
     }
 
