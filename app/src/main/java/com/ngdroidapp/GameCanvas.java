@@ -2,6 +2,7 @@ package com.ngdroidapp;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.Image;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class GameCanvas extends BaseCanvas {
     final private String playerRightSpriteSetFilePath = "dilara.png";
     final private String converoyBeltSpriteSetFilePath = "converoyBeltSpriteSetLongVer2.png";
     final private String popUpBackgroundImagePath = "popUpBigBackground.png";
+    final private String playerLeftImageFilePath = "playerLeftImageSet.png";
 
     // Yürüyen bantlar arasındaki boşluklar ayarlanıyor.
     final private int converoyBeltSpaces = 300;
@@ -116,13 +118,9 @@ public class GameCanvas extends BaseCanvas {
 
     // Soldaki oyuncu ile ilgili nesne tanımlamaları yapılıyor.
     private Sprite playerLeftSprite;
-    private Rect playerLeftSourceRect;
-    private Rect playerLeftDestinationRect;
 
     // Sağdaki oyuncu ile ilgili nesne tanımlamaları yapılıyor.
     private Sprite playerRightSprite;
-    private Rect playerRightSourceRect;
-    private Rect playerRightDestinationRect;
 
     // Swipe gesture kontrolü için dokunma anının koordinatlarını tutacak değişkenler tanımlanıyor.
     private int touchDownX = 0;
@@ -135,40 +133,16 @@ public class GameCanvas extends BaseCanvas {
 
     // Üstteki yürüyen bantla ilgili nesne tanımlamaları yapılıyor.
     private Sprite conveyorBeltLeftTopSprite;
-    private Rect conveyorBeltLeftTopSourceRect;
-    private Rect conveyorBeltLeftTopDestinationRect;
-    private ImageSet conveyorBeltLeftTopImageSet;
-    private NgAnimation conveyorBeltLeftTopAnimation;
 
     private Sprite conveyorBeltRightTopSprite;
-    private Rect conveyorBeltRightTopSourceRect;
-    private Rect conveyorBeltRightTopDestinationRect;
-    private ImageSet conveyorBeltRightTopImageSet;
-    private NgAnimation conveyorBeltRightTopAnimation;
 
     private Sprite conveyorBeltLeftMiddleSprite;
-    private Rect conveyorBeltLeftMiddleSourceRect;
-    private Rect conveyorBeltLeftMiddleDestinationRect;
-    private ImageSet conveyorBeltLeftMiddleImageSet;
-    private NgAnimation conveyorBeltLeftMiddleAnimation;
 
     private Sprite conveyorBeltRightMiddleSprite;
-    private Rect conveyorBeltRightMiddleSourceRect;
-    private Rect conveyorBeltRightMiddleDestinationRect;
-    private ImageSet conveyorBeltRightMiddleImageSet;
-    private NgAnimation conveyorBeltRightMiddleAnimation;
 
     private Sprite conveyorBeltLeftBottomSprite;
-    private Rect conveyorBeltLeftBottomSourceRect;
-    private Rect conveyorBeltLeftBottomDestinationRect;
-    private ImageSet conveyorBeltLeftBottomImageSet;
-    private NgAnimation conveyorBeltLeftBottomAnimation;
 
     private Sprite conveyorBeltRightBottomSprite;
-    private Rect conveyorBeltRightBottomSourceRect;
-    private Rect conveyorBeltRightBottomDestinationRect;
-    private ImageSet conveyorBeltRightBottomImageSet;
-    private NgAnimation conveyorBeltRightBottomAnimation;
 
     // Bantların sağ ve sol için yüksekliklerini tutan enum değişkenler.
     /*
@@ -186,14 +160,6 @@ public class GameCanvas extends BaseCanvas {
     private int conveyorBeltSourceWidth = 1440;
     private int conveyorBeltSourceHeight = 160;
 
-    // Yürüyen bantların konumları ile ilgili değişkenler.
-    //private int conveyorBeltBottom2Y = converoyBeltSpaces * 6;
-    //private int conveyorBeltBottomY = converoyBeltSpaces * 5;
-    //private int conveyorBeltMiddleY = converoyBeltSpaces * 4;
-    //private int conveyorBeltMiddle2Y = converoyBeltSpaces * 3;
-    //private int conveyorBeltMiddle3Y = converoyBeltSpaces * 2;
-    //private int conveyorBeltTopY = converoyBeltSpaces;
-
     private int conveyorBeltLeftTopY = converoyBeltSpaces;
     private int conveyorBeltRightTopY = converoyBeltSpaces * 2;
     private int conveyorBeltLeftMiddleY = converoyBeltSpaces * 3;
@@ -209,26 +175,13 @@ public class GameCanvas extends BaseCanvas {
 
     // Orta platform ile ilgili değişkenler.
     private Sprite middlePlatfromSprite;
-    private Rect middlePlatformSourceRect;
-    private Rect middlePlatformDestinationRect;
-
-    // Alt kısımdaki blok(ürünlerin çıktığı) ile ilgili değişkenler.
-    //private Sprite block;
-   // private int blockDimension = 300 ;
 
     // Orta platformun üstündeki top ile ilgili değişkenler tanımlanıyor.
     private Sprite ballSprite;
-    private Rect ballSourceRect;
-    private Rect ballDestinationRect;
     private int ballDimention = 200;
-
 
     // Pipe ile ilgili değişkenler tanımlanıyor.
     private Sprite pipeSprite;
-    private Rect pipeSourceRect;
-    private Rect pipeDestinationRect;
-    private ImageSet pipeImageSet;
-    private NgAnimation pipeAnimation;
     private boolean pipeAnimationState;
 
     private long startAnim, finishAnim;
@@ -238,10 +191,6 @@ public class GameCanvas extends BaseCanvas {
     private boolean soundState;
 
     private Sprite pauseButtonSprite;
-    private Rect pauseButtonSourceRect;
-    private Rect pauseButtonDestinationRect;
-    private ImageSet pauseButtonImageSet;
-    private NgAnimation pauseButtonAnimation;
     private boolean isGamePaused;
     //private boolean pauseState;
 
@@ -249,8 +198,6 @@ public class GameCanvas extends BaseCanvas {
 
     // Pause butonuna basınca ekranda gözükecek pop up ile ilgili nesneler ve değişkenler tanımlanıyor.
     private Sprite popUpMenuSprite;
-    private Rect popUpMenuSourceRect;
-    private Rect popUpMenuDestinationRect;
     private int popUpX;
     private int popUpY;
     private int popUpWidth;
@@ -259,10 +206,6 @@ public class GameCanvas extends BaseCanvas {
 
     // Pop up üstünde bulunacak play butonu ile ilgili nesneler tanımlanıyor.
     private Sprite popUpPlayButtonSprite;
-    private Rect popUpPlayButtonSourceRect;
-    private Rect popUpPlayButtonDestinationRect;
-    private ImageSet popUpPlayButtonImageSet;
-    private NgAnimation popUpPlayButtonAnimation;
     private int popUpPlayButtonX;
     private int popUpPlayButtonY;
     private int popUpPlayButtonWidth;
@@ -271,10 +214,6 @@ public class GameCanvas extends BaseCanvas {
 
     // Pop up üstünde bulunacak menu butonu ile ilgili nesneler tanımlanıyor.
     private Sprite popUpMenuButtonSprite;
-    private Rect popUpMenuButtonSourceRect;
-    private Rect popUpMenuButtonDestinationRect;
-    private ImageSet popUpMenuButtonImageSet;
-    private NgAnimation popUpMenuButtonAnimation;
     private int popUpMenuButtonX;
     private int popUpMenuButtonY;
     private int popUpMenuButtonWidth;
@@ -283,10 +222,6 @@ public class GameCanvas extends BaseCanvas {
 
     // Pop up üstünde bulunacak retry butonu ile ilgili nesneler tanımlanıyor.
     private Sprite popUpRetryButtonSprite;
-    private Rect popUpRetryButtonSourceRect;
-    private Rect popUpRetryButtonDestinationRect;
-    private ImageSet popUpRetryButtonImageSet;
-    private NgAnimation popUpRetryButtonAnimation;
     private int popUpRetryButtonX;
     private int popUpRetryButtonY;
     private int popUpRetryButtonWidth;
@@ -295,8 +230,6 @@ public class GameCanvas extends BaseCanvas {
 
     // Banda düşecek oyuncak nesnesi ile ilgili tanımlamalar yapılıyor.
     private Sprite cakeSprite;
-    private Rect cakeSourceRect;
-    private Rect cakeDestinationRect;
     private boolean cakeState;
 
     public GameCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
@@ -308,8 +241,8 @@ public class GameCanvas extends BaseCanvas {
     public void setup() {
 
         // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
-        cakeSourceRect = new Rect(0, 0, 360, 360);
-        cakeDestinationRect = new Rect(0, getHeight() - 275, 150, getHeight() - 275 + 150);
+        Rect cakeSourceRect = new Rect(0, 0, 360, 360);
+        Rect cakeDestinationRect = new Rect(0, getHeight() - 275, 150, getHeight() - 275 + 150);
         cakeSprite = new Sprite(root, "cakeImageSet.png", cakeSourceRect, cakeDestinationRect);
         cakeState = false;
 
@@ -361,84 +294,90 @@ public class GameCanvas extends BaseCanvas {
         // Oyuncular ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
         // Soldaki oyuncu ile ilgili nesnelere ilk değer atamaları yapılıyor.
-        playerLeftSourceRect = new Rect(0, 0, 328, 296);
-        playerLeftDestinationRect = new Rect(platformLeftX, platformLeftBottomY - 148, platformLeftX + 164, platformLeftBottomY);
+        ImageSet playerLeftImageSet = new ImageSet(root, playerLeftImageFilePath);
+        NgAnimation playerLeftIdleAnimation = new NgAnimation(root, "idle", playerLeftImageSet, 0, 1);
+        NgAnimation playerLeftBlinkAnimation = new NgAnimation(root, "bink", playerLeftImageSet, 2, 3);
+        Rect playerLeftSourceRect = new Rect(0, 0, 328, 296);
+        Rect playerLeftDestinationRect = new Rect(platformLeftX, platformLeftBottomY - 148, platformLeftX + 164, platformLeftBottomY);
         playerLeftSprite = new Sprite(root, playerLeftSpriteSetFilePath, playerLeftSourceRect, playerLeftDestinationRect);
 
         // Sağdaki oyuncu ile ilgili nesnelere ilk değer atamaları yapılıyor.
-        playerRightSourceRect = new Rect(0, 0, 328, 296);
-        playerRightDestinationRect = new Rect(getWidth() - 164, platformRightBottomY - 148,getWidth(), platformRightBottomY);
-        playerRightSprite = new Sprite(root, playerRightSpriteSetFilePath, playerRightSourceRect, playerRightDestinationRect);
 
+        ImageSet playerRightImageSet;
+        NgAnimation playerRightIdleAnimation;
+        NgAnimation playerRightCakeLiftUpAnimation;
+        Rect playerRightSourceRect = new Rect(0, 0, 328, 296);
+        Rect playerRightDestinationRect = new Rect(getWidth() - 164, platformRightBottomY - 148,getWidth(), platformRightBottomY);
+        playerRightSprite = new Sprite(root, playerRightSpriteSetFilePath, playerRightSourceRect, playerRightDestinationRect);
 
         // Yürüyen bantlar ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
         // Üstteki yürüyen bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltLeftTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        ImageSet conveyorBeltLeftTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
         conveyorBeltLeftTopImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltLeftTopAnimation = new NgAnimation(root, "work", conveyorBeltLeftTopImageSet, 0, 1);
-        conveyorBeltLeftTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltLeftTopDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftTopY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftTopY + conveyorBeltDestinationHeight);
+        NgAnimation conveyorBeltLeftTopAnimation = new NgAnimation(root, "work", conveyorBeltLeftTopImageSet, 0, 1);
+        Rect conveyorBeltLeftTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        Rect conveyorBeltLeftTopDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftTopY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftTopY + conveyorBeltDestinationHeight);
         conveyorBeltLeftTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltLeftTopSourceRect, conveyorBeltLeftTopDestinationRect, conveyorBeltLeftTopAnimation);
 
         // Ortadaki yürüyen bantlardan 1. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltRightTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        ImageSet conveyorBeltRightTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
         conveyorBeltRightTopImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltRightTopAnimation = new NgAnimation(root, "work", conveyorBeltRightTopImageSet, 0, 1);
-        conveyorBeltRightTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltRightTopDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightTopY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightTopY + conveyorBeltDestinationHeight);
+        NgAnimation conveyorBeltRightTopAnimation = new NgAnimation(root, "work", conveyorBeltRightTopImageSet, 0, 1);
+        Rect conveyorBeltRightTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        Rect conveyorBeltRightTopDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightTopY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightTopY + conveyorBeltDestinationHeight);
         conveyorBeltRightTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltRightTopSourceRect, conveyorBeltRightTopDestinationRect, conveyorBeltRightTopAnimation);
 
         // Ortadaki yürüyen bantlardan 2. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltLeftMiddleImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        ImageSet conveyorBeltLeftMiddleImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
         conveyorBeltLeftMiddleImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltLeftMiddleAnimation = new NgAnimation(root, "work", conveyorBeltLeftMiddleImageSet, 0, 1);
-        conveyorBeltLeftMiddleSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltLeftMiddleDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftMiddleY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftMiddleY + conveyorBeltDestinationHeight);
+        NgAnimation conveyorBeltLeftMiddleAnimation = new NgAnimation(root, "work", conveyorBeltLeftMiddleImageSet, 0, 1);
+        Rect conveyorBeltLeftMiddleSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        Rect conveyorBeltLeftMiddleDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftMiddleY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftMiddleY + conveyorBeltDestinationHeight);
         conveyorBeltLeftMiddleSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltLeftMiddleSourceRect, conveyorBeltLeftMiddleDestinationRect, conveyorBeltLeftMiddleAnimation);
 
         // Ortadaki yürüyen bantlardan 3. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltRightMiddleImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        ImageSet conveyorBeltRightMiddleImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
         conveyorBeltRightMiddleImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltRightMiddleAnimation = new NgAnimation(root, "work", conveyorBeltRightMiddleImageSet, 0, 1);
-        conveyorBeltRightMiddleSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltRightMiddleDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightMiddleY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightMiddleY + conveyorBeltDestinationHeight);
+        NgAnimation conveyorBeltRightMiddleAnimation = new NgAnimation(root, "work", conveyorBeltRightMiddleImageSet, 0, 1);
+        Rect conveyorBeltRightMiddleSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        Rect conveyorBeltRightMiddleDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightMiddleY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightMiddleY + conveyorBeltDestinationHeight);
         conveyorBeltRightMiddleSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltRightMiddleSourceRect, conveyorBeltRightMiddleDestinationRect, conveyorBeltRightMiddleAnimation);
 
         // Ortadaki yürüyen bantlardan 4. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltLeftBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        ImageSet conveyorBeltLeftBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
         conveyorBeltLeftBottomImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltLeftBottomAnimation = new NgAnimation(root, "work", conveyorBeltLeftBottomImageSet, 0, 1);
-        conveyorBeltLeftBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltLeftBottomDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftBottomY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftBottomY + conveyorBeltDestinationHeight);
+        NgAnimation conveyorBeltLeftBottomAnimation = new NgAnimation(root, "work", conveyorBeltLeftBottomImageSet, 0, 1);
+        Rect conveyorBeltLeftBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        Rect conveyorBeltLeftBottomDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftBottomY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftBottomY + conveyorBeltDestinationHeight);
         conveyorBeltLeftBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltLeftBottomSourceRect, conveyorBeltLeftBottomDestinationRect, conveyorBeltLeftBottomAnimation);
 
         // Alttaki yürüyen bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltRightBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        ImageSet conveyorBeltRightBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
         conveyorBeltRightBottomImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltRightBottomAnimation = new NgAnimation(root, "work", conveyorBeltRightBottomImageSet, 0, 1);
-        conveyorBeltRightBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltRightBottomDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightBottomY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightBottomY + conveyorBeltDestinationHeight);
+        NgAnimation conveyorBeltRightBottomAnimation = new NgAnimation(root, "work", conveyorBeltRightBottomImageSet, 0, 1);
+        Rect conveyorBeltRightBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        Rect conveyorBeltRightBottomDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightBottomY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightBottomY + conveyorBeltDestinationHeight);
         conveyorBeltRightBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltRightBottomSourceRect, conveyorBeltRightBottomDestinationRect, conveyorBeltRightBottomAnimation);
 
         // Orta platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
-        middlePlatformSourceRect = new Rect( 0, 0, 360, 360);
-        middlePlatformDestinationRect = new Rect(0, 0, 120, 120);
+        Rect middlePlatformSourceRect = new Rect( 0, 0, 360, 360);
+        Rect middlePlatformDestinationRect = new Rect(0, 0, 120, 120);
         middlePlatfromSprite = new Sprite(root, "middlePlatformWithLightAndShadow.png", middlePlatformSourceRect, middlePlatformDestinationRect);
         middlePlatfromSprite.setPosition(centerX, middlePlatfromSprite.getDestinationHeight() / 2);
 
         // Orta platform üstünde bulunan top nesnesi ile ilgili değişkenlere ilk değer atamaları yapılıyor.
-        ballSourceRect = new Rect(0, 0, 380, 380);
-        ballDestinationRect = new Rect(0, ballDimention, ballDimention, ballDimention + ballDimention);
+        Rect ballSourceRect = new Rect(0, 0, 380, 380);
+        Rect ballDestinationRect = new Rect(0, ballDimention, ballDimention, ballDimention + ballDimention);
         ballSprite = new Sprite(root, "ball.png", ballSourceRect, ballDestinationRect);
         ballSprite.setPosition(centerX, ballDimention);
 
 
-        pipeSourceRect = new Rect(0, 0, 384, 384);
-        pipeDestinationRect = new Rect(0, getHeight() - 400, 350, getHeight() - 50);
-        pipeImageSet = new ImageSet(root, "pipeActs.png");
+        Rect pipeSourceRect = new Rect(0, 0, 384, 384);
+        Rect pipeDestinationRect = new Rect(0, getHeight() - 400, 350, getHeight() - 50);
+        ImageSet pipeImageSet = new ImageSet(root, "pipeActs.png");
         pipeImageSet.divideBy(384, 384);
-        pipeAnimation = new NgAnimation(root, "dropOut", pipeImageSet, 0, 9, false);
+        NgAnimation pipeAnimation = new NgAnimation(root, "dropOut", pipeImageSet, 0, 9, false);
         pipeSprite = new Sprite(root, "pipeActs.png", pipeSourceRect, pipeDestinationRect, pipeAnimation);
         pipeAnimationState = true;
 
@@ -446,19 +385,19 @@ public class GameCanvas extends BaseCanvas {
         gameSpeed = 100;
 
         isGamePaused = false;
-        pauseButtonSourceRect = new Rect(0,0,360,360);
-        pauseButtonDestinationRect = new Rect(getWidth() - 150, 50, getWidth() - 50, 150);
-        pauseButtonImageSet = new ImageSet(root, "stopButtonImageSet.png");
+        Rect pauseButtonSourceRect = new Rect(0,0,360,360);
+        Rect pauseButtonDestinationRect = new Rect(getWidth() - 150, 50, getWidth() - 50, 150);
+        ImageSet pauseButtonImageSet = new ImageSet(root, "stopButtonImageSet.png");
         pauseButtonImageSet.divideBy(360, 360);
-        pauseButtonAnimation = new NgAnimation(root, "touchUpInside", pauseButtonImageSet, 0, 1);
+        NgAnimation pauseButtonAnimation = new NgAnimation(root, "touchUpInside", pauseButtonImageSet, 0, 1);
         pauseButtonSprite = new Sprite(root, "stopButtonImageSet.png", pauseButtonSourceRect, pauseButtonDestinationRect, pauseButtonAnimation);
 
         popUpWidth = (int)(1069 / 1.5);
         popUpHeight = (int)(1069 / 1.5);
         popUpX = (getWidth() - popUpWidth) / 2;
         popUpY = (getHeight() - popUpHeight) / 2;
-        popUpMenuSourceRect = new Rect(0, 0, 1088, 1069);
-        popUpMenuDestinationRect = new Rect(popUpX, popUpY, popUpWidth + popUpX, popUpHeight + popUpY);
+        Rect popUpMenuSourceRect = new Rect(0, 0, 1088, 1069);
+        Rect popUpMenuDestinationRect = new Rect(popUpX, popUpY, popUpWidth + popUpX, popUpHeight + popUpY);
         popUpMenuSprite = new Sprite(root, popUpBackgroundImagePath, popUpMenuSourceRect, popUpMenuDestinationRect);
 
         popUpPlayButtonImagePath = "playButtonSet.png";
@@ -466,11 +405,11 @@ public class GameCanvas extends BaseCanvas {
         popUpPlayButtonHeight = 200;
         popUpPlayButtonX = (getWidth() - popUpPlayButtonWidth) / 2;
         popUpPlayButtonY = (getHeight() - popUpPlayButtonHeight) / 2;
-        popUpPlayButtonSourceRect = new Rect(0, 0, 360, 360);
-        popUpPlayButtonDestinationRect = new Rect(popUpPlayButtonX, popUpPlayButtonY, popUpPlayButtonX + popUpPlayButtonWidth, popUpPlayButtonY + popUpPlayButtonHeight);
-        popUpPlayButtonImageSet = new ImageSet(root, popUpPlayButtonImagePath);
+        Rect popUpPlayButtonSourceRect = new Rect(0, 0, 360, 360);
+        Rect popUpPlayButtonDestinationRect = new Rect(popUpPlayButtonX, popUpPlayButtonY, popUpPlayButtonX + popUpPlayButtonWidth, popUpPlayButtonY + popUpPlayButtonHeight);
+        ImageSet popUpPlayButtonImageSet = new ImageSet(root, popUpPlayButtonImagePath);
         popUpPlayButtonImageSet.divideBy(360, 360);
-        popUpPlayButtonAnimation = new NgAnimation(root, "click", popUpPlayButtonImageSet, 0, 1);
+        NgAnimation popUpPlayButtonAnimation = new NgAnimation(root, "click", popUpPlayButtonImageSet, 0, 1);
         popUpPlayButtonSprite = new Sprite(root, popUpPlayButtonImagePath, popUpPlayButtonSourceRect, popUpPlayButtonDestinationRect, popUpPlayButtonAnimation);
 
         popUpMenuButtonImagePath = "menuButtonImageSet.png";
@@ -478,11 +417,11 @@ public class GameCanvas extends BaseCanvas {
         popUpMenuButtonHeight = 200;
         popUpMenuButtonX = (getWidth() - popUpMenuButtonWidth) / 2 - popUpPlayButtonWidth - 25;
         popUpMenuButtonY = (getHeight() - popUpMenuButtonHeight) / 2;
-        popUpMenuButtonSourceRect = new Rect(0, 0, 360, 360);
-        popUpMenuButtonDestinationRect = new Rect(popUpMenuButtonX, popUpMenuButtonY, popUpMenuButtonX + popUpMenuButtonWidth, popUpMenuButtonY + popUpMenuButtonHeight);
-        popUpMenuButtonImageSet = new ImageSet(root, popUpMenuButtonImagePath);
+        Rect popUpMenuButtonSourceRect = new Rect(0, 0, 360, 360);
+        Rect popUpMenuButtonDestinationRect = new Rect(popUpMenuButtonX, popUpMenuButtonY, popUpMenuButtonX + popUpMenuButtonWidth, popUpMenuButtonY + popUpMenuButtonHeight);
+        ImageSet popUpMenuButtonImageSet = new ImageSet(root, popUpMenuButtonImagePath);
         popUpMenuButtonImageSet.divideBy(360, 360);
-        popUpMenuButtonAnimation = new NgAnimation(root, "click", popUpMenuButtonImageSet, 0, 1);
+        NgAnimation popUpMenuButtonAnimation = new NgAnimation(root, "click", popUpMenuButtonImageSet, 0, 1);
         popUpMenuButtonSprite = new Sprite(root, popUpMenuButtonImagePath, popUpMenuButtonSourceRect, popUpMenuButtonDestinationRect, popUpMenuButtonAnimation);
 
         popUpRetryButtonImagePath = "retryButtonImageSet.png";
@@ -490,11 +429,11 @@ public class GameCanvas extends BaseCanvas {
         popUpRetryButtonHeight = 200;
         popUpRetryButtonX = (getWidth() - popUpRetryButtonWidth) / 2 + popUpPlayButtonWidth + 25;
         popUpRetryButtonY = (getHeight() - popUpRetryButtonHeight) / 2;
-        popUpRetryButtonSourceRect = new Rect(0, 0, 360, 360);
-        popUpRetryButtonDestinationRect = new Rect(popUpRetryButtonX, popUpRetryButtonY, popUpRetryButtonX + popUpRetryButtonWidth, popUpRetryButtonY + popUpRetryButtonHeight);
-        popUpRetryButtonImageSet = new ImageSet(root, popUpRetryButtonImagePath);
+        Rect popUpRetryButtonSourceRect = new Rect(0, 0, 360, 360);
+        Rect popUpRetryButtonDestinationRect = new Rect(popUpRetryButtonX, popUpRetryButtonY, popUpRetryButtonX + popUpRetryButtonWidth, popUpRetryButtonY + popUpRetryButtonHeight);
+        ImageSet popUpRetryButtonImageSet = new ImageSet(root, popUpRetryButtonImagePath);
         popUpRetryButtonImageSet.divideBy(360, 360);
-        popUpRetryButtonAnimation = new NgAnimation(root, "click", popUpRetryButtonImageSet, 0, 1);
+        NgAnimation popUpRetryButtonAnimation = new NgAnimation(root, "click", popUpRetryButtonImageSet, 0, 1);
         popUpRetryButtonSprite = new Sprite(root, popUpRetryButtonImagePath, popUpRetryButtonSourceRect, popUpRetryButtonDestinationRect, popUpRetryButtonAnimation);
     }
 
@@ -542,7 +481,7 @@ public class GameCanvas extends BaseCanvas {
                 // Kek hangi bantta?
                 if(cakeSprite.destination.bottom > conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
                     // Sağ karakter sağ alt platformda ise ve aynı zamanda kek de sağ alt bantta ise burası çalışır.
-
+                    //playerRightSprite.playAnimationWithName("cakeLiftUpRight");
                 } else if(cakeSprite.destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
                     // Sağ karakter sağ orta platformda ise ve aynı zamanda kek de sağ orta bantta ise burası çalışır.
 
@@ -558,7 +497,7 @@ public class GameCanvas extends BaseCanvas {
                 cakeSprite.setIndicatorX(1);
             }
 
-            if(cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top && cakeState == true) {
+            if((cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top || cakeSprite.destination.bottom >= conveyorBeltLeftBottomSprite.destination.top) && cakeState == true) {
                 cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
                 cakeSprite.setVelocityX(15);
                 cakeSprite.moveToX();
