@@ -134,41 +134,41 @@ public class GameCanvas extends BaseCanvas {
     // Yürüyen bantlar ile ilgili nesneler tanımlanıyor.
 
     // Üstteki yürüyen bantla ilgili nesne tanımlamaları yapılıyor.
-    private Sprite conveyorBeltTopSprite;
-    private Rect conveyorBeltTopSourceRect;
-    private Rect conveyorBeltTopDestinationRect;
-    private ImageSet conveyorBeltTopImageSet;
-    private NgAnimation conveyorBeltTopAnimation;
+    private Sprite conveyorBeltLeftTopSprite;
+    private Rect conveyorBeltLeftTopSourceRect;
+    private Rect conveyorBeltLeftTopDestinationRect;
+    private ImageSet conveyorBeltLeftTopImageSet;
+    private NgAnimation conveyorBeltLeftTopAnimation;
 
-    private Sprite conveyorBeltMiddle1Sprite;
-    private Rect conveyorBeltMiddle1SourceRect;
-    private Rect conveyorBeltMiddle1DestinationRect;
-    private ImageSet conveyorBeltMiddle1ImageSet;
-    private NgAnimation conveyorBeltMiddle1Animation;
+    private Sprite conveyorBeltRightTopSprite;
+    private Rect conveyorBeltRightTopSourceRect;
+    private Rect conveyorBeltRightTopDestinationRect;
+    private ImageSet conveyorBeltRightTopImageSet;
+    private NgAnimation conveyorBeltRightTopAnimation;
 
-    private Sprite conveyorBeltMiddle2Sprite;
-    private Rect conveyorBeltMiddle2SourceRect;
-    private Rect conveyorBeltMiddle2DestinationRect;
-    private ImageSet conveyorBeltMiddle2ImageSet;
-    private NgAnimation conveyorBeltMiddle2Animation;
+    private Sprite conveyorBeltLeftMiddleSprite;
+    private Rect conveyorBeltLeftMiddleSourceRect;
+    private Rect conveyorBeltLeftMiddleDestinationRect;
+    private ImageSet conveyorBeltLeftMiddleImageSet;
+    private NgAnimation conveyorBeltLeftMiddleAnimation;
 
-    private Sprite conveyorBeltMiddle3Sprite;
-    private Rect conveyorBeltMiddle3SourceRect;
-    private Rect conveyorBeltMiddle3DestinationRect;
-    private ImageSet conveyorBeltMiddle3ImageSet;
-    private NgAnimation conveyorBeltMiddle3Animation;
+    private Sprite conveyorBeltRightMiddleSprite;
+    private Rect conveyorBeltRightMiddleSourceRect;
+    private Rect conveyorBeltRightMiddleDestinationRect;
+    private ImageSet conveyorBeltRightMiddleImageSet;
+    private NgAnimation conveyorBeltRightMiddleAnimation;
 
-    private Sprite conveyorBeltMiddle4Sprite;
-    private Rect conveyorBeltMiddle4SourceRect;
-    private Rect conveyorBeltMiddle4DestinationRect;
-    private ImageSet conveyorBeltMiddle4ImageSet;
-    private NgAnimation conveyorBeltMiddle4Animation;
+    private Sprite conveyorBeltLeftBottomSprite;
+    private Rect conveyorBeltLeftBottomSourceRect;
+    private Rect conveyorBeltLeftBottomDestinationRect;
+    private ImageSet conveyorBeltLeftBottomImageSet;
+    private NgAnimation conveyorBeltLeftBottomAnimation;
 
-    private Sprite conveyorBeltBottomSprite;
-    private Rect conveyorBeltBottomSourceRect;
-    private Rect conveyorBeltBottomDestinationRect;
-    private ImageSet conveyorBeltBottomImageSet;
-    private NgAnimation conveyorBeltBottomAnimation;
+    private Sprite conveyorBeltRightBottomSprite;
+    private Rect conveyorBeltRightBottomSourceRect;
+    private Rect conveyorBeltRightBottomDestinationRect;
+    private ImageSet conveyorBeltRightBottomImageSet;
+    private NgAnimation conveyorBeltRightBottomAnimation;
 
     // Bantların sağ ve sol için yüksekliklerini tutan enum değişkenler.
     /*
@@ -194,12 +194,12 @@ public class GameCanvas extends BaseCanvas {
     //private int conveyorBeltMiddle3Y = converoyBeltSpaces * 2;
     //private int conveyorBeltTopY = converoyBeltSpaces;
 
-    private int conveyorBeltTopY = converoyBeltSpaces;
-    private int conveyorBeltMiddle4Y = converoyBeltSpaces * 5;
-    private int conveyorBeltMiddle3Y = converoyBeltSpaces * 4;
-    private int conveyorBeltMiddle2Y = converoyBeltSpaces * 3;
-    private int conveyorBeltMiddle1Y = converoyBeltSpaces * 2;
-    private int conveyorBeltBottomY = converoyBeltSpaces * 6;
+    private int conveyorBeltLeftTopY = converoyBeltSpaces;
+    private int conveyorBeltRightTopY = converoyBeltSpaces * 2;
+    private int conveyorBeltLeftMiddleY = converoyBeltSpaces * 3;
+    private int conveyorBeltRightMiddleY = converoyBeltSpaces * 4;
+    private int conveyorBeltLeftBottomY = converoyBeltSpaces * 5;
+    private int conveyorBeltRightBottomY = converoyBeltSpaces * 6;
 
 
     private int conveyorBeltRightX = (int)((getWidth() - conveyorBeltDestinationWidth) / 1.8);
@@ -374,52 +374,52 @@ public class GameCanvas extends BaseCanvas {
         // Yürüyen bantlar ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
         // Üstteki yürüyen bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
-        conveyorBeltTopImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltTopAnimation = new NgAnimation(root, "work", conveyorBeltTopImageSet, 0, 1);
-        conveyorBeltTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltTopDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltTopY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltTopY + conveyorBeltDestinationHeight);
-        conveyorBeltTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltTopSourceRect, conveyorBeltTopDestinationRect, conveyorBeltTopAnimation);
+        conveyorBeltLeftTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltLeftTopImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltLeftTopAnimation = new NgAnimation(root, "work", conveyorBeltLeftTopImageSet, 0, 1);
+        conveyorBeltLeftTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltLeftTopDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftTopY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftTopY + conveyorBeltDestinationHeight);
+        conveyorBeltLeftTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltLeftTopSourceRect, conveyorBeltLeftTopDestinationRect, conveyorBeltLeftTopAnimation);
 
         // Ortadaki yürüyen bantlardan 1. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltMiddle1ImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
-        conveyorBeltMiddle1ImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle1Animation = new NgAnimation(root, "work", conveyorBeltMiddle1ImageSet, 0, 1);
-        conveyorBeltMiddle1SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle1DestinationRect = new Rect(conveyorBeltRightX, conveyorBeltMiddle1Y, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltMiddle1Y + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle1Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle1SourceRect, conveyorBeltMiddle1DestinationRect, conveyorBeltMiddle1Animation);
+        conveyorBeltRightTopImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltRightTopImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltRightTopAnimation = new NgAnimation(root, "work", conveyorBeltRightTopImageSet, 0, 1);
+        conveyorBeltRightTopSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltRightTopDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightTopY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightTopY + conveyorBeltDestinationHeight);
+        conveyorBeltRightTopSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltRightTopSourceRect, conveyorBeltRightTopDestinationRect, conveyorBeltRightTopAnimation);
 
         // Ortadaki yürüyen bantlardan 2. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltMiddle2ImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
-        conveyorBeltMiddle2ImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle2Animation = new NgAnimation(root, "work", conveyorBeltMiddle2ImageSet, 0, 1);
-        conveyorBeltMiddle2SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle2DestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltMiddle2Y, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltMiddle2Y + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle2Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle2SourceRect, conveyorBeltMiddle2DestinationRect, conveyorBeltMiddle2Animation);
+        conveyorBeltLeftMiddleImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltLeftMiddleImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltLeftMiddleAnimation = new NgAnimation(root, "work", conveyorBeltLeftMiddleImageSet, 0, 1);
+        conveyorBeltLeftMiddleSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltLeftMiddleDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftMiddleY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftMiddleY + conveyorBeltDestinationHeight);
+        conveyorBeltLeftMiddleSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltLeftMiddleSourceRect, conveyorBeltLeftMiddleDestinationRect, conveyorBeltLeftMiddleAnimation);
 
         // Ortadaki yürüyen bantlardan 3. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltMiddle3ImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
-        conveyorBeltMiddle3ImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle3Animation = new NgAnimation(root, "work", conveyorBeltMiddle3ImageSet, 0, 1);
-        conveyorBeltMiddle3SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle3DestinationRect = new Rect(conveyorBeltRightX, conveyorBeltMiddle3Y, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltMiddle3Y + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle3Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle3SourceRect, conveyorBeltMiddle3DestinationRect, conveyorBeltMiddle3Animation);
+        conveyorBeltRightMiddleImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltRightMiddleImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltRightMiddleAnimation = new NgAnimation(root, "work", conveyorBeltRightMiddleImageSet, 0, 1);
+        conveyorBeltRightMiddleSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltRightMiddleDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightMiddleY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightMiddleY + conveyorBeltDestinationHeight);
+        conveyorBeltRightMiddleSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltRightMiddleSourceRect, conveyorBeltRightMiddleDestinationRect, conveyorBeltRightMiddleAnimation);
 
         // Ortadaki yürüyen bantlardan 4. bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltMiddle4ImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
-        conveyorBeltMiddle4ImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle4Animation = new NgAnimation(root, "work", conveyorBeltMiddle4ImageSet, 0, 1);
-        conveyorBeltMiddle4SourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltMiddle4DestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltMiddle4Y, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltMiddle4Y + conveyorBeltDestinationHeight);
-        conveyorBeltMiddle4Sprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltMiddle4SourceRect, conveyorBeltMiddle4DestinationRect, conveyorBeltMiddle4Animation);
+        conveyorBeltLeftBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltLeftBottomImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltLeftBottomAnimation = new NgAnimation(root, "work", conveyorBeltLeftBottomImageSet, 0, 1);
+        conveyorBeltLeftBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltLeftBottomDestinationRect = new Rect(conveyorBeltLeftX, conveyorBeltLeftBottomY, conveyorBeltLeftX + conveyorBeltDestinationWidth, conveyorBeltLeftBottomY + conveyorBeltDestinationHeight);
+        conveyorBeltLeftBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltLeftBottomSourceRect, conveyorBeltLeftBottomDestinationRect, conveyorBeltLeftBottomAnimation);
 
         // Alttaki yürüyen bantla ilgili nesnelere ilk değer atamaları yapılıyor.
-        conveyorBeltBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
-        conveyorBeltBottomImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltBottomAnimation = new NgAnimation(root, "work", conveyorBeltBottomImageSet, 0, 1);
-        conveyorBeltBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
-        conveyorBeltBottomDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltBottomY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltBottomY + conveyorBeltDestinationHeight);
-        conveyorBeltBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltBottomSourceRect, conveyorBeltBottomDestinationRect, conveyorBeltBottomAnimation);
+        conveyorBeltRightBottomImageSet = new ImageSet(root, converoyBeltSpriteSetFilePath);
+        conveyorBeltRightBottomImageSet.divideBy(conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltRightBottomAnimation = new NgAnimation(root, "work", conveyorBeltRightBottomImageSet, 0, 1);
+        conveyorBeltRightBottomSourceRect = new Rect(0, 0, conveyorBeltSourceWidth, conveyorBeltSourceHeight);
+        conveyorBeltRightBottomDestinationRect = new Rect(conveyorBeltRightX, conveyorBeltRightBottomY, conveyorBeltRightX + conveyorBeltDestinationWidth, conveyorBeltRightBottomY + conveyorBeltDestinationHeight);
+        conveyorBeltRightBottomSprite = new Sprite(root, converoyBeltSpriteSetFilePath, conveyorBeltRightBottomSourceRect, conveyorBeltRightBottomDestinationRect, conveyorBeltRightBottomAnimation);
 
         // Orta platform ile ilgili nesnelere ilk değer atamaları yapılıyor.
         middlePlatformSourceRect = new Rect( 0, 0, 360, 360);
@@ -540,13 +540,13 @@ public class GameCanvas extends BaseCanvas {
                 cakeSprite.setIndicatorX(0);
 
                 // Kek hangi bantta?
-                if(cakeSprite.destination.bottom > conveyorBeltMiddle3Sprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
+                if(cakeSprite.destination.bottom > conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
                     // Sağ karakter sağ alt platformda ise ve aynı zamanda kek de sağ alt bantta ise burası çalışır.
 
-                } else if(cakeSprite.destination.bottom == conveyorBeltMiddle3Sprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
+                } else if(cakeSprite.destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
                     // Sağ karakter sağ orta platformda ise ve aynı zamanda kek de sağ orta bantta ise burası çalışır.
 
-                } else if(cakeSprite.destination.bottom < conveyorBeltMiddle3Sprite.destination.top && playerRightSprite.destination.bottom < platformRightMiddleSprite.destination.top) {
+                } else if(cakeSprite.destination.bottom < conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom < platformRightMiddleSprite.destination.top) {
                     // Sağ karakter sağ üst platformda ise ve aynı zamanda kek de sağ üst bantta ise burası çalışır.
 
                 } else {
@@ -558,8 +558,8 @@ public class GameCanvas extends BaseCanvas {
                 cakeSprite.setIndicatorX(1);
             }
 
-            if(cakeSprite.destination.bottom >= conveyorBeltBottomSprite.destination.top && cakeState == true) {
-                cakeSprite.setDestinationY(conveyorBeltBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
+            if(cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top && cakeState == true) {
+                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
                 cakeSprite.setVelocityX(15);
                 cakeSprite.moveToX();
             }
@@ -573,12 +573,12 @@ public class GameCanvas extends BaseCanvas {
             return;
         }
 
-        conveyorBeltTopSprite.playAnimationWithName("work");
-        conveyorBeltMiddle1Sprite.playAnimationWithName("work");
-        conveyorBeltMiddle2Sprite.playAnimationWithName("work");
-        conveyorBeltMiddle3Sprite.playAnimationWithName("work");
-        conveyorBeltMiddle4Sprite.playAnimationWithName("work");
-        conveyorBeltBottomSprite.playAnimationWithName("work");
+        conveyorBeltLeftTopSprite.playAnimationWithName("work");
+        conveyorBeltRightTopSprite.playAnimationWithName("work");
+        conveyorBeltLeftMiddleSprite.playAnimationWithName("work");
+        conveyorBeltRightMiddleSprite.playAnimationWithName("work");
+        conveyorBeltLeftBottomSprite.playAnimationWithName("work");
+        conveyorBeltRightBottomSprite.playAnimationWithName("work");
 
         if (pipeAnimationState) {
             if (pipeSprite.getAnimationWithName("dropOut").animationState()) {
@@ -608,12 +608,12 @@ public class GameCanvas extends BaseCanvas {
         playerLeftSprite.draw(canvas);
         playerRightSprite.draw(canvas);
 
-        conveyorBeltTopSprite.draw(canvas);
-        conveyorBeltMiddle1Sprite.draw(canvas);
-        conveyorBeltMiddle2Sprite.draw(canvas);
-        conveyorBeltMiddle3Sprite.draw(canvas);
-        conveyorBeltMiddle4Sprite.draw(canvas);
-        conveyorBeltBottomSprite.draw(canvas);
+        conveyorBeltLeftTopSprite.draw(canvas);
+        conveyorBeltRightTopSprite.draw(canvas);
+        conveyorBeltLeftMiddleSprite.draw(canvas);
+        conveyorBeltRightMiddleSprite.draw(canvas);
+        conveyorBeltLeftBottomSprite.draw(canvas);
+        conveyorBeltRightBottomSprite.draw(canvas);
 
         if(cakeState) {
             cakeSprite.draw(canvas);
