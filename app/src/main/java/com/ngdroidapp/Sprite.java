@@ -139,8 +139,6 @@ public class Sprite {
         anchorY = getDestinationHeight() / 2;
     }
 
-
-
     public void setImage(String imageFilePath) {
         image = Utils.loadImage(root, imageFilePath);
     }
