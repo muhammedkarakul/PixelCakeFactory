@@ -2,6 +2,7 @@ package com.ngdroidapp;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.Image;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,42 +45,24 @@ public class MenuCanvas extends BaseCanvas {
 
     // Play button ile ilgili değişkenler.
     private Sprite playButtonSprite;
-    private Rect playButtonSourceRect;
-    private Rect playButtonDestinationRect;
-    private ImageSet playButtonImageSet;
-    private NgAnimation playButtonTouchUpAnimation;
 
     private int playButtonWidth = 384;
     private int playButtonHeight= 384;
 
     // Sound button ile ilgili değişkenler.
     private Sprite soundButtonSprite;
-    private Rect soundButtonSourceRect;
-    private Rect soundButtonDestinationRect;
-    private ImageSet soundButtonImageSet;
-    private NgAnimation soundButtonTouchUpAnimation;
-    private NgAnimation soundButtonPressedTouchUpAnimation;
 
     private int soundButtonWidth = 256;
     private int soundButtonHeight = 256;
 
     // Music button ile ilgili değişkenler.
     private Sprite musicButtonSprite;
-    private Rect musicButtonSourceRect;
-    private Rect musicButtonDestinationRect;
-    private ImageSet musicButtonImageSet;
-    private NgAnimation musicButtonTouchUpAnimation;
-    private NgAnimation musicButtonPressedTouchUpAnimation;
 
     private int musicButtonWidth = 256;
     private int musicButtonHeight = 256;
 
     // Info button ile ilgili değişkenler.
     private Sprite infoButtonSprite;
-    private Rect infoButtonSourceRect;
-    private Rect infoButtonDestinationRect;
-    private ImageSet infoButtonImageSet;
-    private NgAnimation infoButtonTouchUpAnimation;
 
     private int infoButtonWidth = 256;
     private int infoButtonHeight = 256;
@@ -102,40 +85,40 @@ public class MenuCanvas extends BaseCanvas {
         backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
         backgroundSprite = new Sprite(root, backgroundImagePath, backgroundSourceRect, backgroundDestinationRect);
 
-        playButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        playButtonDestinationRect = new Rect(((getWidth() - playButtonWidth) / 2), ((getHeight() - playButtonHeight) / 2), ((getWidth() - playButtonWidth) / 2) + playButtonWidth, ((getHeight() - playButtonHeight) / 2) + playButtonHeight);
-        playButtonImageSet = new ImageSet(root, playButtonImagePath);
+        Rect playButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect playButtonDestinationRect = new Rect(((getWidth() - playButtonWidth) / 2), ((getHeight() - playButtonHeight) / 2), ((getWidth() - playButtonWidth) / 2) + playButtonWidth, ((getHeight() - playButtonHeight) / 2) + playButtonHeight);
+        ImageSet playButtonImageSet = new ImageSet(root, playButtonImagePath);
         playButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        playButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", playButtonImageSet, 0, 1);
+        NgAnimation playButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", playButtonImageSet, 0, 1);
         playButtonSprite = new Sprite(root, playButtonImagePath, playButtonSourceRect, playButtonDestinationRect, playButtonTouchUpAnimation);
 
-        soundButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        soundButtonDestinationRect = new Rect(0, 0, soundButtonWidth, soundButtonHeight);
-        soundButtonImageSet = new ImageSet(root, soundButtonImagePath);
+        Rect soundButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect soundButtonDestinationRect = new Rect(0, 0, soundButtonWidth, soundButtonHeight);
+        ImageSet soundButtonImageSet = new ImageSet(root, soundButtonImagePath);
         soundButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        soundButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", soundButtonImageSet, 0, 1);
-        soundButtonPressedTouchUpAnimation = new NgAnimation(root, "pressedTouchUpInside", soundButtonImageSet, 2, 3);
+        NgAnimation soundButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", soundButtonImageSet, 0, 1);
+        NgAnimation soundButtonPressedTouchUpAnimation = new NgAnimation(root, "pressedTouchUpInside", soundButtonImageSet, 2, 3);
         Map<String, NgAnimation> soundButtonAnimations = new HashMap<String, NgAnimation>();
         soundButtonAnimations.put(soundButtonTouchUpAnimation.getName(), soundButtonTouchUpAnimation);
         soundButtonAnimations.put(soundButtonPressedTouchUpAnimation.getName(), soundButtonPressedTouchUpAnimation);
         soundButtonSprite = new Sprite(root, soundButtonImagePath, soundButtonSourceRect, soundButtonDestinationRect, soundButtonAnimations);
 
-        musicButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        musicButtonDestinationRect = new Rect(soundButtonWidth, 0, soundButtonWidth + musicButtonWidth, musicButtonHeight);
-        musicButtonImageSet = new ImageSet(root, musicButtonImagePath);
+        Rect musicButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect musicButtonDestinationRect = new Rect(soundButtonWidth, 0, soundButtonWidth + musicButtonWidth, musicButtonHeight);
+        ImageSet musicButtonImageSet = new ImageSet(root, musicButtonImagePath);
         musicButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        musicButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", musicButtonImageSet, 0, 1);
-        musicButtonPressedTouchUpAnimation = new NgAnimation(root, "pressedTouchUpInside", musicButtonImageSet, 2, 3);
+        NgAnimation musicButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", musicButtonImageSet, 0, 1);
+        NgAnimation musicButtonPressedTouchUpAnimation = new NgAnimation(root, "pressedTouchUpInside", musicButtonImageSet, 2, 3);
         Map<String, NgAnimation> musicButtonAnimations = new HashMap<String, NgAnimation>();
         musicButtonAnimations.put(musicButtonTouchUpAnimation.getName(), musicButtonTouchUpAnimation);
         musicButtonAnimations.put(musicButtonPressedTouchUpAnimation.getName(), musicButtonPressedTouchUpAnimation);
         musicButtonSprite = new Sprite(root, musicButtonImagePath, musicButtonSourceRect, musicButtonDestinationRect, musicButtonAnimations);
 
-        infoButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        infoButtonDestinationRect = new Rect((getWidth() - infoButtonWidth), (getHeight() - infoButtonHeight), (getWidth() - infoButtonWidth) + infoButtonWidth, (getHeight() - infoButtonHeight) + infoButtonHeight);
-        infoButtonImageSet = new ImageSet(root, infoButtonImagePath);
+        Rect infoButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect infoButtonDestinationRect = new Rect((getWidth() - infoButtonWidth), (getHeight() - infoButtonHeight), (getWidth() - infoButtonWidth) + infoButtonWidth, (getHeight() - infoButtonHeight) + infoButtonHeight);
+        ImageSet infoButtonImageSet = new ImageSet(root, infoButtonImagePath);
         infoButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        infoButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", infoButtonImageSet, 0, 1);
+        NgAnimation infoButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", infoButtonImageSet, 0, 1);
         infoButtonSprite = new Sprite(root, infoButtonImagePath, infoButtonSourceRect, infoButtonDestinationRect, infoButtonTouchUpAnimation);
 
         if(musicState) {
