@@ -230,7 +230,7 @@ public class GameCanvas extends BaseCanvas {
         // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
         Rect cakeSourceRect = new Rect(0, 0, 360, 360);
         Rect cakeDestinationRect = new Rect(350, getHeight() - 275, 500, getHeight() - 275 + 150);
-        cakeSprite = new Sprite(root, "cakeImageSet.png", cakeSourceRect, cakeDestinationRect);
+        cakeSprite = new Sprite(root, "cakeWithPlateImageSet.png", cakeSourceRect, cakeDestinationRect);
         isCakeHidden = true;
         isCakeFallDown = true;
         isCakeChangeConveyorBelt = false;
