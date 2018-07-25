@@ -257,6 +257,10 @@ public class Sprite {
         destination.offsetTo(destination.left, destination.top + (int)(velocityY * indicatorY));
     }
 
+    public void moveToY() {
+        destination.offsetTo(destination.left, destination.top + (int)(velocityY * indicatorY));
+    }
+
     public void moveTo(float velocityX, float velocityY, int indicatorX, int indicatorY) {
         destination.offsetTo((int)(velocityX * indicatorX), (int)(velocityY * indicatorY));
     }
