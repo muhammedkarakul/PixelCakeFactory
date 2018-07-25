@@ -1,10 +1,18 @@
 [
     {
-        "merged": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/res/merged/debug/layout-watch-v20/abc_alert_dialog_button_bar_material.xml",
-        "source": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
+        "merged": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\res\\merged\\debug\\layout-watch-v20\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\layout-watch-v20\\abc_alert_dialog_button_bar_material.xml"
     },
     {
-        "merged": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/res/merged/debug/layout-watch-v20/abc_alert_dialog_title_material.xml",
-        "source": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
+        "merged": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\res\\merged\\debug\\layout-watch-v20\\abc_alert_dialog_title_material.xml",
+        "source": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\layout-watch-v20\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\layout-watch-v20\\abc_alert_dialog_title_material.xml",
+        "source": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\layout-watch-v20\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\layout-watch-v20\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\layout-watch-v20\\abc_alert_dialog_button_bar_material.xml"
     }
 ]

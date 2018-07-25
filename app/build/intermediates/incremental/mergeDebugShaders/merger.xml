@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/src/debug/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\src\debug\shaders"/></dataSet></merger>

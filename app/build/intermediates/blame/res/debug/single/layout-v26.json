@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/res/merged/debug/layout-v26/abc_screen_toolbar.xml",
-        "source": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/layout-v26/abc_screen_toolbar.xml"
+        "merged": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\layout-v26\\abc_screen_toolbar.xml",
+        "source": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\layout-v26\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\res\\merged\\debug\\layout-v26\\abc_screen_toolbar.xml",
+        "source": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\layout-v26\\abc_screen_toolbar.xml"
     }
 ]

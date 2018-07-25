@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
-        "source": "/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "C:\\Users\\muhammedkarakul\\Projects\\Kelime Fabrikası\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "C:\\Users\\yenib\\OneDrive\\Documents\\fabrika\\fabrika-mobil-oyun\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
 ]

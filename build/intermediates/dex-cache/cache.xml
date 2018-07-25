@@ -3,129 +3,147 @@
 
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_0a93e69608de5258ccffeb0a6fdf44879df58d88.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.lifecycle/viewmodel/1.1.0/jars/classes.jar"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.lifecycle\viewmodel\1.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_7012c24a981717f07e54f6e6d67642177a1504bd.jar" />
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.lifecycle-viewmodel-1.1.0_abcc7f19f5d4cecbebb936e60deabef4fa6925be.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.lifecycle/livedata-core/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="8a9fd7c97f1d13f97f3b52f9d2e54cd857d5acf9">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_93c4b79137dd0db5e7af3f463db89ce2ecc44084.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="d968b9bd0011800e0d333d1571b8d34bcb8a0b6e">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.1_4f19d439fecc76aac4dd4270f05ab71c29971070.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_94c3608f00aa0285030b806582b30d8033120064.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.0/edf3f7bfb84a7521d0599efa3b0113a0ee90f85/common-1.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="0edf3f7bfb84a7521d0599efa3b0113a0ee90f85">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/common-1.1.0_e1dea8adadb4a58344a11b388c9f48c6c542b7b6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-compat/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_aaff371c97c5832477f44219ff270dde779c285e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_91ff6a63107fba0d2dbbc0d28361257f64d23bcb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.core\runtime\1.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_453823b1a6743b004ad00c100bcb2dd0c9ad77d6.jar" />
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.core-runtime-1.1.0_ca41d2b96876dd78c4389373d5009dc0c22f314e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.1/jars/classes.jar"
+        jar="C:\Users\yenib\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\27.1.1\39ded76b5e1ce1c5b2688e1d25cdc20ecee32007\support-annotations-27.1.1.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
-        sha1="ec657bb192b20229696216bf233779b16bf75a54">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_16b38c29bc440eef1604031edb5743cac6c84dfb.jar" />
+        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\support-annotations-27.1.1_316a0f46f9e0ab52bc4b3f90ee218a994a0eabf8.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.1/jars/classes.jar"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-fragment\27.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
-        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_0b211e7ae512b40e3bcdd2ae6bea07d170327ed4.jar" />
+        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-27.1.1_161a7e5411c8d338be88336d683cf3f07ee6c8e9.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.1/jars/classes.jar"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d968b9bd0011800e0d333d1571b8d34bcb8a0b6e">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-27.1.1_58c70751502ddc58143b894791baa462d1b3780b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-compat\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-27.1.1_acc77114cd74db481bcc3ef558637ebf201c5c3f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.1.0\edf3f7bfb84a7521d0599efa3b0113a0ee90f85\common-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="0edf3f7bfb84a7521d0599efa3b0113a0ee90f85">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\common-1.1.0_c15c9020aa09f7203bdd3546233ea1c8c162600f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.1.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="182370a4a0bba7903c6ff2cb7b6ac21ca4a4bf89">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.1.2_afa7586ba62624cb6e85ec5391dd0e9a1c0ffcd6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\27.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="2feadd535770271ca57b7b431f42151aa4af324a">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_f5131b4749cc6cabe54078a50f82ec52057c7567.jar" />
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-27.1.1_f60b2d722684fe2795262660012d84da0cb69346.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.0/8007981f7d7540d89cd18471b8e5dcd2b4f99167/common-1.1.0.jar"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.lifecycle\runtime\1.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
-        sha1="8007981f7d7540d89cd18471b8e5dcd2b4f99167">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/common-1.1.0_bd64465c3b2ebcec35eab5c31a418f180f7c6710.jar" />
+        sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.lifecycle-runtime-1.1.0_5b5c86534b359507f60845d78cbe43cec8a8172d.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/27.1.1/jars/classes.jar"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.lifecycle\livedata-core\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8a9fd7c97f1d13f97f3b52f9d2e54cd857d5acf9">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.lifecycle-livedata-core-1.1.0_8b7a89443833c8d89053a72b04489b2aec2c4b28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\27.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="c9a721adcd7dbae7a197b0ef81102336539f63ff">
-        <dex dex="/Users/muhammedkarakul/Projects/Kelime Fabrikası/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.1_70170a0b925a7a52ef627d11b6135076dc33b5dc.jar" />
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-27.1.1_e876b3834839eab5be91bf163edcafa669b9bee2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.1.0\8007981f7d7540d89cd18471b8e5dcd2b4f99167\common-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8007981f7d7540d89cd18471b8e5dcd2b4f99167">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\common-1.1.0_985b8e35b324dff5cdd64f3bd422e65e277814cc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-27.1.1_0fea955e52e5dee786b6f8ce36d21717ce1a2e5f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ec657bb192b20229696216bf233779b16bf75a54">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-27.1.1_c00fcbd8546487ad855681628362e2578072d16f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\yenib\.gradle\caches\modules-2\files-2.1\com.android.support.constraint\constraint-layout-solver\1.1.2\bfc967828daffc35ba01c9ee204d98b664930a0f\constraint-layout-solver-1.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="bfc967828daffc35ba01c9ee204d98b664930a0f">
+        <dex dex="C:\Users\yenib\OneDrive\Documents\fabrika\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.1.2_3c0890ba2a7f9c5122933841b31ff66aae31a8a9.jar" />
     </item>
 
 </items>
