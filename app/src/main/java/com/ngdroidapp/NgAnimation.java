@@ -73,8 +73,12 @@ public class NgAnimation {
 
     public String getName() { return name; }
 
-    public boolean animationState() {
+    public boolean getAnimationState() {
         return isTheAnimationEnded;
+    }
+
+    public void setAnimationState(boolean state) {
+        isTheAnimationEnded = state;
     }
 
 

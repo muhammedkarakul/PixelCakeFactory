@@ -1,4 +1,4 @@
-#Wed Jul 25 15:13:04 EET 2018
+#Thu Jul 26 10:57:19 EET 2018
 base.0=/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

@@ -1,6 +1,8 @@
 package com.ngdroidapp;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.Image;
 
@@ -217,7 +219,15 @@ public class GameCanvas extends BaseCanvas {
     private Sprite cakeSprite;
     private boolean isCakeHidden;
     private boolean isCakeChangeConveyorBelt;
-    private boolean isCakeFallDown;
+    private int cakeVelocity;
+
+    private int score;
+
+    Paint paint = new Paint();
+    // Ekrana skoru yazdırmak için nesneler tanımlanıyor.
+
+    //Paint paint = new Paint();
+
 
     public GameCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
         super(ngApp);
@@ -227,14 +237,22 @@ public class GameCanvas extends BaseCanvas {
 
     public void setup() {
 
+        startAnim = System.currentTimeMillis();
+        gameSpeed = 100;
+
+        score = 0;
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(64);
+
         // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
         Rect cakeSourceRect = new Rect(0, 0, 360, 360);
         Rect cakeDestinationRect = new Rect(350, getHeight() - 275, 500, getHeight() - 275 + 150);
         cakeSprite = new Sprite(root, "cakeWithPlateImageSet.png", cakeSourceRect, cakeDestinationRect);
         isCakeHidden = true;
-        isCakeFallDown = true;
         isCakeChangeConveyorBelt = false;
-        cakeSprite.setVelocityX(15);
+        cakeVelocity = 1000/gameSpeed;
+        cakeSprite.setVelocityX(cakeVelocity);
+
 
         // Arkaplan ile ilgili nesnelere ilk değer atamaları yapılıyor.
         Rect backgroundSourceRect = new Rect(0, 20, 1020, 2040);
@@ -377,9 +395,6 @@ public class GameCanvas extends BaseCanvas {
         pipeSprite = new Sprite(root, "pipeActs.png", pipeSourceRect, pipeDestinationRect, pipeAnimation);
         pipeAnimationState = true;
 
-        startAnim = System.currentTimeMillis();
-        gameSpeed = 100;
-
         isGamePaused = false;
         Rect pauseButtonSourceRect = new Rect(0,0,360,360);
         Rect pauseButtonDestinationRect = new Rect(getWidth() - 150, 50, getWidth() - 50, 150);
@@ -451,14 +466,6 @@ public class GameCanvas extends BaseCanvas {
 
         if(!isGamePaused) {
 
-            finishAnim = System.currentTimeMillis();
-
-            timeBoundAnimation();
-
-            if (finishAnim - startAnim > gameSpeed) {
-                startAnim = System.currentTimeMillis();
-            }
-
             if(cakeSprite.destination.right <= middlePlatfromSprite.destination.right + 20 && cakeSprite.destination.left >= middlePlatfromSprite.destination.left - 20 && isCakeChangeConveyorBelt) {
                 // Kek ekranın tam ortasında mı?
                 cakeSprite.setSourceX(cakeSprite.getSourceX() + 360);
@@ -472,14 +479,14 @@ public class GameCanvas extends BaseCanvas {
 
             } else {
                 cakeSprite.setIndicatorX(1);
-                cakeSprite.setVelocityX(15);
+                cakeSprite.setVelocityX(cakeVelocity);
                 cakeSprite.moveToX();
                 cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
             }
 
             if(!isCakeHidden)
             {
-                cakeSprite.setVelocityX(15);
+                cakeSprite.setVelocityX(cakeVelocity);
                 cakeSprite.moveToX();
 
             }
@@ -497,65 +504,74 @@ public class GameCanvas extends BaseCanvas {
                     //kek sa alt bantta ise sa karakter de sa platformdaysa keki left bottoma ta˛˝.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltLeftBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(15);
+                    cakeSprite.setVelocityX(cakeVelocity);
                     //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(-1);
 
-
-
-                }
-
-
-                else if(cakeSprite.destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
+                } else if(cakeSprite.destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
                     // Sa karakter sa orta platformda ise ve ayn˝ zamanda kek de sa orta bantta ise buras˝ Áal˝˛˝r.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltLeftMiddleSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(15);
+                    cakeSprite.setVelocityX(cakeVelocity);
                     //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(-1);
                     Log.i("Bant","SaOrtaBant");
+
                 } else if(cakeSprite.destination.bottom < conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom < platformRightMiddleSprite.destination.top) {
                     // Sa karakter sa ¸st platformda ise ve ayn˝ zamanda kek de sa ¸st bantta ise buras˝ Áal˝˛˝r.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltLeftTopSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(15);
+                    cakeSprite.setVelocityX(cakeVelocity);
                     //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(-1);
                     Log.i("Bant","Sa‹stBant");
+                } else {
+                    isGamePaused = true;
+                    Log.i(TAG, "Game Over");
                 }
-            } else {
 
             }
 
             //kek bant˝n ba˛˝nda m˝ ?
             if (cakeSprite.destination.left - cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX ){
+
+                // Kek dursun.
                 cakeSprite.setIndicatorX(0);
 
                 if(cakeSprite.destination.bottom > conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom > platformLeftMiddleSprite.destination.top) {
 
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltRightMiddleSprite.getDestinationY()- cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(15);
+                    cakeSprite.setVelocityX(cakeVelocity);
                     //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(1);
 
-                }
+                } else if(cakeSprite.destination.bottom == conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom == platformLeftMiddleSprite.destination.top) {
 
-
-                else if(cakeSprite.destination.bottom == conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom == platformLeftMiddleSprite.destination.top) {
-                    //
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltRightTopSprite.getDestinationY()- cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(15);
+                    cakeSprite.setVelocityX(cakeVelocity);
                     //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(1);
 
+                } else if(cakeSprite.destination.bottom < conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom < platformLeftMiddleSprite.destination.top) {
+                    //Log.i(TAG, "Skoru artır.");
+                    score = score + 100;
+                    isCakeHidden = true;
+                    cakeSprite.setSourceX(0);
+                    pipeSprite.getAnimationWithName("dropOut").setAnimationState(true);
+                    pipeAnimationState = true;
+                    if(gameSpeed != 10) {
+                        gameSpeed = gameSpeed - 10;
+                    } else {
+                        gameSpeed = 100;
+                    }
+                    cakeVelocity = 1000/gameSpeed;
+
+                } else {
+                    Log.i(TAG, "Game Over");
                 }
             }
-        }
-
-        /*
-        if(!isGamePaused) {
 
             finishAnim = System.currentTimeMillis();
 
@@ -565,139 +581,8 @@ public class GameCanvas extends BaseCanvas {
                 startAnim = System.currentTimeMillis();
             }
 
-
-
-
-            // Soldaki karaktere yer çekimi ekliyoruz.
-            if(playerLeftSprite.isCollidedWithRect(platformLeftMiddleSprite.destination) || playerLeftSprite.isCollidedWithRect(platformLeftTopSprite.destination) || playerLeftSprite.isCollidedWithRect(platformLeftBottomSprite.destination)) {
-                playerLeftSprite.setIndicatorY(1);
-                playerLeftSprite.setVelocityY(playerLeftSprite.getVelocityY() + gravity);
-                playerLeftSprite.moveToY();
-            }
-            // Sağdaki karaktere yer çekimi ekliyoruz.
-            if(playerRightSprite.isCollidedWithRect(platformRightMiddleSprite.destination) || playerRightSprite.isCollidedWithRect(platformRightTopSprite.destination) || playerRightSprite.isCollidedWithRect(platformRightBottomSprite.destination)) {
-                playerRightSprite.setIndicatorY(1);
-                playerRightSprite.setVelocityY(playerRightSprite.getVelocityY() + gravity);
-                playerRightSprite.moveToY();
-            }
-
-            if(!isCakeHidden && isCakeFallDown) {
-                cakeSprite.setIndicatorY(1);
-                cakeSprite.setVelocityY(cakeSprite.getVelocityY() + gravity);
-                cakeSprite.moveToY(cakeSprite.getVelocityY(), cakeSprite.getIndicatorY());
-            } else {
-                cakeSprite.setIndicatorY(0);
-                cakeSprite.setVelocityY(0);
-            }
-
-            if(cakeSprite.isCollidedWithRect(conveyorBeltRightBottomSprite.destination)){
-                isCakeFallDown = false;
-                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                if(cakeSprite.getDestinationX() == (conveyorBeltRightX + conveyorBeltDestinationWidth - cakeSprite.getDestinationWidth())) {
-                    cakeSprite.setIndicatorX(0);
-                    if(cakeSprite.destination.bottom > conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
-                        // Sağ karakter sağ alt platformda ise ve aynı zamanda kek de sağ alt bantta ise burası çalışır.
-                        cakeSprite.setDestinationY(cakeSprite.getDestinationY() - converoyBeltSpaces);
-                        cakeSprite.setDestinationX(conveyorBeltLeftX + conveyorBeltDestinationWidth - cakeSprite.getDestinationWidth());
-                    }
-                } else {
-                    cakeSprite.setIndicatorX(1);
-                }
-                cakeSprite.moveToX();
-            } else {
-                isCakeFallDown = true;
-                if(cakeSprite.isCollidedWithRect(conveyorBeltLeftBottomSprite.destination)){
-                    isCakeFallDown = false;
-                    //cakeSprite.setDestinationY(conveyorBeltLeftBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    if(cakeSprite.getDestinationX() == (conveyorBeltLeftX )) {
-                        cakeSprite.setIndicatorX(0);
-
-                        if(cakeSprite.destination.bottom == conveyorBeltLeftBottomSprite.destination.top && playerLeftSprite.destination.bottom == platformLeftMiddleSprite.destination.top) {
-                            // Sol karakter sol orta platformda ise ve aynı zamanda kek de sol alt bantta ise burası çalışır.
-                            cakeSprite.setDestinationY(cakeSprite.getDestinationY() - converoyBeltSpaces - cakeSprite.getDestinationHeight());
-                        }
-                    } else {
-                        cakeSprite.setIndicatorX(-1);
-                    }
-                    cakeSprite.moveToX();
-                } else {
-
-                }
-            }
-
-
-
-            // Kek bandın sonuna ulaştı mı?
-
-            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltLeftX + conveyorBeltDestinationWidth) {
-
-                // Kek dursun.
-                cakeSprite.setIndicatorX(0);
-
-                // Kek hangi bantta?
-                if(cakeSprite.destination.bottom > conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
-                    // Sağ karakter sağ alt platformda ise ve aynı zamanda kek de sağ alt bantta ise burası çalışır.
-                    //cakeSprite.setVelocityY(0);
-                    //cakeSprite.destination.offsetTo(conveyorBeltLeftX, conveyorBeltRightBottomY - cakeSprite.getDestinationHeight());
-                } else if(cakeSprite.destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
-                    // Sağ karakter sağ orta platformda ise ve aynı zamanda kek de sağ orta bantta ise burası çalışır.
-
-                } else if(cakeSprite.destination.bottom < conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom < platformRightMiddleSprite.destination.top) {
-                    // Sağ karakter sağ üst platformda ise ve aynı zamanda kek de sağ üst bantta ise burası çalışır.
-
-                } else {
-                    // Sağ karakter ile kek aynı seviyede değilse oyun biter.
-                    Log.i(TAG, "Game Over");
-                }
-
-            } else {
-                cakeSprite.setIndicatorX(1);
-            }
-
-
-
-
-            if(!isCakeHidden && isCakeFallDown) {
-                cakeSprite.setIndicatorY(1);
-                cakeSprite.setVelocityY(cakeSprite.getVelocityY() + gravity);
-                cakeSprite.moveToY(cakeSprite.getVelocityY(), cakeSprite.getIndicatorY());
-            }
-
-            if(cakeSprite.isCollidedWithRect(conveyorBeltRightBottomSprite.destination)){
-                isCakeFallDown = false;
-                cakeSprite.setVelocityY(0);
-                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltLeftX + conveyorBeltDestinationWidth) {
-                    cakeSprite.setIndicatorX(0);
-                    isCakeFallDown = true;
-                    cakeSprite.setDestinationY(cakeSprite.getDestinationY() - converoyBeltSpaces);
-                    cakeSprite.setDestinationX(conveyorBeltLeftX + conveyorBeltDestinationWidth - cakeSprite.getDestinationWidth());
-                } else {
-                    cakeSprite.setIndicatorX(1);
-                }
-                cakeSprite.moveToX();
-            } else if(cakeSprite.isCollidedWithRect(conveyorBeltLeftBottomSprite.destination)) {
-                isCakeFallDown = false;
-                cakeSprite.setVelocityY(0);
-                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                cakeSprite.setIndicatorX(-1);
-                cakeSprite.moveToX();
-            } else {
-                isCakeFallDown = true;
-            }
-
-
-
-
-            if((cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top || cakeSprite.destination.bottom >= conveyorBeltLeftBottomSprite.destination.top) && cakeState == true) {
-                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                cakeSprite.setVelocityX(15);
-                cakeSprite.moveToX();
-            }
-
-
         }
-        */
+
     }
 
     private void timeBoundAnimation() {
@@ -714,7 +599,7 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltRightBottomSprite.playAnimationWithName("work");
 
         if (pipeAnimationState) {
-            if (pipeSprite.getAnimationWithName("dropOut").animationState()) {
+            if (pipeSprite.getAnimationWithName("dropOut").getAnimationState()) {
                 pipeSprite.playAnimationWithName("dropOut");
             } else {
                 pipeAnimationState = !pipeAnimationState;
@@ -772,6 +657,9 @@ public class GameCanvas extends BaseCanvas {
             popUpMenuButtonSprite.draw(canvas);
             popUpRetryButtonSprite.draw(canvas);
         }
+
+        // Ekrana skoru yazdır.
+        canvas.drawText("Score: " + score, 20, 50, paint);
 
     }
 

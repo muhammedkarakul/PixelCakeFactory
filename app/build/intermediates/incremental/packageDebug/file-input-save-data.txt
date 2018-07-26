@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jul 25 15:13:04 EET 2018
+#Wed Jul 25 15:21:26 EET 2018
 210.set=ANDROID_RESOURCE
 14.set=ANDROID_RESOURCE
 180.file=/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/assets/debug/images/buttonSoundSpriteSet.png
