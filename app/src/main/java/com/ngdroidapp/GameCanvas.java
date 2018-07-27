@@ -26,7 +26,7 @@ public class GameCanvas extends BaseCanvas {
     final private int centerY = getHeight() / 2;
 
     // Yer çekimi sabiti
-    final private float gravity = 5.5f;
+    final private float gravity = 9.8f;
 
     // Oyuncuların üstünde durduğu platform görsellerinin çekildiği dosya yolu.
     final private String platformSpriteSetFilePath = "candyPlatformSpriteSet.png";
@@ -219,6 +219,7 @@ public class GameCanvas extends BaseCanvas {
     private Sprite cakeSprite;
     private boolean isCakeHidden;
     private boolean isCakeChangeConveyorBelt;
+    private boolean isCakeFallingDown;
     private int cakeVelocity;
 
     private int score;
@@ -245,16 +246,6 @@ public class GameCanvas extends BaseCanvas {
         score = 0;
         paint.setColor(Color.BLACK);
         paint.setTextSize(64);
-
-        // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
-        Rect cakeSourceRect = new Rect(0, 0, 360, 360);
-        Rect cakeDestinationRect = new Rect(350, getHeight() - 275, 500, getHeight() - 275 + 150);
-        cakeSprite = new Sprite(root, "cakeWithPlateImageSet.png", cakeSourceRect, cakeDestinationRect);
-        isCakeHidden = true;
-        isCakeChangeConveyorBelt = false;
-        cakeVelocity = 1000/gameSpeed;
-        cakeSprite.setVelocityX(cakeVelocity);
-
 
         // Arkaplan ile ilgili nesnelere ilk değer atamaları yapılıyor.
         Rect backgroundSourceRect = new Rect(0, 20, 1020, 2040);
@@ -458,6 +449,19 @@ public class GameCanvas extends BaseCanvas {
         popUpRetryButtonImageSet.divideBy(360, 360);
         NgAnimation popUpRetryButtonAnimation = new NgAnimation(root, "click", popUpRetryButtonImageSet, 0, 1);
         popUpRetryButtonSprite = new Sprite(root, popUpRetryButtonImagePath, popUpRetryButtonSourceRect, popUpRetryButtonDestinationRect, popUpRetryButtonAnimation);
+
+
+        // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        Rect cakeSourceRect = new Rect(0, 0, 360, 360);
+        Rect cakeDestinationRect = new Rect(pipeSprite.destination.right, pipeSprite.destination.top , pipeSprite.destination.right + 150, pipeSprite.destination.top + 150);
+        cakeSprite = new Sprite(root, "cakeWithPlateImageSet.png", cakeSourceRect, cakeDestinationRect);
+        isCakeHidden = true;
+        isCakeChangeConveyorBelt = false;
+        cakeVelocity = 1000/gameSpeed;
+        cakeSprite.setVelocityX(cakeVelocity);
+        cakeSprite.setIndicatorX(1);
+        cakeSprite.setIndicatorY(1);
+        isCakeFallingDown = false;
     }
 
     private NgMediaPlayer setupMediaPlayer(NgMediaPlayer mediaPlayer, String mediaFilePath, boolean loopState, boolean mediaPlayerState) {
@@ -484,28 +488,30 @@ public class GameCanvas extends BaseCanvas {
                 isCakeChangeConveyorBelt = false;
             }
 
+            if(cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top){
+                cakeSprite.destination.bottom = conveyorBeltRightBottomSprite.destination.top;
+                cakeSprite.setIndicatorY(0);
+            }
+
+
             if(!isCakeHidden) {
-                //cakeSprite.setIndicatorY(1);
+                cakeSprite.setIndicatorY(cakeSprite.getIndicatorY());
                 cakeSprite.setVelocityY(cakeSprite.getVelocityY() + gravity);
                 cakeSprite.moveToY(cakeSprite.getVelocityY(), cakeSprite.getIndicatorY());
-
-            } else {
+            } else{
                 cakeSprite.setIndicatorX(1);
-                cakeSprite.setVelocityX(cakeVelocity);
-                cakeSprite.moveToX();
                 cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-            }
-
-            if(!isCakeHidden)
-            {
                 cakeSprite.setVelocityX(cakeVelocity);
                 cakeSprite.moveToX();
-
             }
+
+            if(!isCakeHidden) {
+                cakeSprite.setVelocityX(cakeVelocity);
+                cakeSprite.moveToX();
+            }
+
             // Kek band˝n sonuna ula˛t˝ m˝?
-            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth) {
-
-
+            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth && !isCakeFallingDown) {
                 // Kek dursun.
 
                 cakeSprite.setIndicatorX(0);
@@ -540,13 +546,15 @@ public class GameCanvas extends BaseCanvas {
                     Log.i("Bant","Sa‹stBant");
                 } else {
                     isGameOver = true;
+
                     Log.i(TAG, "Game Over");
                 }
+
 
             }
 
             //kek bant˝n ba˛˝nda m˝ ?
-            if (cakeSprite.destination.left + cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX ){
+            if (cakeSprite.destination.left + cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX && !isCakeFallingDown ){
 
                 // Kek dursun.
                 cakeSprite.setIndicatorX(0);
@@ -569,8 +577,9 @@ public class GameCanvas extends BaseCanvas {
 
                 } else if(cakeSprite.destination.bottom < conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom < platformLeftMiddleSprite.destination.top) {
                     //Log.i(TAG, "Skoru artır.");
-                    score = score + 100;
+
                     isCakeHidden = true;
+                    score = score + 100;
                     cakeSprite.setSourceX(0);
                     pipeSprite.getAnimationWithName("dropOut").setAnimationState(true);
                     pipeAnimationState = true;
@@ -582,6 +591,7 @@ public class GameCanvas extends BaseCanvas {
                     cakeVelocity = 1000/gameSpeed;
 
                 } else {
+
                     isGameOver = true;
                     Log.i(TAG, "Game Over");
                 }
@@ -748,7 +758,7 @@ public class GameCanvas extends BaseCanvas {
         int diffrentX = x - touchDownX;
         int diffrentY = y - touchDownY;
 
-        if(!isGamePaused && !isGameOver) {
+        if(!isGamePaused || !isGameOver) {
 
             if (screenSide) {
                 Log.i(TAG, "playerRight.getDestinationY:" + playerRightSprite.getDestinationY());
