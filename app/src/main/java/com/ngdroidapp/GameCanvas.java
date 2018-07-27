@@ -35,7 +35,8 @@ public class GameCanvas extends BaseCanvas {
     final private String playerLeftSpriteSetFilePath = "dilara.png";
     final private String playerRightSpriteSetFilePath = "dilara.png";
     final private String converoyBeltSpriteSetFilePath = "converoyBeltSpriteSetLongVer2.png";
-    final private String popUpBackgroundImagePath = "popUpBigBackground.png";
+    final private String gamePausedBackgroundImagePath = "gamePausedBackground.png";
+    final private String gameOverBackgroundImagePath = "gameOverBackground.png";
 
     // Yürüyen bantlar arasındaki boşluklar ayarlanıyor.
     final private int converoyBeltSpaces = 300;
@@ -179,17 +180,16 @@ public class GameCanvas extends BaseCanvas {
 
     private Sprite pauseButtonSprite;
     private boolean isGamePaused;
+    private boolean isGameOver;
     //private boolean pauseState;
 
     // Pop Up ile ilgili nesneler tanımlanıyor.
 
-    // Pause butonuna basınca ekranda gözükecek pop up ile ilgili nesneler ve değişkenler tanımlanıyor.
-    private Sprite popUpMenuSprite;
-    private int popUpX;
-    private int popUpY;
-    private int popUpWidth;
-    private int popUpHeight;
-    //private boolean popUpState = false;
+    // Pause butonuna basınca ekranda gözükecek pop up ile ilgili sprite nesnesi tanımlanıyor.
+    private Sprite gamePausedPopUpSprite;
+
+    // Oyun bitince ekranda gözükecek pop up ile ilgili sprite nesnesi tanımlanıyor.
+    private Sprite gameOverPopUpSprite;
 
     // Pop up üstünde bulunacak play butonu ile ilgili nesneler tanımlanıyor.
     private Sprite popUpPlayButtonSprite;
@@ -236,6 +236,8 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void setup() {
+
+        isGameOver = false;
 
         startAnim = System.currentTimeMillis();
         gameSpeed = 100;
@@ -403,13 +405,23 @@ public class GameCanvas extends BaseCanvas {
         NgAnimation pauseButtonAnimation = new NgAnimation(root, "touchUpInside", pauseButtonImageSet, 0, 1);
         pauseButtonSprite = new Sprite(root, "stopButtonImageSet.png", pauseButtonSourceRect, pauseButtonDestinationRect, pauseButtonAnimation);
 
-        popUpWidth = (int)(1069 / 1.5);
-        popUpHeight = (int)(1069 / 1.5);
-        popUpX = (getWidth() - popUpWidth) / 2;
-        popUpY = (getHeight() - popUpHeight) / 2;
-        Rect popUpMenuSourceRect = new Rect(0, 0, 1088, 1069);
-        Rect popUpMenuDestinationRect = new Rect(popUpX, popUpY, popUpWidth + popUpX, popUpHeight + popUpY);
-        popUpMenuSprite = new Sprite(root, popUpBackgroundImagePath, popUpMenuSourceRect, popUpMenuDestinationRect);
+        // Oyun durdurulunca ekranda gözükecek pop up ile ilgili nesne ve değişkenlere ilk değer atamaları yapılıyor.
+        int gamePausedPopUpWidth = (int)(1256 / 1.5);
+        int gamePausedPopUpHeight = (int)(1069 / 1.5);
+        int gamePausedPopUpX = (getWidth() - gamePausedPopUpWidth) / 2;
+        int gamePausedPopUpY = (getHeight() - gamePausedPopUpHeight) / 2;
+        Rect gamePausedPopUpSourceRect = new Rect(0, 0, 1256, 1069);
+        Rect gamePausedPopUpDestinationRect = new Rect(gamePausedPopUpX, gamePausedPopUpY, gamePausedPopUpWidth + gamePausedPopUpX, gamePausedPopUpHeight + gamePausedPopUpY);
+        gamePausedPopUpSprite = new Sprite(root, gamePausedBackgroundImagePath, gamePausedPopUpSourceRect, gamePausedPopUpDestinationRect);
+
+        // Oyun bitiğinde ekranda gözükecek pop up ile ilgili nesne ve değişkenlere ilk değer atamaları yapılıyor.
+        int gameOverPopUpWidth = (int)(1256 / 1.5);
+        int gameOverPopUpHeight = (int)(1069 / 1.5);
+        int gameOverPopUpX = (getWidth() - gameOverPopUpWidth) / 2;
+        int gameOverPopUpY = (getHeight() - gameOverPopUpHeight) / 2;
+        Rect gameOverPopUpSourceRect = new Rect(0, 0, 1256, 1069);
+        Rect gameOverPopUpDestinationRect = new Rect(gameOverPopUpX, gameOverPopUpY, gameOverPopUpWidth + gameOverPopUpX, gameOverPopUpHeight + gameOverPopUpY);
+        gameOverPopUpSprite = new Sprite(root, gameOverBackgroundImagePath, gameOverPopUpSourceRect, gameOverPopUpDestinationRect);
 
         popUpPlayButtonImagePath = "playButtonSet.png";
         popUpPlayButtonWidth = 200;
@@ -464,7 +476,7 @@ public class GameCanvas extends BaseCanvas {
 
     public void update() {
 
-        if(!isGamePaused) {
+        if(!isGamePaused && !isGameOver) {
 
             if(cakeSprite.destination.right <= middlePlatfromSprite.destination.right + 20 && cakeSprite.destination.left >= middlePlatfromSprite.destination.left - 20 && isCakeChangeConveyorBelt) {
                 // Kek ekranın tam ortasında mı?
@@ -491,7 +503,8 @@ public class GameCanvas extends BaseCanvas {
 
             }
             // Kek band˝n sonuna ula˛t˝ m˝?
-            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltLeftX + conveyorBeltDestinationWidth) {
+            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth) {
+
 
                 // Kek dursun.
 
@@ -526,14 +539,14 @@ public class GameCanvas extends BaseCanvas {
                     cakeSprite.setIndicatorX(-1);
                     Log.i("Bant","Sa‹stBant");
                 } else {
-                    isGamePaused = true;
+                    isGameOver = true;
                     Log.i(TAG, "Game Over");
                 }
 
             }
 
             //kek bant˝n ba˛˝nda m˝ ?
-            if (cakeSprite.destination.left - cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX ){
+            if (cakeSprite.destination.left + cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX ){
 
                 // Kek dursun.
                 cakeSprite.setIndicatorX(0);
@@ -561,7 +574,7 @@ public class GameCanvas extends BaseCanvas {
                     cakeSprite.setSourceX(0);
                     pipeSprite.getAnimationWithName("dropOut").setAnimationState(true);
                     pipeAnimationState = true;
-                    if(gameSpeed != 10) {
+                    if(gameSpeed != 40) {
                         gameSpeed = gameSpeed - 10;
                     } else {
                         gameSpeed = 100;
@@ -569,6 +582,7 @@ public class GameCanvas extends BaseCanvas {
                     cakeVelocity = 1000/gameSpeed;
 
                 } else {
+                    isGameOver = true;
                     Log.i(TAG, "Game Over");
                 }
             }
@@ -652,8 +666,14 @@ public class GameCanvas extends BaseCanvas {
         pauseButtonSprite.draw(canvas);
 
         if(isGamePaused) {
-            popUpMenuSprite.draw(canvas);
+            gamePausedPopUpSprite.draw(canvas);
             popUpPlayButtonSprite.draw(canvas);
+            popUpMenuButtonSprite.draw(canvas);
+            popUpRetryButtonSprite.draw(canvas);
+        }
+
+        if(isGameOver) {
+            gameOverPopUpSprite.draw(canvas);
             popUpMenuButtonSprite.draw(canvas);
             popUpRetryButtonSprite.draw(canvas);
         }
@@ -704,7 +724,7 @@ public class GameCanvas extends BaseCanvas {
             pauseButtonSprite.playAnimationWithName("touchUpInside");
         }
 
-        if(isGamePaused) {
+        if(isGamePaused || isGameOver) {
 
             if (popUpPlayButtonSprite.isTouchedUp(x, y)) {
                 popUpPlayButtonSprite.playAnimationWithName("click");
@@ -728,7 +748,7 @@ public class GameCanvas extends BaseCanvas {
         int diffrentX = x - touchDownX;
         int diffrentY = y - touchDownY;
 
-        if(!isGamePaused) {
+        if(!isGamePaused && !isGameOver) {
 
             if (screenSide) {
                 Log.i(TAG, "playerRight.getDestinationY:" + playerRightSprite.getDestinationY());
@@ -783,7 +803,7 @@ public class GameCanvas extends BaseCanvas {
             isGamePaused = !isGamePaused;
         }
 
-        if(isGamePaused) {
+        if(isGamePaused || isGameOver) {
 
             if (popUpPlayButtonSprite.isTouchedUp(x, y)) {
                 popUpPlayButtonSprite.playAnimationWithName("click");

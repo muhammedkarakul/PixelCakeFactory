@@ -249,6 +249,10 @@ public class Sprite {
         source = animation.getAnimationCurrentFrame();
     }
 
+    public void stopAnimation() {
+
+    }
+
     public void moveToX() {
         destination.offsetTo( destination.left + (int)(velocityX * indicatorX), destination.top);
     }
