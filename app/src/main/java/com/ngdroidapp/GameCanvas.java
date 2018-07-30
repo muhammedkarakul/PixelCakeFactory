@@ -489,26 +489,35 @@ public class GameCanvas extends BaseCanvas {
             }
 
             if(cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top){
-                cakeSprite.destination.bottom = conveyorBeltRightBottomSprite.destination.top;
+                //cakeSprite.destination.bottom = conveyorBeltRightBottomSprite.destination.top;
+                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
                 cakeSprite.setIndicatorY(0);
+                cakeSprite.setIndicatorX(1);
             }
 
 
-            if(!isCakeHidden) {
-                cakeSprite.setIndicatorY(cakeSprite.getIndicatorY());
+            if(isCakeHidden) {
+                //cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
+                cakeSprite.setDestinationY(pipeSprite.getDestinationY());
+                cakeSprite.setDestinationX(pipeSprite.getDestinationWidth());
+                cakeSprite.setIndicatorY(1);
+                cakeSprite.setIndicatorX(1);
+                cakeSprite.setVelocityY(0);
+            } else{
                 cakeSprite.setVelocityY(cakeSprite.getVelocityY() + gravity);
                 cakeSprite.moveToY(cakeSprite.getVelocityY(), cakeSprite.getIndicatorY());
-            } else{
-                cakeSprite.setIndicatorX(1);
-                cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
+
+                cakeSprite.setIndicatorX(cakeSprite.getIndicatorX());
                 cakeSprite.setVelocityX(cakeVelocity);
                 cakeSprite.moveToX();
             }
 
+            /*
             if(!isCakeHidden) {
                 cakeSprite.setVelocityX(cakeVelocity);
                 cakeSprite.moveToX();
             }
+            */
 
             // Kek band˝n sonuna ula˛t˝ m˝?
             if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth && !isCakeFallingDown) {
@@ -583,7 +592,7 @@ public class GameCanvas extends BaseCanvas {
                     cakeSprite.setSourceX(0);
                     pipeSprite.getAnimationWithName("dropOut").setAnimationState(true);
                     pipeAnimationState = true;
-                    if(gameSpeed != 40) {
+                    if(gameSpeed != 50) {
                         gameSpeed = gameSpeed - 10;
                     } else {
                         gameSpeed = 100;
