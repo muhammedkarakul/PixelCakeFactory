@@ -132,15 +132,6 @@ public class GameCanvas extends BaseCanvas {
 
     private Sprite conveyorBeltRightBottomSprite;
 
-    // Bantların sağ ve sol için yüksekliklerini tutan enum değişkenler.
-    /*
-    private enum LeftConveyorBelt {
-        BOTTOM,
-        MIDDLE,
-        TOP;
-    }
-    */
-
     // Yürüyen bantların ölçüleri ile ilgili değişkenler.
     private int conveyorBeltDestinationWidth = 720;
     private int conveyorBeltDestinationHeight = 90;
@@ -299,11 +290,13 @@ public class GameCanvas extends BaseCanvas {
         playerLeftImageSet.divideBy(264, 304);
         NgAnimation playerLeftIdleAnimation = new NgAnimation(root, "idle", playerLeftImageSet, 0, 1);
         NgAnimation playerLeftBlinkAnimation = new NgAnimation(root, "bink", playerLeftImageSet, 2, 3);
+        NgAnimation playerLeftCarryAnimation = new NgAnimation(root, "carry", playerLeftImageSet, 4, 5);
         Rect playerLeftSourceRect = new Rect(0, 0, 264, 304);
         Rect playerLeftDestinationRect = new Rect(platformLeftX, platformLeftBottomY - 148, platformLeftX + 164, platformLeftBottomY);
         playerLeftSprite = new Sprite(root, "playerLeftImageSet.png", playerLeftSourceRect, playerLeftDestinationRect);
         playerLeftSprite.addAnimation(playerLeftIdleAnimation);
         playerLeftSprite.addAnimation(playerLeftBlinkAnimation);
+        playerLeftSprite.addAnimation(playerLeftCarryAnimation);
 
         // Sağdaki oyuncu ile ilgili nesnelere ilk değer atamaları yapılıyor.
 
@@ -481,15 +474,17 @@ public class GameCanvas extends BaseCanvas {
     public void update() {
 
         if(!isGamePaused && !isGameOver) {
+        // Oyun durdurulmadıysa ve bitmediyse burası çalışır.
 
             if(cakeSprite.destination.right <= middlePlatfromSprite.destination.right + 20 && cakeSprite.destination.left >= middlePlatfromSprite.destination.left - 20 && isCakeChangeConveyorBelt) {
-                // Kek ekranın tam ortasında mı?
+                // Kek ekranın tam ortasında ise burası çalışır ve kekin görünümü değişir.
                 cakeSprite.setSourceX(cakeSprite.getSourceX() + 360);
                 isCakeChangeConveyorBelt = false;
             }
 
             if(cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top){
-                //cakeSprite.destination.bottom = conveyorBeltRightBottomSprite.destination.top;
+                // Kek'in alt kısmı en alttaki bantın üst kısmı ile çarpışıyorsa kekin alt koordinatı bandın üst koordinatına eşitlensin.
+                // Kek'in dikeydeki düşüş hareketi dursun ve yatayda sağa doğru harekete başlasın.
                 cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
                 cakeSprite.setIndicatorY(0);
                 cakeSprite.setIndicatorX(1);
@@ -506,87 +501,60 @@ public class GameCanvas extends BaseCanvas {
             } else{
                 cakeSprite.setVelocityY(cakeSprite.getVelocityY() + gravity);
                 cakeSprite.moveToY(cakeSprite.getVelocityY(), cakeSprite.getIndicatorY());
-
                 cakeSprite.setIndicatorX(cakeSprite.getIndicatorX());
                 cakeSprite.setVelocityX(cakeVelocity);
                 cakeSprite.moveToX();
             }
 
-            /*
-            if(!isCakeHidden) {
-                cakeSprite.setVelocityX(cakeVelocity);
-                cakeSprite.moveToX();
-            }
-            */
-
             // Kek band˝n sonuna ula˛t˝ m˝?
             if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth && !isCakeFallingDown) {
                 // Kek dursun.
-
                 cakeSprite.setIndicatorX(0);
-
 
                 // Kek hangi bantta?
                 if(cakeSprite.destination.bottom > conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
-                    //kek  sa alt bantta ise buras˝ Áal˝˛
-                    //kek sa alt bantta ise sa karakter de sa platformdaysa keki left bottoma ta˛˝.
+                    // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltLeftBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(cakeVelocity);
-                    //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(-1);
 
                 } else if(cakeSprite.destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
-                    // Sa karakter sa orta platformda ise ve ayn˝ zamanda kek de sa orta bantta ise buras˝ Áal˝˛˝r.
+                    // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltLeftMiddleSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(cakeVelocity);
-                    //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(-1);
-                    Log.i("Bant","SaOrtaBant");
 
                 } else if(cakeSprite.destination.bottom < conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom < platformRightMiddleSprite.destination.top) {
-                    // Sa karakter sa ¸st platformda ise ve ayn˝ zamanda kek de sa ¸st bantta ise buras˝ Áal˝˛˝r.
+                    // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltLeftTopSprite.getDestinationY() - cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(cakeVelocity);
-                    //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(-1);
-                    Log.i("Bant","Sa‹stBant");
                 } else {
                     isGameOver = true;
-
-                    Log.i(TAG, "Game Over");
                 }
 
 
             }
 
-            //kek bant˝n ba˛˝nda m˝ ?
+            //kek sol bantın sonunda mı?
             if (cakeSprite.destination.left + cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX && !isCakeFallingDown ){
-
-                // Kek dursun.
+                // Kek'in yataydaki hareketi dursun.
                 cakeSprite.setIndicatorX(0);
 
                 if(cakeSprite.destination.bottom > conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom > platformLeftMiddleSprite.destination.top) {
-
+                    // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
                     isCakeChangeConveyorBelt = true;
                     cakeSprite.setDestinationY(conveyorBeltRightMiddleSprite.getDestinationY()- cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(cakeVelocity);
-                    //sum = cakeSprite.getDestinationX();
                     cakeSprite.setIndicatorX(1);
 
                 } else if(cakeSprite.destination.bottom == conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom == platformLeftMiddleSprite.destination.top) {
-
+                    // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
                     isCakeChangeConveyorBelt = true;
-                    cakeSprite.setDestinationY(conveyorBeltRightTopSprite.getDestinationY()- cakeSprite.getDestinationHeight());
-                    cakeSprite.setVelocityX(cakeVelocity);
-                    //sum = cakeSprite.getDestinationX();
+                    cakeSprite.setDestinationY(conveyorBeltRightTopSprite.getDestinationY() - cakeSprite.getDestinationHeight());
                     cakeSprite.setIndicatorX(1);
 
                 } else if(cakeSprite.destination.bottom < conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom < platformLeftMiddleSprite.destination.top) {
-                    //Log.i(TAG, "Skoru artır.");
-
+                    // Kek son bandın sonuna ulaşır. Kutu kaybolur, skor artar, oyun hızı artırılır ve oyun döngüsü başa döner.
                     isCakeHidden = true;
                     score = score + 100;
                     cakeSprite.setSourceX(0);
@@ -600,17 +568,20 @@ public class GameCanvas extends BaseCanvas {
                     cakeVelocity = 1000/gameSpeed;
 
                 } else {
-
+                    // Karakter ve kek'i almak için uygun platformda değilse ve kek sona geldiyse burası çalışır.
                     isGameOver = true;
-                    Log.i(TAG, "Game Over");
                 }
             }
 
+            // Animasyonun bitiş süresi alınıyor.
             finishAnim = System.currentTimeMillis();
 
+            // Zamana bağlı güncelleme işlemleri burada yapılır.
             timeBoundAnimation();
 
+            // Animasyonun bitiş süresi başlangıç süresinden istenildiği kadar fark oluşturduysa(istenilen bekleme süresi geçtiyse)
             if (finishAnim - startAnim > gameSpeed) {
+                // Animasyonun başlangıç süresi şimdi zamana eşitleniyor.
                 startAnim = System.currentTimeMillis();
             }
 
@@ -620,10 +591,12 @@ public class GameCanvas extends BaseCanvas {
 
     private void timeBoundAnimation() {
 
+        // İstenilen bekleme süresi geçmediyse kodun geri kalanını çalıştırma.
         if(finishAnim - startAnim < gameSpeed) {
             return;
         }
 
+        // Yürüyen bantların çalışma animasyonları oynatılıyor.
         conveyorBeltLeftTopSprite.playAnimationWithName("work");
         conveyorBeltRightTopSprite.playAnimationWithName("work");
         conveyorBeltLeftMiddleSprite.playAnimationWithName("work");
@@ -631,6 +604,7 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltLeftBottomSprite.playAnimationWithName("work");
         conveyorBeltRightBottomSprite.playAnimationWithName("work");
 
+        // Borudan pastanın çıkması animasyonu oyntılıyor.
         if (pipeAnimationState) {
             if (pipeSprite.getAnimationWithName("dropOut").getAnimationState()) {
                 pipeSprite.playAnimationWithName("dropOut");
@@ -640,26 +614,30 @@ public class GameCanvas extends BaseCanvas {
             }
         }
 
+        // Oyuncuların durma animasyonu oynatılıyor.
         playerLeftSprite.playAnimationWithName("idle");
-
         playerRightSprite.playAnimationWithName("idle");
     }
 
     public void draw(Canvas canvas) {
-
+        // Arkaplan görseli çiziliyor.
         backgroundSprite.draw(canvas);
 
+        // Karakterlerin üstünde durduğu ekranın sağındaki platformlar çiziliyor.
         platformRightBottomSprite.draw(canvas);
         platformRightMiddleSprite.draw(canvas);
         platformRightTopSprite.draw(canvas);
 
+        // Karakterlerin üstünde durduğu ekranın solundaki platformlar çiziliyor.
         platformLeftBottomSprite.draw(canvas);
         platformLeftMiddleSprite.draw(canvas);
         platformLeftTopSprite.draw(canvas);
 
+        // Karakterler ekrana çiziliyor.
         playerLeftSprite.draw(canvas);
         playerRightSprite.draw(canvas);
 
+        // Yürüyen bantlar ekrana çiziliyor.
         conveyorBeltLeftTopSprite.draw(canvas);
         conveyorBeltRightTopSprite.draw(canvas);
         conveyorBeltLeftMiddleSprite.draw(canvas);
@@ -667,23 +645,27 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltLeftBottomSprite.draw(canvas);
         conveyorBeltRightBottomSprite.draw(canvas);
 
+        // Kek gizlenmediyse ekrana çizilir.
         if(!isCakeHidden) {
             cakeSprite.draw(canvas);
         }
 
-        // Orta platform erkarana çiziliyor.
+        // Ekranı ortadan ikiye ayıran orta platform erkarana çiziliyor.
         for(int i = ballDimention; i < getHeight(); i = i + middlePlatfromSprite.getDestinationHeight()){
             middlePlatfromSprite.setDestinationY(i);
             middlePlatfromSprite.draw(canvas);
         }
 
+        // Orta platformun üstündeki top ekrana çiziliyor.
         ballSprite.draw(canvas);
 
         // Pipe sprite'ı ekrana çizdiriliyor.
         pipeSprite.draw(canvas);
 
+        // Oyunu duraklatma butonu ekrana çiziliyor.
         pauseButtonSprite.draw(canvas);
 
+        // Eğer oyun durdurulduysa ekrana pop up menü ve üstüne devam et, yeniden başlat ve menü butonlarını çiz.
         if(isGamePaused) {
             gamePausedPopUpSprite.draw(canvas);
             popUpPlayButtonSprite.draw(canvas);
@@ -691,6 +673,7 @@ public class GameCanvas extends BaseCanvas {
             popUpRetryButtonSprite.draw(canvas);
         }
 
+        // Oyun bittiyse ekrana pop up menüyü çiz ve üstüne yeniden başlat ve menü butonlarını çiz.
         if(isGameOver) {
             gameOverPopUpSprite.draw(canvas);
             popUpMenuButtonSprite.draw(canvas);
@@ -728,9 +711,11 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void touchDown(int x, int y, int id) {
+        // Ekrana dokunulduğu andaki x ve y koordinatlarını global değişkenlere ata.
         touchDownX = x;
         touchDownY = y;
 
+        // Ekranın hangi tarafına dokunulduğunu algıla.
         if(touchDownX > getWidth() / 2) {
             // Ekranın sağ tarafına dokunuluyorsa burası çalışır.
             screenSide = true;
@@ -739,10 +724,12 @@ public class GameCanvas extends BaseCanvas {
             screenSide = false;
         }
 
+        // Oyunu duraklatma butonuna basıldıysa butonun tıklanma animasyonunu oynat.
         if(pauseButtonSprite.isTouchedUp(x, y)) {
             pauseButtonSprite.playAnimationWithName("touchUpInside");
         }
 
+        
         if(isGamePaused || isGameOver) {
 
             if (popUpPlayButtonSprite.isTouchedUp(x, y)) {
@@ -764,6 +751,7 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void touchUp(int x, int y, int id) {
+        // Ekrana dokunulduğu andaki x ve y konumları ile parmağın ekrandan kalktığı andaki x ve y koordinatlarının farkları alınıyor.
         int diffrentX = x - touchDownX;
         int diffrentY = y - touchDownY;
 
