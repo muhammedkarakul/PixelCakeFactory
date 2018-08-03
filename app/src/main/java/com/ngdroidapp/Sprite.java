@@ -19,11 +19,9 @@ import static android.content.ContentValues.TAG;
 
 public class Sprite {
     /* PROPERTIES */
-    protected String imageFilePath;
     protected Bitmap image;
     protected Rect source;
     protected Rect destination;
-    protected NgApp root;
     protected int anchorX;
     protected int anchorY;
     protected int indicatorX;
@@ -37,35 +35,12 @@ public class Sprite {
 
     /* INITIALIZE METHODS */
 
-    Sprite() {}
-
-    /**
-     * Initializes sprite with no parameter.
-     */
-    Sprite(NgApp root) {
-        this.root = root;
-        imageFilePath = "gamelab-istanbul_logo.png";
-        image = Utils.loadImage(root, imageFilePath);
-        anchorX = 0;
-        anchorY = 0;
-        indicatorX = 0;
-        indicatorY = 0;
-        velocityX = 0;
-        velocityY = 0;
-        source = new Rect(0, 0, image.getWidth(), image.getHeight());
-        destination = new Rect(0, 0, image.getWidth(), image.getHeight());
-        animations = new HashMap<>();
-    }
-
     /**
      * Initialize sprite with image.
-     * @param root
-     * @param imageFilePath
+     * @param image
      */
-    Sprite(NgApp root, String imageFilePath) {
-        this.root = root;
-        this.imageFilePath = imageFilePath;
-        image = Utils.loadImage(root, imageFilePath);
+    Sprite(Bitmap image) {
+        this.image = image;
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
@@ -79,13 +54,12 @@ public class Sprite {
 
     /**
      * Intialize sprite with image, position and size.
-     * @param root
-     * @param imageFilePath
+     * @param image
+     * @param source
+     * @param destination
      */
-    Sprite(NgApp root, String imageFilePath, Rect source, Rect destination) {
-        this.root = root;
-        this.imageFilePath = imageFilePath;
-        image = Utils.loadImage(root, imageFilePath);
+    Sprite(Bitmap image, Rect source, Rect destination) {
+        this.image = image;
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
@@ -99,13 +73,13 @@ public class Sprite {
 
     /**
      * Intialize sprite with image, position and size.
-     * @param root
-     * @param imageFilePath
+     * @param image
+     * @param source
+     * @param destination
+     * @param animation
      */
-    Sprite(NgApp root, String imageFilePath, Rect source, Rect destination, NgAnimation animation) {
-        this.root = root;
-        this.imageFilePath = imageFilePath;
-        image = Utils.loadImage(root, imageFilePath);
+    Sprite(Bitmap image, Rect source, Rect destination, NgAnimation animation) {
+        this.image = image;
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
@@ -120,13 +94,13 @@ public class Sprite {
 
     /**
      * Intialize sprite with image, position and size.
-     * @param root
-     * @param imageFilePath
+     * @param image
+     * @param source
+     * @param destination
+     * @param animations
      */
-    Sprite(NgApp root, String imageFilePath, Rect source, Rect destination, Map<String, NgAnimation> animations) {
-        this.root = root;
-        this.imageFilePath = imageFilePath;
-        image = Utils.loadImage(root, imageFilePath);
+    Sprite(Bitmap image, Rect source, Rect destination, Map<String, NgAnimation> animations) {
+        this.image = image;
         indicatorX = 0;
         indicatorY = 0;
         velocityX = 0;
@@ -139,8 +113,8 @@ public class Sprite {
         anchorY = getDestinationHeight() / 2;
     }
 
-    public void setImage(String imageFilePath) {
-        image = Utils.loadImage(root, imageFilePath);
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public void draw(Canvas canvas){

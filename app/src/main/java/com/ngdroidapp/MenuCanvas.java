@@ -1,5 +1,6 @@
 package com.ngdroidapp;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.media.Image;
@@ -10,6 +11,7 @@ import java.util.Map;
 import istanbul.gamelab.ngdroid.base.BaseCanvas;
 import istanbul.gamelab.ngdroid.core.NgMediaPlayer;
 import istanbul.gamelab.ngdroid.util.Log;
+import istanbul.gamelab.ngdroid.util.Utils;
 
 /**
  * Created by noyan on 27.06.2016.
@@ -17,17 +19,6 @@ import istanbul.gamelab.ngdroid.util.Log;
  */
 
 public class MenuCanvas extends BaseCanvas {
-
-    /* SABİTLER */
-
-    // Görsellerden çekilecek sprite boyutları.
-    final private int spriteSourceWidth = 384;
-    final private int spriteSourceHeight = 384;
-    final private String backgroundImagePath = "background.png";
-    final private String playButtonImagePath = "buttonPlaySpriteSet.png";
-    final private String soundButtonImagePath = "buttonSoundSpriteSet.png";
-    final private String musicButtonImagePath = "buttonMusicSpriteSet.png";
-    final private String infoButtonImagePath = "buttonInfoSpriteSet.png";
 
     /* DEĞİŞKENLER */
 
@@ -39,39 +30,24 @@ public class MenuCanvas extends BaseCanvas {
 
     // Background ile ilgili değişkenler.
     private Sprite backgroundSprite;
-    private Rect backgroundSourceRect;
-    private Rect backgroundDestinationRect;
-
 
     // Play button ile ilgili değişkenler.
-    private Sprite playButtonSprite;
-
-    private int playButtonWidth = 384;
-    private int playButtonHeight= 384;
+    private Button playButton;
 
     // Sound button ile ilgili değişkenler.
-    private Sprite soundButtonSprite;
-
-    private int soundButtonWidth = 256;
-    private int soundButtonHeight = 256;
+    private Button soundButton;
 
     // Music button ile ilgili değişkenler.
-    private Sprite musicButtonSprite;
-
-    private int musicButtonWidth = 256;
-    private int musicButtonHeight = 256;
+    private Button musicButton;
 
     // Info button ile ilgili değişkenler.
-    private Sprite infoButtonSprite;
-
-    private int infoButtonWidth = 256;
-    private int infoButtonHeight = 256;
+    private Button infoButton;
 
     // Arkaplan müziği ile ilgili değişken.
-    private NgMediaPlayer backgroundMusic;
+    private NgMediaPlayer musicMediaPlayer;
 
     // Buton tıklama sesi ile ilgili değişken.
-    private NgMediaPlayer clickSound;
+    private NgMediaPlayer soundMediaPlayer;
 
     public MenuCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
         super(ngApp);
@@ -81,54 +57,72 @@ public class MenuCanvas extends BaseCanvas {
 
     public void setup() {
 
-        backgroundSourceRect = new Rect(0, 20, 1020, 2040);
-        backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
-        backgroundSprite = new Sprite(root, backgroundImagePath, backgroundSourceRect, backgroundDestinationRect);
-
-        Rect playButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        Rect playButtonDestinationRect = new Rect(((getWidth() - playButtonWidth) / 2), ((getHeight() - playButtonHeight) / 2), ((getWidth() - playButtonWidth) / 2) + playButtonWidth, ((getHeight() - playButtonHeight) / 2) + playButtonHeight);
-        ImageSet playButtonImageSet = new ImageSet(root, playButtonImagePath);
-        playButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        NgAnimation playButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", playButtonImageSet, 0, 1);
-        playButtonSprite = new Sprite(root, playButtonImagePath, playButtonSourceRect, playButtonDestinationRect, playButtonTouchUpAnimation);
-
-        Rect soundButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        Rect soundButtonDestinationRect = new Rect(0, 0, soundButtonWidth, soundButtonHeight);
-        ImageSet soundButtonImageSet = new ImageSet(root, soundButtonImagePath);
-        soundButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        NgAnimation soundButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", soundButtonImageSet, 0, 1);
-        NgAnimation soundButtonPressedTouchUpAnimation = new NgAnimation(root, "pressedTouchUpInside", soundButtonImageSet, 2, 3);
-        Map<String, NgAnimation> soundButtonAnimations = new HashMap<String, NgAnimation>();
-        soundButtonAnimations.put(soundButtonTouchUpAnimation.getName(), soundButtonTouchUpAnimation);
-        soundButtonAnimations.put(soundButtonPressedTouchUpAnimation.getName(), soundButtonPressedTouchUpAnimation);
-        soundButtonSprite = new Sprite(root, soundButtonImagePath, soundButtonSourceRect, soundButtonDestinationRect, soundButtonAnimations);
-
-        Rect musicButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        Rect musicButtonDestinationRect = new Rect(soundButtonWidth, 0, soundButtonWidth + musicButtonWidth, musicButtonHeight);
-        ImageSet musicButtonImageSet = new ImageSet(root, musicButtonImagePath);
-        musicButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        NgAnimation musicButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", musicButtonImageSet, 0, 1);
-        NgAnimation musicButtonPressedTouchUpAnimation = new NgAnimation(root, "pressedTouchUpInside", musicButtonImageSet, 2, 3);
-        Map<String, NgAnimation> musicButtonAnimations = new HashMap<String, NgAnimation>();
-        musicButtonAnimations.put(musicButtonTouchUpAnimation.getName(), musicButtonTouchUpAnimation);
-        musicButtonAnimations.put(musicButtonPressedTouchUpAnimation.getName(), musicButtonPressedTouchUpAnimation);
-        musicButtonSprite = new Sprite(root, musicButtonImagePath, musicButtonSourceRect, musicButtonDestinationRect, musicButtonAnimations);
-
-        Rect infoButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
-        Rect infoButtonDestinationRect = new Rect((getWidth() - infoButtonWidth), (getHeight() - infoButtonHeight), (getWidth() - infoButtonWidth) + infoButtonWidth, (getHeight() - infoButtonHeight) + infoButtonHeight);
-        ImageSet infoButtonImageSet = new ImageSet(root, infoButtonImagePath);
-        infoButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
-        NgAnimation infoButtonTouchUpAnimation = new NgAnimation(root, "touchUpInside", infoButtonImageSet, 0, 1);
-        infoButtonSprite = new Sprite(root, infoButtonImagePath, infoButtonSourceRect, infoButtonDestinationRect, infoButtonTouchUpAnimation);
-
         if(musicState) {
-            backgroundMusic = setupMediaPlayer(backgroundMusic, "sounds/bgm_menu.mp3", true, true);
+            musicMediaPlayer = setupMediaPlayer("sounds/bgm_menu.mp3", true, true);
         }
 
         if(soundState) {
-            clickSound = setupMediaPlayer(clickSound, "sounds/click3.wav", false, false);
+            soundMediaPlayer = setupMediaPlayer("sounds/click3.wav", false, false);
         }
 
+        int spriteSourceWidth = 384;
+        int spriteSourceHeight = 384;
+        Bitmap backgroundBitmap = Utils.loadImage(root, "background.png");
+        Rect backgroundSourceRect = new Rect(0, 20, 1020, 2040);
+        Rect backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
+        backgroundSprite = new Sprite(backgroundBitmap, backgroundSourceRect, backgroundDestinationRect);
+
+        int playButtonWidth = 384;
+        int playButtonHeight= 384;
+        Bitmap playButtonBitmap = Utils.loadImage(root, "buttonPlaySpriteSet.png");
+        Rect playButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect playButtonDestinationRect = new Rect(((getWidth() - playButtonWidth) / 2), ((getHeight() - playButtonHeight) / 2), ((getWidth() - playButtonWidth) / 2) + playButtonWidth, ((getHeight() - playButtonHeight) / 2) + playButtonHeight);
+        ImageSet playButtonImageSet = new ImageSet(playButtonBitmap);
+        playButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
+        NgAnimation playButtonTouchUpAnimation = new NgAnimation("click", playButtonImageSet, 0, 1);
+        Sprite playButtonSprite = new Sprite(playButtonBitmap, playButtonSourceRect, playButtonDestinationRect, playButtonTouchUpAnimation);
+        playButton = new Button(playButtonSprite, soundMediaPlayer);
+
+        int soundButtonWidth = 256;
+        int soundButtonHeight = 256;
+        Bitmap soundButtonBitmap = Utils.loadImage(root, "buttonSoundSpriteSet.png");
+        Rect soundButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect soundButtonDestinationRect = new Rect(0, 0, soundButtonWidth, soundButtonHeight);
+        ImageSet soundButtonImageSet = new ImageSet(soundButtonBitmap);
+        soundButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
+        NgAnimation soundButtonTouchUpAnimation = new NgAnimation("click", soundButtonImageSet, 0, 1);
+        NgAnimation soundButtonPressedTouchUpAnimation = new NgAnimation("pressedTouchUpInside", soundButtonImageSet, 2, 3);
+        Map<String, NgAnimation> soundButtonAnimations = new HashMap<String, NgAnimation>();
+        soundButtonAnimations.put(soundButtonTouchUpAnimation.getName(), soundButtonTouchUpAnimation);
+        soundButtonAnimations.put(soundButtonPressedTouchUpAnimation.getName(), soundButtonPressedTouchUpAnimation);
+        Sprite soundButtonSprite = new Sprite(soundButtonBitmap, soundButtonSourceRect, soundButtonDestinationRect, soundButtonAnimations);
+        soundButton = new Button(soundButtonSprite, soundMediaPlayer);
+
+        int musicButtonWidth = 256;
+        int musicButtonHeight = 256;
+        Bitmap musicButtonBitmap = Utils.loadImage(root, "buttonMusicSpriteSet.png");
+        Rect musicButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect musicButtonDestinationRect = new Rect(soundButtonWidth, 0, soundButtonWidth + musicButtonWidth, musicButtonHeight);
+        ImageSet musicButtonImageSet = new ImageSet(musicButtonBitmap);
+        musicButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
+        NgAnimation musicButtonTouchUpAnimation = new NgAnimation("click", musicButtonImageSet, 0, 1);
+        NgAnimation musicButtonPressedTouchUpAnimation = new NgAnimation("pressedTouchUpInside", musicButtonImageSet, 2, 3);
+        Map<String, NgAnimation> musicButtonAnimations = new HashMap<String, NgAnimation>();
+        musicButtonAnimations.put(musicButtonTouchUpAnimation.getName(), musicButtonTouchUpAnimation);
+        musicButtonAnimations.put(musicButtonPressedTouchUpAnimation.getName(), musicButtonPressedTouchUpAnimation);
+        Sprite musicButtonSprite = new Sprite(musicButtonBitmap, musicButtonSourceRect, musicButtonDestinationRect, musicButtonAnimations);
+        musicButton = new Button(musicButtonSprite, soundMediaPlayer);
+
+        int infoButtonWidth = 256;
+        int infoButtonHeight = 256;
+        Bitmap infoButtonBitmap = Utils.loadImage(root, "buttonInfoSpriteSet.png");
+        Rect infoButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect infoButtonDestinationRect = new Rect((getWidth() - infoButtonWidth), (getHeight() - infoButtonHeight), (getWidth() - infoButtonWidth) + infoButtonWidth, (getHeight() - infoButtonHeight) + infoButtonHeight);
+        ImageSet infoButtonImageSet = new ImageSet(infoButtonBitmap);
+        infoButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
+        NgAnimation infoButtonTouchUpAnimation = new NgAnimation("click", infoButtonImageSet, 0, 1);
+        Sprite infoButtonSprite = new Sprite(infoButtonBitmap, infoButtonSourceRect, infoButtonDestinationRect, infoButtonTouchUpAnimation);
+        infoButton = new Button(infoButtonSprite, soundMediaPlayer);
 
     }
 
@@ -138,10 +132,10 @@ public class MenuCanvas extends BaseCanvas {
 
     public void draw(Canvas canvas) {
         backgroundSprite.draw(canvas);
-        playButtonSprite.draw(canvas);
-        soundButtonSprite.draw(canvas);
-        musicButtonSprite.draw(canvas);
-        infoButtonSprite.draw(canvas);
+        playButton.getSprite().draw(canvas);
+        soundButton.getSprite().draw(canvas);
+        musicButton.getSprite().draw(canvas);
+        infoButton.getSprite().draw(canvas);
     }
 
     public void keyPressed(int key) {
@@ -157,17 +151,13 @@ public class MenuCanvas extends BaseCanvas {
 
     public void touchDown(int x, int y, int id) {
 
-        if(playButtonSprite.isTouchedUp(x, y)) {
-            Log.i(TAG, "Play Butonuna Basıldı.");
-            playClickSound();
-            playButtonSprite.playAnimationWithName("touchUpInside");
-        }
+        playButton.isTouchDown(x, y);
 
-        if(infoButtonSprite.isTouchedUp(x, y)) {
-            playClickSound();
-            infoButtonSprite.playAnimationWithName("touchUpInside");
-        }
+        infoButton.isTouchDown(x, y);
 
+        soundButton.isTouchDown(x, y);
+
+        /*
         if(soundButtonSprite.isTouchedUp(x, y)) {
             Log.i(TAG, "Sound Butonuna Basıldı.");
             playClickSound();
@@ -176,9 +166,12 @@ public class MenuCanvas extends BaseCanvas {
             } else {
                 soundButtonSprite.playAnimationWithName("pressedTouchUpInside");
             }
-
         }
+        */
 
+        musicButton.isTouchDown(x, y);
+
+        /*
         if(musicButtonSprite.isTouchedUp(x, y)) {
             Log.i(TAG, "Music Butonuna Basıldı.");
             playClickSound();
@@ -188,6 +181,7 @@ public class MenuCanvas extends BaseCanvas {
                 musicButtonSprite.playAnimationWithName("pressedTouchUpInside");
             }
         }
+        */
 
     }
 
@@ -195,16 +189,31 @@ public class MenuCanvas extends BaseCanvas {
     }
 
     public void touchUp(int x, int y, int id) {
-        if(playButtonSprite.isTouchedUp(x, y)) {
-            playButtonSprite.playAnimationWithName("touchUpInside");
-            goToGameCanvas();
+        if(playButton.isTouchUp(x, y)) { goToGameCanvas(); }
+
+        if(infoButton.isTouchUp(x, y)) { goToInfoCanvas(); }
+
+        if(soundButton.isTouchUp(x, y)) {
+            soundState = !soundState;
+
+            if(soundState) {
+                soundMediaPlayer = setupMediaPlayer("sounds/click3.wav", false, false);
+            } else {
+                soundMediaPlayer.stop();
+            }
         }
 
-        if(infoButtonSprite.isTouchedUp(x, y)) {
-            infoButtonSprite.playAnimationWithName("touchUpInside");
-            goToInfoCanvas();
+        if(musicButton.isTouchUp(x, y)) {
+            musicState = !musicState;
+
+            if(musicState) {
+                musicMediaPlayer = setupMediaPlayer("sounds/bgm_menu.mp3", true, true);
+            } else {
+                musicMediaPlayer.stop();
+            }
         }
 
+        /*
         if(soundButtonSprite.isTouchedUp(x, y)) {
             // soundButton nesnesinden parmak kaldırıldığında olacak işlemleri burada yapıyoruz.
             if(!soundState) {
@@ -216,9 +225,9 @@ public class MenuCanvas extends BaseCanvas {
             soundState = !soundState;
 
             if(soundState) {
-                clickSound = setupMediaPlayer(clickSound, "sounds/click3.wav", false, false);
+                soundMediaPlayer = setupMediaPlayer("sounds/click3.wav", false, false);
             } else {
-                clickSound.stop();
+                soundMediaPlayer.stop();
             }
 
         }
@@ -233,12 +242,13 @@ public class MenuCanvas extends BaseCanvas {
             musicState = !musicState;
 
             if(musicState) {
-                backgroundMusic = setupMediaPlayer(backgroundMusic, "sounds/bgm_menu.mp3", true, true);
+                musicMediaPlayer = setupMediaPlayer("sounds/bgm_menu.mp3", true, true);
             } else {
-                backgroundMusic.stop();
+                musicMediaPlayer.stop();
             }
 
         }
+        */
     }
 
     public void surfaceChanged(int width, int height) {
@@ -279,13 +289,13 @@ public class MenuCanvas extends BaseCanvas {
 
     private void playClickSound() {
         if(soundState) {
-            clickSound.start();
+            soundMediaPlayer.start();
         }
     }
 
-    private NgMediaPlayer setupMediaPlayer(NgMediaPlayer mediaPlayer, String mediaFilePath, boolean loopState, boolean mediaPlayerState) {
+    private NgMediaPlayer setupMediaPlayer(String mediaFilePath, boolean loopState, boolean mediaPlayerState) {
 
-        mediaPlayer = new NgMediaPlayer(root);
+        NgMediaPlayer mediaPlayer = new NgMediaPlayer(root);
         mediaPlayer.load(mediaFilePath);
         mediaPlayer.prepare();
         mediaPlayer.setLooping(loopState);
@@ -299,11 +309,11 @@ public class MenuCanvas extends BaseCanvas {
 
     private void canvasDidDisappear() {
         if(musicState) {
-            backgroundMusic.stop();
+            musicMediaPlayer.stop();
         }
 
         if(soundState) {
-            clickSound.stop();
+            soundMediaPlayer.stop();
         }
     }
 

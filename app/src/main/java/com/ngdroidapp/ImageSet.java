@@ -12,8 +12,6 @@ import istanbul.gamelab.ngdroid.util.Utils;
 import static android.content.ContentValues.TAG;
 
 public class ImageSet {
-
-    private NgApp root;
     private Bitmap image;
     private List<Rect> imageRects;
 
@@ -22,9 +20,8 @@ public class ImageSet {
         imageRects = new ArrayList<Rect>();
     }
 
-    ImageSet(NgApp root, String imageSetFilePath) {
-        image = Utils.loadImage(root, imageSetFilePath);
-        this.root = root;
+    ImageSet(Bitmap image) {
+        this.image = image;
         imageRects = new ArrayList<Rect>();
     }
 

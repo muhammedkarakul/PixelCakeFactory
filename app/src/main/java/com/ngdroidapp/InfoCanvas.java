@@ -1,16 +1,14 @@
 package com.ngdroidapp;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import istanbul.gamelab.ngdroid.base.BaseCanvas;
 import istanbul.gamelab.ngdroid.core.NgMediaPlayer;
+import istanbul.gamelab.ngdroid.util.Utils;
 
 public class InfoCanvas extends BaseCanvas {
-
-    /* SABİTLER */
-
-    final private String backgroundImageFilePath = "background.png";
 
     /* DEĞİŞKENLER */
 
@@ -21,8 +19,6 @@ public class InfoCanvas extends BaseCanvas {
     private NgMediaPlayer clickSound;
 
     private Sprite backgroundSprite;
-    private Rect backgroundSourceRect;
-    private Rect backgroundDestinationRect;
 
 
     public InfoCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
@@ -39,10 +35,10 @@ public class InfoCanvas extends BaseCanvas {
         if(musicState) {
             setupMusic();
         }
-
-        backgroundSourceRect = new Rect(0, 20, 1020, 2040);
-        backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
-        backgroundSprite = new Sprite(root, backgroundImageFilePath, backgroundSourceRect, backgroundDestinationRect);
+        Bitmap backgroundBitmap = Utils.loadImage(root, "background.png");
+        Rect backgroundSourceRect = new Rect(0, 20, 1020, 2040);
+        Rect backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
+        backgroundSprite = new Sprite(backgroundBitmap, backgroundSourceRect, backgroundDestinationRect);
 
     }
 

@@ -3,8 +3,6 @@ package com.ngdroidapp;
 import android.graphics.Rect;
 
 public class NgAnimation {
-    private NgApp root;
-    //private Canvas canvas;
     private String name;
     private int startFrameNumber;
     private int endFrameNumber;
@@ -14,7 +12,6 @@ public class NgAnimation {
     private boolean loop;
 
     NgAnimation() {
-        this.root = null;
         sourceImageSet = new ImageSet();
         currentFrameNumber = 0;
         startFrameNumber = 0;
@@ -23,8 +20,7 @@ public class NgAnimation {
         loop = true;
     }
 
-    NgAnimation(NgApp root, String name, ImageSet animationSourceImageSet) {
-        this.root = root;
+    NgAnimation(String name, ImageSet animationSourceImageSet) {
         this.name = name;
         this.sourceImageSet = animationSourceImageSet;
         currentFrameNumber = 0;
@@ -34,8 +30,7 @@ public class NgAnimation {
         loop = true;
     }
 
-    NgAnimation(NgApp root, String name, ImageSet animationSourceImageSet, int startFrameNumber, int endFrameNumber) {
-        this.root = root;
+    NgAnimation(String name, ImageSet animationSourceImageSet, int startFrameNumber, int endFrameNumber) {
         this.name = name;
         this.sourceImageSet = animationSourceImageSet;
         currentFrameNumber = 0;
@@ -45,8 +40,7 @@ public class NgAnimation {
         loop = true;
     }
 
-    NgAnimation(NgApp root, String name, ImageSet animationSourceImageSet, int startFrameNumber, int endFrameNumber, boolean loop) {
-        this.root = root;
+    NgAnimation(String name, ImageSet animationSourceImageSet, int startFrameNumber, int endFrameNumber, boolean loop) {
         this.name = name;
         this.sourceImageSet = animationSourceImageSet;
         currentFrameNumber = 0;
