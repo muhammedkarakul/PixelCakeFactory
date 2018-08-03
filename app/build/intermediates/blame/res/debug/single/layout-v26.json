@@ -2,5 +2,9 @@
     {
         "merged": "/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/res/merged/debug/layout-v26/abc_screen_toolbar.xml",
         "source": "/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/layout-v26/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/res/merged/debug/layout-v26/abc_screen_toolbar.xml",
+        "source": "/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/layout-v26/abc_screen_toolbar.xml"
     }
 ]

@@ -3,6 +3,8 @@ package com.mycompany.myngdroidapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.ngdroidapp.ContextClass;
+
 import istanbul.gamelab.ngdroid.base.BaseActivity;
 import istanbul.gamelab.ngdroid.core.AppManager;
 import istanbul.gamelab.ngdroid.util.Log;
@@ -19,6 +21,7 @@ public class GameActivity extends BaseActivity {
         setDevelopmentMode(true);
         setFreeVersion(true);
         setGPRelease(true);
+        ContextClass.setActivity(this);
         Log.i(TAG, "Game starting!");
     }
 

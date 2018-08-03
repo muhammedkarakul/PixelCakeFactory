@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.media.Image;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class GameCanvas extends BaseCanvas {
     final private float gravity = 9.8f;
 
     // Yürüyen bantlar arasındaki boşluklar ayarlanıyor.
-    final private int converoyBeltSpaces = 340;
+    final private int converoyBeltSpaces = 300;
 
     /***    DEĞİŞKENLER    ***/
 
@@ -207,6 +208,8 @@ public class GameCanvas extends BaseCanvas {
         gameSpeed = 100;
 
         score = 0;
+        Typeface face = Typeface.createFromAsset(ContextClass.getActivity().getAssets(), "fonts/pixelmix.ttf");
+        paint.setTypeface(face);
         paint.setColor(Color.BLACK);
         paint.setTextSize(64);
 
@@ -683,7 +686,7 @@ public class GameCanvas extends BaseCanvas {
         }
 
         // Ekrana skoru yazdır.
-        canvas.drawText("Score: " + score, 20, 50, paint);
+        canvas.drawText("Score: " + score, 20, 60, paint);
 
     }
 
@@ -762,7 +765,7 @@ public class GameCanvas extends BaseCanvas {
         int diffrentY = y - touchDownY;
 
         // Oyun durdurulmadıysa veya oyun bitmediyse burası çalışır.
-        if(!isGamePaused || !isGameOver) {
+        if(!isGamePaused && !isGameOver) {
             // Ekranın sağ tarafında parmak kaydırma işlemi yapıldıysa burası çalışır.
             if (screenSide) {
                 if (!(playerRightSprite.getDestinationY() < (platformRightTopY - playerRightSprite.getDestinationHeight()) || playerRightSprite.getDestinationY() > (platformRightBottomY - playerRightSprite.getDestinationHeight()))) {
@@ -891,21 +894,17 @@ public class GameCanvas extends BaseCanvas {
      * Ses ve müzik medya oynatıcısı dosya çalıyorsa durdurur.
      */
     private void stopSoundAndMusic() {
-        // Ses dosyası çalınıyorsa durdur.
-        checkMediaPlayerState(soundMediaPlayer);
 
-        // Müzik dosyası çalınıyorsa durdur.
-        checkMediaPlayerState(musicMediaPlayer);
-    }
-
-    /**
-     * Medya oynatıcısının durumunu kontrol eder. Eğer dosya oynatıyorsa durdurur.
-     * @param player Kontrol edilecek ve dosya çalıyorsa durdurulacak medya oynatıcı.
-     */
-    private void checkMediaPlayerState(NgMediaPlayer player) {
-        if(player.isPlaying()){
-            player.stop();
+        if(soundState) {
+            // Ses dosyası çalınıyorsa durdur.
+            soundMediaPlayer.stop();
         }
+
+        if(musicState) {
+            // Müzik dosyası çalınıyorsa durdur.
+            musicMediaPlayer.stop();
+        }
+
     }
 
 }
