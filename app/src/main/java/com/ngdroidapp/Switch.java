@@ -2,19 +2,41 @@ package com.ngdroidapp;
 
 import istanbul.gamelab.ngdroid.core.NgMediaPlayer;
 
-public class Switch extends Button {
+public class Switch {
 
-    Switch(Sprite sprite, NgMediaPlayer mediaPlayer) {
-        super(sprite, mediaPlayer);
+    private Sprite sprite;
+    private NgMediaPlayer mediaPlayer;
+    private boolean state;
+
+    Switch(Sprite sprite, NgMediaPlayer mediaPlayer, boolean state) {
+        this.sprite = sprite;
+        this.mediaPlayer = mediaPlayer;
+        this.state = state;
     }
 
-    @Override
-    public boolean isTouchDown(int x, int y) {
-        return super.isTouchDown(x, y);
+    public boolean isTouchDown() {
+        mediaPlayer.start();
+
+        if(state) {
+            sprite.playAnimationWithName("on");
+        } else {
+            sprite.playAnimationWithName("off");
+        }
+
+        return state;
     }
 
-    @Override
-    public boolean isTouchUp(int x, int y) {
-        return super.isTouchUp(x, y);
+    public boolean isTouchUp() {
+
+        if(state) {
+            sprite.playAnimationWithName("on");
+        } else {
+            sprite.playAnimationWithName("off");
+        }
+
+        state = !state;
+
+        return state;
     }
+
 }

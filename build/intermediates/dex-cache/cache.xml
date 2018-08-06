@@ -3,255 +3,147 @@
 
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="ec657bb192b20229696216bf233779b16bf75a54">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_adb4a8e7c2889aa619e6c03d4613ac049d728e09.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="2feadd535770271ca57b7b431f42151aa4af324a">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_d9280cb418166c0b19131ba75ec2ecd099bfea16.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.1.2/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="182370a4a0bba7903c6ff2cb7b6ac21ca4a4bf89">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.1.2_abce311ceb807268b74d06240aa8b73fc5a26056.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="d968b9bd0011800e0d333d1571b8d34bcb8a0b6e">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.1_a2b1af0b9ad8b3cbe3567d49b78772ff6bc82a58.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.1/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.1_0a93e69608de5258ccffeb0a6fdf44879df58d88.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/support-compat/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_671b9a9f1b6c6bfedecffeb3716832f400d44872.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_05058317b208bd7efeb00156c058aa0e92f3b364.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.0/edf3f7bfb84a7521d0599efa3b0113a0ee90f85/common-1.1.0.jar"
+        jar="C:\Users\PC LAB\.gradle\caches\modules-2\files-2.1\android.arch.lifecycle\common\1.1.0\edf3f7bfb84a7521d0599efa3b0113a0ee90f85\common-1.1.0.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="0edf3f7bfb84a7521d0599efa3b0113a0ee90f85">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/common-1.1.0_e1dea8adadb4a58344a11b388c9f48c6c542b7b6.jar" />
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\common-1.1.0_4b1a8599782a557aa48be4dbee7081eacf5ecdca.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/android.arch.lifecycle/viewmodel/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_4c20c29c40633e9451b0c7b9b785f9d4e31aff53.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_fe828c0cf807a71da258b602c4abc0eded17c757.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/support-compat/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.1_6d32b13c5a083508487bff9c39baea8702171e0b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="ec657bb192b20229696216bf233779b16bf75a54">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.1_e0caa67f915f51c7c806a6515c27bf8c366338c4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_da0497bb8cc007b6f2b8e9c7f99820410d23d3d4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_8d9da557cc59d1c3cdaee4c35149f925fbd614d5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.1_89f87d5e7c4d467e4f7c763a72d5665bd4bb3857.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="2feadd535770271ca57b7b431f42151aa4af324a">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.1_fb7e417d422b801655bee97454bbee7de7a7a497.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/android.arch.lifecycle/livedata-core/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="8a9fd7c97f1d13f97f3b52f9d2e54cd857d5acf9">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_6e93c5dc2286e4626882a6ad4fc5ef06c032549b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/android.arch.lifecycle/viewmodel/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_319de1404396137dfe2ae3a66380ebec1c053fb0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="c9a721adcd7dbae7a197b0ef81102336539f63ff">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.1_8a9744217f2b836d7952b6e85ae4d883d3165a43.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_02d1a05ce450a0bee28b0443e12031c738d1a2d1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.0/8007981f7d7540d89cd18471b8e5dcd2b4f99167/common-1.1.0.jar"
+        jar="C:\Users\PC LAB\.gradle\caches\modules-2\files-2.1\android.arch.core\common\1.1.0\8007981f7d7540d89cd18471b8e5dcd2b4f99167\common-1.1.0.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="8007981f7d7540d89cd18471b8e5dcd2b4f99167">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/common-1.1.0_bd64465c3b2ebcec35eab5c31a418f180f7c6710.jar" />
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\common-1.1.0_fc5715731411d5966fbe28d0f9b00c19f7c75cd4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.2/bfc967828daffc35ba01c9ee204d98b664930a0f/constraint-layout-solver-1.1.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="bfc967828daffc35ba01c9ee204d98b664930a0f">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.1.2_06d3540d8b40d99567589617bfde544969960203.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/jars/classes.jar"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\27.1.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="d968b9bd0011800e0d333d1571b8d34bcb8a0b6e">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.1_45320f76b1054c21bee58963dfdca114d706a647.jar" />
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-27.1.1_f78ba62caeb5c903bb1b97fabb7e337e93d60058.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="c9a721adcd7dbae7a197b0ef81102336539f63ff">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.1_3d1cc79a51927b50f5edd08516f89d7235bcc69d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.1.2/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="182370a4a0bba7903c6ff2cb7b6ac21ca4a4bf89">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.1.2_d6ecb2dd57c72c73adb7bd3ef238a7b898ceed45.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="27.0.3"
-        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
-        <dex dex="/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.1_c7e489124a021bef058207d27386f7d0e0fb4a90.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/android.arch.lifecycle/livedata-core/1.1.0/jars/classes.jar"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.lifecycle\livedata-core\1.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="8a9fd7c97f1d13f97f3b52f9d2e54cd857d5acf9">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_0c1dd260b8cab9ff700a3bf0f9c7f4310e92a2cc.jar" />
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.lifecycle-livedata-core-1.1.0_b2219d131a786eddc0377243ea936c3b1670b830.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.1.0/jars/classes.jar"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2feadd535770271ca57b7b431f42151aa4af324a">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-27.1.1_cfb8177eb7d68753089328799f55c3f3fb3ef9c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\PC LAB\.gradle\caches\modules-2\files-2.1\com.android.support.constraint\constraint-layout-solver\1.1.2\bfc967828daffc35ba01c9ee204d98b664930a0f\constraint-layout-solver-1.1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="bfc967828daffc35ba01c9ee204d98b664930a0f">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.1.2_82edf606a504cf5f71c5c9a50d8ccc96206eca1d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-fragment\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3304d33470ff64cf83bce9189ff3648a42eb2aa7">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-27.1.1_e02553617e8ffa53765396f688db4bc0ad4b0430.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="874f1143c11f5d38533efe512bf913e3e847e7df">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-27.1.1_c02863f61bc105f9618f72d5a3429e0b376caa29.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ec657bb192b20229696216bf233779b16bf75a54">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-27.1.1_5ae96a109ba153d08d42da72a0722166b012fea5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\PC LAB\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\27.1.1\39ded76b5e1ce1c5b2688e1d25cdc20ecee32007\support-annotations-27.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\support-annotations-27.1.1_47460fb3571e3625370de5e65384bce2c9dcae3b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c9a721adcd7dbae7a197b0ef81102336539f63ff">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-27.1.1_1fabdb36d6650af0097baa9c17944c6ea0c00784.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.1.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="182370a4a0bba7903c6ff2cb7b6ac21ca4a4bf89">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.1.2_6072e6969cad0bea4bca434c8ae00769e202c364.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.core\runtime\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.core-runtime-1.1.0_83ecbdb51ceb123b42aed501a3c27ad7afbae9ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.lifecycle\viewmodel\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.lifecycle-viewmodel-1.1.0_d5d9ede71a4f92f5294186c407c2c811591e4750.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\android.arch.lifecycle\runtime\1.1.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="27.0.3"
         sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
-        <dex dex="/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_f6a9bafda3c1d70d6eb615b67a481a7a0d20687d.jar" />
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\android.arch.lifecycle-runtime-1.1.0_d623d02e4fbc0c9115e5c38f436a4ee95e6a9f71.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\exploded-aar\com.android.support\support-compat\27.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="23dcb4803d3103bde3f3f5db978a726338fe49ae">
+        <dex dex="C:\dev\android\pixelland\fabrika-mobil-oyun\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-27.1.1_adaecb721fb5fc151cae8da70aa70ef22239c571.jar" />
     </item>
 
 </items>

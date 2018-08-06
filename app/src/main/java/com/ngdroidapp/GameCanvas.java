@@ -8,6 +8,9 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.media.Image;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import istanbul.gamelab.ngdroid.base.BaseCanvas;
@@ -181,15 +184,22 @@ public class GameCanvas extends BaseCanvas {
     // Pop up üstünde bulunacak retry butonu ile ilgili nesneler tanımlanıyor.
     private Sprite popUpRetryButtonSprite;
 
-    // Banda düşecek oyuncak nesnesi ile ilgili tanımlamalar yapılıyor.
+    // Banda düşecek nesne ile ilgili tanımlamalar yapılıyor.
+    /*
     private Sprite cakeSprite;
     private boolean isCakeHidden;
     private boolean isCakeChangeConveyorBelt;
-    private boolean isCakeFallingDown;
     private int cakeVelocity;
+    */
 
+    // Banda düşecek ürünler ile ilgili nesne tanımlaması yapılıyor.
+    //private HashSet<Product> products;
+    private ArrayList<Product> products;
+
+    // Oyuncu skoru
     private int score;
 
+    // Skor ile ilgili paint nesnesi.
     private Paint paint = new Paint();
 
 
@@ -446,20 +456,39 @@ public class GameCanvas extends BaseCanvas {
         NgAnimation popUpRetryButtonAnimation = new NgAnimation("click", popUpRetryButtonImageSet, 0, 1);
         popUpRetryButtonSprite = new Sprite(popUpRetryButtonBitmap, popUpRetryButtonSourceRect, popUpRetryButtonDestinationRect, popUpRetryButtonAnimation);
 
+        // Banda düşecek ürünler ile ilgili nesnelere ilk değer ataması yapılıyor.
+        products = new ArrayList<Product>();
+        addProduct();
+
 
         // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        /*
         Bitmap cakeBitmap = Utils.loadImage(root, "cakeWithPlateImageSet.png");
         Rect cakeSourceRect = new Rect(0, 0, 360, 360);
         Rect cakeDestinationRect = new Rect(pipeSprite.destination.right, pipeSprite.destination.top , pipeSprite.destination.right + 150, pipeSprite.destination.top + 150);
         cakeSprite = new Sprite(cakeBitmap, cakeSourceRect, cakeDestinationRect);
-
         isCakeHidden = true;
         isCakeChangeConveyorBelt = false;
         cakeVelocity = 1000/gameSpeed;
         cakeSprite.setVelocityX(cakeVelocity);
         cakeSprite.setIndicatorX(1);
         cakeSprite.setIndicatorY(1);
-        isCakeFallingDown = false;
+        */
+    }
+
+    private void addProduct() {
+        // Oyuncak ile ilgili nesnelere ilk değer atamaları yapılıyor.
+        Bitmap productBitmap = Utils.loadImage(root, "cakeWithPlateImageSet.png");
+        Rect productSourceRect = new Rect(0, 0, 360, 360);
+        Rect productDestinationRect = new Rect(pipeSprite.destination.right, pipeSprite.destination.top , pipeSprite.destination.right + 150, pipeSprite.destination.top + 150);
+        Sprite productSprite = new Sprite(productBitmap, productSourceRect, productDestinationRect);
+        Product product = new Product(productSprite);
+        product.setHiddenState(true);
+        product.setConveyorBeltState(false);
+        product.getSprite().setVelocityX(1000/gameSpeed);
+        product.getSprite().setIndicatorX(1);
+        product.getSprite().setIndicatorY(1);
+        products.add(product);
     }
 
     private NgMediaPlayer setupMediaPlayer(String mediaFilePath, boolean loopState, boolean mediaPlayerState) {
@@ -476,21 +505,130 @@ public class GameCanvas extends BaseCanvas {
         return mediaPlayer;
     }
 
+    private void productControls(Product product) {
+        // Ürün ekranın orta kısmından geçiyor mu?
+        if(product.getSprite().destination.right <= middlePlatfromSprite.destination.right + 20 && product.getSprite().destination.left >= middlePlatfromSprite.destination.left - 20 && product.getConveyorBeltState()) {
+            // Kek ekranın tam ortasında ise burası çalışır ve kekin görünümü değişir.
+            product.getSprite().setSourceX(product.getSprite().getSourceX() + 360);
+            product.setConveyorBeltState(false);
+        }
+
+        // Kek en alt bant ile çarpıştı mı?
+        if(product.getSprite().destination.bottom >= conveyorBeltRightBottomSprite.destination.top){
+            // Kekin alt koordinatı bandın üst koordinatına eşitlensin.
+            product.getSprite().setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - product.getSprite().getDestinationHeight());
+
+            // Kek'in dikeydeki düşüş hareketi dursun ve yatayda sağa doğru harekete başlasın.
+            product.getSprite().setIndicatorY(0);
+            product.getSprite().setIndicatorX(1);
+        }
+
+
+        if(product.getHiddenState()) {
+            //cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
+            product.getSprite().setDestinationY(pipeSprite.getDestinationY());
+            product.getSprite().setDestinationX(pipeSprite.getDestinationWidth());
+            product.getSprite().setIndicatorY(1);
+            product.getSprite().setIndicatorX(1);
+            product.getSprite().setVelocityY(0);
+        } else{
+            product.getSprite().setVelocityY(product.getSprite().getVelocityY() + gravity);
+            product.getSprite().moveToY(product.getSprite().getVelocityY(), product.getSprite().getIndicatorY());
+            product.getSprite().setIndicatorX(product.getSprite().getIndicatorX());
+            //product.getSprite().setVelocityX(cakeVelocity);
+            product.getSprite().moveToX();
+        }
+
+        // Kek sağ bandın sonuna ulaştı mı?
+        if(product.getSprite().destination.right - product.getSprite().getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth) {
+            // Kek dursun.
+            product.getSprite().setIndicatorX(0);
+
+            // Kek hangi bantta?
+            if(product.getSprite().destination.bottom > conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom > platformRightMiddleSprite.destination.top) {
+                // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
+                product.setConveyorBeltState(true);
+                product.getSprite().setDestinationY(conveyorBeltLeftBottomSprite.getDestinationY() - product.getSprite().getDestinationHeight());
+                product.getSprite().setIndicatorX(-1);
+
+            } else if(product.getSprite().destination.bottom == conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom == platformRightMiddleSprite.destination.top) {
+                // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
+                product.setConveyorBeltState(true);
+                product.getSprite().setDestinationY(conveyorBeltLeftMiddleSprite.getDestinationY() - product.getSprite().getDestinationHeight());
+                product.getSprite().setIndicatorX(-1);
+
+            } else if(product.getSprite().destination.bottom < conveyorBeltRightMiddleSprite.destination.top && playerRightSprite.destination.bottom < platformRightMiddleSprite.destination.top) {
+                // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
+                product.setConveyorBeltState(true);
+                product.getSprite().setDestinationY(conveyorBeltLeftTopSprite.getDestinationY() - product.getSprite().getDestinationHeight());
+                product.getSprite().setIndicatorX(-1);
+            } else {
+                isGameOver = true;
+            }
+
+
+        }
+
+        //Kek sol bantın sonunda mı?
+        if (product.getSprite().destination.left + product.getSprite().getDestinationWidth()/3 <= conveyorBeltLeftX ){
+            // Kek'in yataydaki hareketi dursun.
+            product.getSprite().setIndicatorX(0);
+
+            if(product.getSprite().destination.bottom > conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom > platformLeftMiddleSprite.destination.top) {
+                // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
+                product.setConveyorBeltState(true);
+                product.getSprite().setDestinationY(conveyorBeltRightMiddleSprite.getDestinationY()- product.getSprite().getDestinationHeight());
+                product.getSprite().setIndicatorX(1);
+
+            } else if(product.getSprite().destination.bottom == conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom == platformLeftMiddleSprite.destination.top) {
+                // Kek bir üst banda çıksın ve ters yönde hareketine devam etsin.
+                product.setConveyorBeltState(true);
+                product.getSprite().setDestinationY(conveyorBeltRightTopSprite.getDestinationY() - product.getSprite().getDestinationHeight());
+                product.getSprite().setIndicatorX(1);
+
+            } else if(product.getSprite().destination.bottom < conveyorBeltLeftMiddleSprite.destination.top && playerLeftSprite.destination.bottom < platformLeftMiddleSprite.destination.top) {
+                // Kek son bandın sonuna ulaşır. Kutu kaybolur, skor artar, oyun hızı artırılır ve oyun döngüsü başa döner.
+                product.setHiddenState(true);
+                score = score + 100;
+                product.getSprite().setSourceX(0);
+                pipeSprite.getAnimationWithName("dropOut").setAnimationState(true);
+                pipeAnimationState = true;
+                if(gameSpeed != 50) {
+                    gameSpeed = gameSpeed - 10;
+                } else {
+                    gameSpeed = 100;
+                }
+                product.getSprite().setVelocityX(1000/gameSpeed);
+
+                addProduct();
+
+            } else {
+                // Karakter ve kek'i almak için uygun platformda değilse ve kek sona geldiyse burası çalışır.
+                isGameOver = true;
+            }
+        }
+    }
+
     public void update() {
 
         if(!isGamePaused && !isGameOver) {
         // Oyun durdurulmadıysa ve bitmediyse burası çalışır.
 
+            /*
+
+            // Ürün ekranın orta kısmından geçiyor mu?
             if(cakeSprite.destination.right <= middlePlatfromSprite.destination.right + 20 && cakeSprite.destination.left >= middlePlatfromSprite.destination.left - 20 && isCakeChangeConveyorBelt) {
                 // Kek ekranın tam ortasında ise burası çalışır ve kekin görünümü değişir.
                 cakeSprite.setSourceX(cakeSprite.getSourceX() + 360);
                 isCakeChangeConveyorBelt = false;
             }
 
+            // Kek en alt bant ile çarpıştı mı?
             if(cakeSprite.destination.bottom >= conveyorBeltRightBottomSprite.destination.top){
-                // Kek'in alt kısmı en alttaki bantın üst kısmı ile çarpışıyorsa kekin alt koordinatı bandın üst koordinatına eşitlensin.
-                // Kek'in dikeydeki düşüş hareketi dursun ve yatayda sağa doğru harekete başlasın.
+                // Kekin alt koordinatı bandın üst koordinatına eşitlensin.
                 cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
+
+                // Kek'in dikeydeki düşüş hareketi dursun ve yatayda sağa doğru harekete başlasın.
                 cakeSprite.setIndicatorY(0);
                 cakeSprite.setIndicatorX(1);
             }
@@ -511,8 +649,8 @@ public class GameCanvas extends BaseCanvas {
                 cakeSprite.moveToX();
             }
 
-            // Kek band˝n sonuna ula˛t˝ m˝?
-            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth && !isCakeFallingDown) {
+            // Kek sağ bandın sonuna ulaştı mı?
+            if(cakeSprite.destination.right - cakeSprite.getDestinationWidth()/3 >= conveyorBeltRightX + conveyorBeltDestinationWidth) {
                 // Kek dursun.
                 cakeSprite.setIndicatorX(0);
 
@@ -541,8 +679,8 @@ public class GameCanvas extends BaseCanvas {
 
             }
 
-            //kek sol bantın sonunda mı?
-            if (cakeSprite.destination.left + cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX && !isCakeFallingDown ){
+            //Kek sol bantın sonunda mı?
+            if (cakeSprite.destination.left + cakeSprite.getDestinationWidth()/3 <= conveyorBeltLeftX ){
                 // Kek'in yataydaki hareketi dursun.
                 cakeSprite.setIndicatorX(0);
 
@@ -578,6 +716,12 @@ public class GameCanvas extends BaseCanvas {
                 }
             }
 
+            */
+
+            for(int i = 0; i < products.size(); i++) {
+                productControls(products.get(i));
+            }
+
             // Animasyonun bitiş süresi alınıyor.
             finishAnim = System.currentTimeMillis();
 
@@ -610,12 +754,21 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltRightBottomSprite.playAnimationWithName("work");
 
         // Borudan pastanın çıkması animasyonu oyntılıyor.
+
         if (pipeAnimationState) {
             if (pipeSprite.getAnimationWithName("dropOut").getAnimationState()) {
                 pipeSprite.playAnimationWithName("dropOut");
             } else {
                 pipeAnimationState = !pipeAnimationState;
-                isCakeHidden = false;
+
+                for(int i = 0; i < products.size(); i++) {
+                    if(products.get(i).getHiddenState()) {
+                       products.get(i).setHiddenState(false);
+                    }
+                }
+
+                //isCakeHidden = false;
+
             }
         }
 
@@ -651,8 +804,16 @@ public class GameCanvas extends BaseCanvas {
         conveyorBeltRightBottomSprite.draw(canvas);
 
         // Kek gizlenmediyse ekrana çizilir.
+        /*
         if(!isCakeHidden) {
             cakeSprite.draw(canvas);
+        }
+        */
+
+        for(int i = 0; i < products.size(); i++) {
+            if(!products.get(i).getHiddenState()) {
+                products.get(i).getSprite().draw(canvas);
+            }
         }
 
         // Ekranı ortadan ikiye ayıran orta platform erkarana çiziliyor.

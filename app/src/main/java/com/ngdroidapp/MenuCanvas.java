@@ -124,6 +124,7 @@ public class MenuCanvas extends BaseCanvas {
         Sprite infoButtonSprite = new Sprite(infoButtonBitmap, infoButtonSourceRect, infoButtonDestinationRect, infoButtonTouchUpAnimation);
         infoButton = new Button(infoButtonSprite, soundMediaPlayer);
 
+
     }
 
     public void update() {
@@ -161,7 +162,6 @@ public class MenuCanvas extends BaseCanvas {
 
 
         if(soundButtonSprite.isTouchedUp(x, y)) {
-            Log.i(TAG, "Sound Butonuna Basıldı.");
             playClickSound();
             if(!soundState) {
                 soundButtonSprite.playAnimationWithName("touchUpInside");
@@ -173,7 +173,6 @@ public class MenuCanvas extends BaseCanvas {
 
 
         if(musicButtonSprite.isTouchedUp(x, y)) {
-            Log.i(TAG, "Music Butonuna Basıldı.");
             playClickSound();
             if(!musicState) {
                 musicButtonSprite.playAnimationWithName("touchUpInside");

@@ -1,10 +1,14 @@
 [
     {
-        "merged": "/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/res/merged/debug/drawable-watch-v20/abc_dialog_material_background.xml",
-        "source": "/Users/muhammedkarakul/dev/android/workspace/Pixelland/fabrika-mobil-oyun/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/drawable-watch-v20/abc_dialog_material_background.xml"
+        "merged": "C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\drawable-watch-v20\\abc_dialog_material_background.xml"
     },
     {
-        "merged": "/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/res/merged/debug/drawable-watch-v20/abc_dialog_material_background.xml",
-        "source": "/Users/muhammedkarakul/Projects/pixelland/oyuncak-fabrika-mobil-uygulama/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/drawable-watch-v20/abc_dialog_material_background.xml"
+        "merged": "C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20\\abc_dialog_material_background.xml",
+        "source": "C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\drawable-watch-v20\\abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\res\\merged\\debug\\drawable-watch-v20\\abc_dialog_material_background.xml",
+        "source": "C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\drawable-watch-v20\\abc_dialog_material_background.xml"
     }
 ]
