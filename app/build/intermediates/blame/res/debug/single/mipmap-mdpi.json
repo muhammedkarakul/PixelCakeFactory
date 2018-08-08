@@ -1,14 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
-        "source": "C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
-        "source": "C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
-        "source": "C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
+        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     }
 ]

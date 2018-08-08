@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
+        "outputFile": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 163
                 },
                 "from": {
-                    "file": "C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "file": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "outputFile": "C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
+        "outputFile": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
         "map": [
             {
                 "to": {
@@ -35,7 +35,7 @@
                     "endOffset": 163
                 },
                 "from": {
-                    "file": "C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "file": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -48,7 +48,7 @@
         ]
     },
     {
-        "outputFile": "C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
+        "outputFile": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
         "map": [
             {
                 "to": {
@@ -59,7 +59,31 @@
                     "endOffset": 163
                 },
                 "from": {
-                    "file": "C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "file": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 112,
+                        "endOffset": 163
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/muhammedkarakul/dev/android/workspace/pixelland/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 112,
+                    "endOffset": 163
+                },
+                "from": {
+                    "file": "/Users/muhammedkarakul/dev/android/workspace/pixelland/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/values-ldltr-v21/values-ldltr-v21.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
