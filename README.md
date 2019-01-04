@@ -6,4 +6,5 @@ This game written by Java Programming Language for Android Platform. This game m
 
 Clone the project and open with Android Studio IDE. You must create API 24 Android Device(Emulator). Device must be have 1080p resolution screen because this game only support 1080p resolution.
 
+## Preview On Emulator
 <img src="https://thumbs.gfycat.com/LittleEthicalCheetah-size_restricted.gif">
