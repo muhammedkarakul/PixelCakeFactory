@@ -1,18 +1,6 @@
 [
     {
-        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\res\\merged\\debug\\color-v21\\abc_btn_colored_borderless_text_material.xml",
-        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\Projects\\pixelland\\oyuncak-fabrika-mobil-uygulama\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\color-v21\\abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\color-v21\\abc_btn_colored_borderless_text_material.xml",
-        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\Users\\muhammedkarakul\\dev\\android\\workspace\\Pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\color-v21\\abc_btn_colored_borderless_text_material.xml"
-    },
-    {
         "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/app/build/intermediates/res/merged/debug/color-v21/abc_btn_colored_borderless_text_material.xml",
         "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.1/res/color-v21/abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\res\\merged\\debug\\color-v21\\abc_btn_colored_borderless_text_material.xml",
-        "source": "/Users/muhammedkarakul/dev/android/workspace/pixelland/C:\\dev\\android\\pixelland\\fabrika-mobil-oyun\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\27.1.1\\res\\color-v21\\abc_btn_colored_borderless_text_material.xml"
     }
 ]

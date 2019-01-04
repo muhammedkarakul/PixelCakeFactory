@@ -2501,6 +2501,7 @@ containing a value of this type.
         public static final int abc_allow_stacked_button_bar=0x7f090001;
         public static final int abc_config_actionMenuItemAllCaps=0x7f090002;
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f090003;
+        public static final int enable_debug_messages=0x7f090004;
     }
     public static final class color {
         public static final int abc_background_cache_hint_selector_material_dark=0x7f0a003d;
@@ -3035,6 +3036,16 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f06000f;
         public static final int abc_toolbar_collapse_description=0x7f060010;
         public static final int app_name=0x7f06001f;
+        public static final int define_EncryptedPreferences=0x7f060020;
+        public static final int library_EncryptedPreferences_author=0x7f060021;
+        public static final int library_EncryptedPreferences_authorWebsite=0x7f060022;
+        public static final int library_EncryptedPreferences_isOpenSource=0x7f060023;
+        public static final int library_EncryptedPreferences_libraryDescription=0x7f060024;
+        public static final int library_EncryptedPreferences_libraryName=0x7f060025;
+        public static final int library_EncryptedPreferences_libraryVersion=0x7f060026;
+        public static final int library_EncryptedPreferences_libraryWebsite=0x7f060027;
+        public static final int library_EncryptedPreferences_licenseId=0x7f060028;
+        public static final int library_EncryptedPreferences_repositoryLink=0x7f060029;
         public static final int search_menu_title=0x7f060011;
         public static final int status_bar_notification_info_overflow=0x7f060012;
     }

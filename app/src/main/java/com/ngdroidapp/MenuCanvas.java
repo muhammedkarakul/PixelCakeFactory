@@ -43,6 +43,8 @@ public class MenuCanvas extends BaseCanvas {
     // Info button ile ilgili değişkenler.
     private Button infoButton;
 
+    //private Button storeButton;
+
     // Arkaplan müziği ile ilgili değişken.
     private NgMediaPlayer musicMediaPlayer;
 
@@ -124,6 +126,17 @@ public class MenuCanvas extends BaseCanvas {
         Sprite infoButtonSprite = new Sprite(infoButtonBitmap, infoButtonSourceRect, infoButtonDestinationRect, infoButtonTouchUpAnimation);
         infoButton = new Button(infoButtonSprite, soundMediaPlayer);
 
+        /*int storeButtonWidth = 256;
+        int storeButtonHeight = 256;
+        Bitmap storeButtonBitmap = Utils.loadImage(root, "buttonInfoSpriteSet.png");
+        Rect storeButtonSourceRect = new Rect(0, 0, spriteSourceWidth, spriteSourceHeight);
+        Rect storeButtonDestinationRect = new Rect(0, getHeight() - storeButtonHeight, storeButtonWidth, getHeight());
+        ImageSet storeButtonImageSet = new ImageSet(storeButtonBitmap);
+        storeButtonImageSet.divideBy(spriteSourceWidth, spriteSourceHeight);
+        NgAnimation storeButtonTouchUpAnimation = new NgAnimation("click", storeButtonImageSet, 0, 1);
+        Sprite storeButtonSprite = new Sprite(infoButtonBitmap, storeButtonSourceRect, storeButtonDestinationRect, storeButtonTouchUpAnimation);
+        storeButton = new Button(storeButtonSprite, soundMediaPlayer);*/
+
 
     }
 
@@ -137,6 +150,7 @@ public class MenuCanvas extends BaseCanvas {
         soundButtonSprite.draw(canvas);
         musicButtonSprite.draw(canvas);
         infoButton.getSprite().draw(canvas);
+        //storeButton.getSprite().draw(canvas);
     }
 
     public void keyPressed(int key) {
@@ -155,6 +169,8 @@ public class MenuCanvas extends BaseCanvas {
         playButton.isTouchDown(x, y);
 
         infoButton.isTouchDown(x, y);
+
+        //storeButton.isTouchUp(x, y);
 
         //soundButton.isTouchDown(x, y);
 
@@ -191,6 +207,8 @@ public class MenuCanvas extends BaseCanvas {
         if(playButton.isTouchUp(x, y)) { goToGameCanvas(); }
 
         if(infoButton.isTouchUp(x, y)) { goToInfoCanvas(); }
+
+        //if(storeButton.isTouchUp(x, y)) { goToStoreCanvas(); }
 
         /*
         if(soundButton.isTouchUp(x, y)) {
@@ -283,6 +301,12 @@ public class MenuCanvas extends BaseCanvas {
     }
 
     public void goToInfoCanvas() {
+        canvasDidDisappear();
+        InfoCanvas infoCanvas = new InfoCanvas(root, musicState, soundState);
+        root.canvasManager.setCurrentCanvas(infoCanvas);
+    }
+
+    public void goToStoreCanvas() {
         canvasDidDisappear();
         InfoCanvas infoCanvas = new InfoCanvas(root, musicState, soundState);
         root.canvasManager.setCurrentCanvas(infoCanvas);

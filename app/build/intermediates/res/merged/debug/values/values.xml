@@ -133,6 +133,7 @@
     <bool name="abc_allow_stacked_button_bar">false</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
+    <bool name="enable_debug_messages">false</bool>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
@@ -620,6 +621,16 @@
     <string name="abc_shareactionprovider_share_with_application">Share with <ns1:g example="Mail" id="application_name">%s</ns1:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="app_name">My Ngdroid App</string>
+    <string name="define_EncryptedPreferences"/>
+    <string name="library_EncryptedPreferences_author">Patrick J</string>
+    <string name="library_EncryptedPreferences_authorWebsite">http://pddstudio.com/</string>
+    <string name="library_EncryptedPreferences_isOpenSource">true</string>
+    <string name="library_EncryptedPreferences_libraryDescription">An Android Library to securely read and write encrypted values to your SharedPreferences.</string>
+    <string name="library_EncryptedPreferences_libraryName">EncryptedPreferences</string>
+    <string name="library_EncryptedPreferences_libraryVersion">1.2.0</string>
+    <string name="library_EncryptedPreferences_libraryWebsite">https://github.com/PDDStudio/EncryptedPreferences</string>
+    <string name="library_EncryptedPreferences_licenseId">apache_2_0</string>
+    <string name="library_EncryptedPreferences_repositoryLink">https://github.com/PDDStudio/EncryptedPreferences</string>
     <string name="search_menu_title">Search</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

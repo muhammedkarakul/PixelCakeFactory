@@ -8,6 +8,8 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.media.Image;
 
+import com.ngdroidaddons.ngaencryptedpreferences.NgaEncryptedPreferences;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -210,6 +212,9 @@ public class GameCanvas extends BaseCanvas {
     // Skor ile ilgili paint nesnesi.
     private Paint paint = new Paint();
 
+    boolean isAnyProductLeft;
+
+    private NgaEncryptedPreferences record;
 
 
     public GameCanvas(NgApp ngApp, boolean musicState, boolean soundState) {
@@ -219,6 +224,10 @@ public class GameCanvas extends BaseCanvas {
     }
 
     public void setup() {
+
+
+
+        isAnyProductLeft = false;
 
         totalNumberOfProducts = 0;
 
@@ -231,15 +240,21 @@ public class GameCanvas extends BaseCanvas {
         startAnim = System.currentTimeMillis();
         gameSpeed = 100;
 
-        score = 0;
+        // Yerel hafızada saklanacak veriyi şifreliyoruz.
+        record = new NgaEncryptedPreferences(root);
+        // Şifrelenmiş dosyayı açabilmemiz için bir şifre belirliyoruz.
+        record.initialize("123");
+        // Score değerimizi tutan değişkene yerel hafızada sakladığımız score değerini aktarıyoruz.
+        score = Integer.parseInt(record.getString("score", "0"));
+
         Typeface face = Typeface.createFromAsset(ContextClass.getActivity().getAssets(), "fonts/pixelmix.ttf");
         paint.setTypeface(face);
         paint.setColor(Color.BLACK);
         paint.setTextSize(64);
 
         // Arkaplan ile ilgili nesnelere ilk değer atamaları yapılıyor.
-        Bitmap backgroundBitmap = Utils.loadImage(root, "background.png");
-        Rect backgroundSourceRect = new Rect(0, 20, 1020, 2040);
+        Bitmap backgroundBitmap = Utils.loadImage(root, "blackground-ice.png");
+        Rect backgroundSourceRect = new Rect(0, 20, 1080, 1920);
         Rect backgroundDestinationRect = new Rect(0, 0, getWidth(), getHeight());
         backgroundSprite = new Sprite(backgroundBitmap, backgroundSourceRect, backgroundDestinationRect);
 
@@ -535,6 +550,7 @@ public class GameCanvas extends BaseCanvas {
     }
 
     private void productControls(Product product) {
+
         // Ürün ekranın orta kısmından geçiyor mu?
         if(product.getSprite().destination.right <= middlePlatfromSprite.destination.right + 20 && product.getSprite().destination.left >= middlePlatfromSprite.destination.left - 20 && product.getConveyorBeltState()) {
             // Kek ekranın tam ortasında ise burası çalışır ve kekin görünümü değişir.
@@ -610,18 +626,26 @@ public class GameCanvas extends BaseCanvas {
 
                 Log.i("GameCanvas", "Score: " + score);
 
+                if(productCounter == level) {
+                    isAnyProductLeft = false;
+
+                    if(gameSpeed > 50) {
+                        gameSpeed = gameSpeed - 10;
+                    } else {
+                        gameSpeed = 100;
+                        level += 1;
+                        productCounter = level;
+                        addProduct();
+                    }
+
+                } else {
+                    isAnyProductLeft = true;
+                }
+
                 if(productCounter < level) {
                     productCounter += 1;
                 }
 
-                if(gameSpeed > 50) {
-                    gameSpeed = gameSpeed - 10;
-                } else {
-                    gameSpeed = 100;
-                    level += 1;
-                    productCounter = level;
-                    addProduct();
-                }
                 product.getSprite().setVelocityX(1000/gameSpeed);
 
             } else {
@@ -631,7 +655,6 @@ public class GameCanvas extends BaseCanvas {
         }
 
         if(product.getHiddenState()) {
-            //cakeSprite.setDestinationY(conveyorBeltRightBottomSprite.getDestinationY() - cakeSprite.getDestinationHeight());
             product.getSprite().setDestinationY(pipeSprite.getDestinationY());
             product.getSprite().setDestinationX(pipeSprite.getDestinationWidth());
             product.getSprite().setIndicatorY(1);
@@ -641,7 +664,6 @@ public class GameCanvas extends BaseCanvas {
             product.getSprite().setVelocityY(product.getSprite().getVelocityY() + gravity);
             product.getSprite().moveToY(product.getSprite().getVelocityY(), product.getSprite().getIndicatorY());
             product.getSprite().setIndicatorX(product.getSprite().getIndicatorX());
-            //product.getSprite().setVelocityX(cakeVelocity);
             product.getSprite().moveToX();
         }
     }
@@ -660,7 +682,11 @@ public class GameCanvas extends BaseCanvas {
             finishAnim = System.currentTimeMillis();
 
             // Zamana bağlı güncelleme işlemleri burada yapılır.
-            timeBoundAnimation();
+
+                timeBoundAnimation();
+
+
+
 
             // Animasyonun bitiş süresi başlangıç süresinden istenildiği kadar fark oluşturduysa(istenilen bekleme süresi geçtiyse)
             if (finishAnim - startAnim > gameSpeed) {
@@ -689,7 +715,7 @@ public class GameCanvas extends BaseCanvas {
 
         // Borudan pastanın çıkması animasyonu oyntılıyor.
 
-        //if (pipeAnimationState) {
+        if (!isAnyProductLeft) {
             if (pipeSprite.getAnimationWithName("dropOut").getAnimationState()) {
                 pipeSprite.playAnimationWithName("dropOut");
             } else {
@@ -705,7 +731,7 @@ public class GameCanvas extends BaseCanvas {
 
             }
 
-        //} else {
+        } //else {
 
             //pipeAnimationState = !pipeAnimationState;
             //if(products.get(productCounter).getHiddenState()) {
@@ -783,6 +809,8 @@ public class GameCanvas extends BaseCanvas {
 
         // Oyun bittiyse ekrana pop up menüyü çiz ve üstüne yeniden başlat ve menü butonlarını çiz.
         if(isGameOver) {
+            // Score değerini yerel hafızaya kayıt ediyoruz.
+            record.putString("score", Integer.toString(score));
             gameOverPopUpSprite.draw(canvas);
             popUpMenuButtonSprite.draw(canvas);
             popUpRetryButtonSprite.draw(canvas);
